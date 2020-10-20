@@ -12,9 +12,20 @@
             </div> 
             
             <router-link v-bind:to="{name:constants.URL_TYPE.USER.LOGIN}" class="login-btn">
-                로그인 
+               <a
+              v-if="!this.$cookies.isKey('Auth-Token')"
+            
+            >
+              <i class="fas fa-sign-in-alt mr-1"></i>로그인
+            </a> 
             </router-link>  
             
+            <li class="nav-item">
+            <a v-if="this.$cookies.isKey('Auth-Token')" @click="logout" class="nav-link mt-3 pl-1">
+             로그아웃
+            </a>
+          </li>
+
         </div>  
         
     </div>
@@ -36,6 +47,19 @@
         created() {
         },
         methods : {
+
+    logout: function() {
+      this.$cookies.remove('Auth-Token');
+      
+      setTimeout(() => {
+        this.$router.push('/').catch((err) => {
+          console.log(err);
+        });
+        this.$router.go();
+      }, 1000);
+    }
+
+
         },
         data: function() {
            return {
