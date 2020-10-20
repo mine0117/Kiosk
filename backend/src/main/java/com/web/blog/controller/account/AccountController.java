@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @ApiResponses(value = { @ApiResponse(code = 401, message = "Unauthorized", response = BasicResponse.class),
@@ -129,5 +131,47 @@ public class AccountController {
 
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
+
+
+    @GetMapping("/authuser/{token}")
+    @ApiOperation(value = "토큰으로 유저정보 가져오기")
+    public Object authUser(@PathVariable String token) throws SQLException, IOException {
+        User tokenuser = jwtService.getUser(token);
+      
+        Optional<User> userinfo = userDao.findUserByUid(tokenuser.getUid());
+        try {
+            if (userinfo.isPresent()) {
+                return new ResponseEntity<>(userinfo.get(), HttpStatus.ACCEPTED);
+            } else {
+                return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    // @PutMapping("/modify/{pwvalidated}")
+    // @ApiOperation(value = "회원정보수정")
+    // public Object modify(@Valid @RequestBody User request)
+    //         throws SQLException, IOException {
+    //     try {
+    //         Optional<User> userOpt = userDao.findUserByUid(request.getUid());
+    //         if (userOpt.isPresent()) {
+    //             User newUser = userOpt.get();
+    //             // if (pwvalidated == 1) {
+    //             //     newUser.setPassword(request.getPassword());
+    //             // } else {
+    //             //     newUser.setNickname(request.getNickname());
+    //             //     // newUser.setImgurl(request.getImgurl());
+    //             // }
+    //             userDao.save(newUser);
+    //             return newUser;
+    //         } else {
+    //             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+    //         }
+    //     } catch (Exception e) {
+    //         return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+    //     }
+    // }
 
 }
