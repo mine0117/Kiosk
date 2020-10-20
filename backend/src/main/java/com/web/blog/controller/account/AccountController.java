@@ -1,10 +1,13 @@
 package com.web.blog.controller.account;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Optional;
 
 import javax.validation.Valid;
 
 import com.web.blog.dao.user.UserDao;
+import com.web.blog.jwt.JwtService;
 import com.web.blog.model.BasicResponse;
 import com.web.blog.model.user.SignupRequest;
 import com.web.blog.model.user.User;
@@ -35,6 +38,10 @@ public class AccountController {
     @Autowired
     UserDao userDao;
 
+    @Autowired
+    JwtService jwtService;
+
+
     // @GetMapping("/account/login")
     // @ApiOperation(value = "로그인")
     // public Object login(@RequestParam(required = true) final String email,
@@ -56,10 +63,41 @@ public class AccountController {
     //     return response;
     // }
 
+    @PostMapping("/account/kakaologin")
+    @ApiOperation(value = "카카오 로그인")
+    public Object viewInfo(@RequestBody User request) throws SQLException, IOException {
+        String token = null;
+      
+        try {
+            Optional<User> userOpt = userDao.findUserByUid(request.getUid());
+            if (userOpt.isPresent()) {
+                User tokenuser = new User();
+                tokenuser.setUid(userOpt.get().getUid());
+                tokenuser.setName(userOpt.get().getName());
+                token = jwtService.createLoginToken(tokenuser);
+
+                return new ResponseEntity<>(token, HttpStatus.ACCEPTED);
+            }else{
+                System.out.println("2번째");
+                return new ResponseEntity<>(null, HttpStatus.ACCEPTED);
+            }
+           
+
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+    }
+
+
+
+
+
     @PostMapping("/account/signup")
     @ApiOperation(value = "가입하기")
 
     public Object signup(@Valid @RequestBody User request) {
+        String token = null;
         System.out.println("logger - signup method");
         // 이메일, 닉네임 중복처리 필수
         
@@ -69,10 +107,19 @@ public class AccountController {
         
         if(user!=null){
             System.out.println("logger - 해당 이메일이 이미 있음 ");
+            
+            
         } else{
             //회원가입 
             System.out.println("logger - 회원가입 진행");
+            
             userDao.save(request);
+            User tokenuser = new User();
+            tokenuser.setUid(request.getUid());
+            tokenuser.setName(request.getName());
+            token = jwtService.createLoginToken(tokenuser);
+            return new ResponseEntity<>(token, HttpStatus.ACCEPTED);
+
         }
         //회원가입단을 생성해 보세요.
 

@@ -85,6 +85,7 @@ export default {
   },
   methods: {
     sendSignupFrom() {
+      var kakaoToken = "";
       var user = {
         uid: this.getKakaoId,
         email: this.email,
@@ -97,7 +98,10 @@ export default {
       axios
         .post(`${this.getBaseUrl}/account/signup`, user)
         .then((Response) => {
+          kakaoToken = Response.data;
           console.log(Response.data);
+          this.$cookies.set("Auth-Token", kakaoToken);
+          this.$router.push("/");
         })
         .catch((Error) => {
           console.log(Error);

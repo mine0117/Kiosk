@@ -24,7 +24,7 @@ export default new Router({
     {
       path: '/user/join',
       name: constants.URL_TYPE.USER.JOIN,
-      name: 'Join',
+      // name: 'Join',
       component: Join
     },
     // { 

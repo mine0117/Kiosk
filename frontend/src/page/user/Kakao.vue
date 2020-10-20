@@ -7,7 +7,7 @@
       width="222"
     />
   </div>
-</template>   
+</template>
 
 <script>
 import axios from "axios";
@@ -22,25 +22,39 @@ export default {
   created() {},
   methods: {
     kakaoInfoUpdate: function(id) {
-        this.$store.commit('kakaoIdUpdate',id)
-     },
+      this.$store.commit("kakaoIdUpdate", id);
+    },
     kakaojoin() {
       let x = this;
       // var kakaotempToken = "";
-    var a = 0;
+      var a = 0;
+      var kakaoToken = "";
       Kakao.Auth.login({
-        success: function (authObj) {
+        success: function(authObj) {
           Kakao.API.request({
             url: "/v2/user/me",
 
-            success: function (res) {
-              // x.kakao.uid = res.id;
-              // x.kakao.name = res.properties.nickname;
+            success: function(res) {
+              x.kakao.uid = res.id;
+              x.kakao.name = res.properties.nickname;
 
-              // axios
-              //  .post(`${baseURL}/account/join`, x.kakao)
-              //  .then((response) => {
-              //    kakaotempToken = response.data;
+              axios
+                .post(`${baseURL}/account/kakaologin`, x.kakao)
+                .then((response) => {
+                  console.log(response.data);
+                  if (response.data != "") {
+                    kakaoToken = response.data;
+                    x.$cookies.set("Auth-Token", kakaoToken);
+                    x.$router.push("/");
+                  } else {
+              
+                    x.kakaoInfoUpdate(res.id);
+                    
+                    x.$router.push({ name: "join" });
+                  }
+                }).catch(err => console.log(err.response))
+                
+
               //    alert(kakaotempToken)
 
               // })
@@ -56,10 +70,6 @@ export default {
 
               //res.properties.nickname으로도 접근 가능 )
 
-              x.kakaoInfoUpdate(res.id);
-            x.$router.push({name:'Join'})
-
-
               // this.kakaoInfoUpdate();
 
               console.log("hh");
@@ -68,23 +78,22 @@ export default {
           });
         },
 
-        fail: function (error) {
+        fail: function(error) {
           alert(JSON.stringify(error));
         },
       });
       //]]>
       setTimeout(() => {
-          console.log(a);
-          
+        console.log(a);
       }, 5);
     },
   },
   data: () => {
     return {
-    //   kakao: {
-    //     uid: "",
-    //     name: "",
-    //   },
+      kakao: {
+        uid: "",
+        name: "",
+      },
     };
   },
 };
