@@ -17,6 +17,7 @@
                 <button class="btn btn--back btn--login">
                     로그인 하기
                 </button>
+                <kakao></kakao>
                 <div class="add-option">
                     <div class="wrap">
                         <p>아직 회원이 아니신가요?</p>
@@ -36,9 +37,11 @@
 <script>
     import '../../assets/css/user.scss'
     import constants from '../../lib/constants'
+    import Kakao from '../user/Kakao.vue'
     
     export default {
         components: {
+            Kakao
         },
         created(){
         },

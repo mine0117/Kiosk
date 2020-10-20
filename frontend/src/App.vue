@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <Header :isHeader="isHeader"/>
+    <!-- <signup-from></signup-from> -->
     <router-view/>
   </div>
 </template>
@@ -9,12 +10,14 @@
 <script> 
 import './assets/css/style.scss' 
 import Header from './components/common/Header.vue'
-import constants from './lib/constants' 
+import constants from './lib/constants'
 
 export default {
   name: 'App',
   components: { 
-    Header
+    Header,
+    // SignupForm,
+
   },
   created() {
       let url = this.$route.name;

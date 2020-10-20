@@ -7,6 +7,7 @@ import constants from '../lib/constants'
 import Login from '../page/user/Login.vue'
 import Join from '../page/user/Join.vue'
 
+
 // 포스트
 import List from '../page/post/List.vue'
  
@@ -23,8 +24,14 @@ export default new Router({
     {
       path: '/user/join',
       name: constants.URL_TYPE.USER.JOIN,
+      name: 'Join',
       component: Join
     },
+    // { 
+    //   path: '/user/signup',
+    //   name: constants.URL_TYPE.USER.SIGNUP,
+    //   component: Singup
+    // },
     // 포스트
     { 
       path: '/',

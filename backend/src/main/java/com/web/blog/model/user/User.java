@@ -24,14 +24,20 @@ import java.time.LocalDateTime;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String uid;
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int uid;
 
-    @JsonIgnore
-    private String password;
+    // @JsonIgnore
+    // private String password;
     private String email;
+    private String name;
+    private String gender;
+    private int age;
+    private String tel;
+    private String learningfile;
 
-    @Column(insertable = false, updatable = false)
-    private LocalDateTime createDate;
+
+    // @Column(insertable = false, updatable = false)
+    // private LocalDateTime createDate;
 
 }
