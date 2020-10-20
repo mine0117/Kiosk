@@ -28,40 +28,53 @@ import org.springframework.web.bind.annotation.RequestBody;
         @ApiResponse(code = 404, message = "Not Found", response = BasicResponse.class),
         @ApiResponse(code = 500, message = "Failure", response = BasicResponse.class) })
 
-@CrossOrigin(origins = { "http://localhost:3000" })
+@CrossOrigin(origins = { "*" })
 @RestController
 public class AccountController {
 
     @Autowired
     UserDao userDao;
 
-    @GetMapping("/account/login")
-    @ApiOperation(value = "로그인")
-    public Object login(@RequestParam(required = true) final String email,
-            @RequestParam(required = true) final String password) {
+    // @GetMapping("/account/login")
+    // @ApiOperation(value = "로그인")
+    // public Object login(@RequestParam(required = true) final String email,
+    //         @RequestParam(required = true) final String password) {
 
-        Optional<User> userOpt = userDao.findUserByEmailAndPassword(email, password);
+    //     Optional<User> userOpt = userDao.findUserByEmailAndPassword(email, password);
 
-        ResponseEntity response = null;
+    //     ResponseEntity response = null;
 
-        if (userOpt.isPresent()) {
-            final BasicResponse result = new BasicResponse();
-            result.status = true;
-            result.data = "success";
-            response = new ResponseEntity<>(result, HttpStatus.OK);
-        } else {
-            response = new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        }
+    //     if (userOpt.isPresent()) {
+    //         final BasicResponse result = new BasicResponse();
+    //         result.status = true;
+    //         result.data = "success";
+    //         response = new ResponseEntity<>(result, HttpStatus.OK);
+    //     } else {
+    //         response = new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    //     }
 
-        return response;
-    }
+    //     return response;
+    // }
 
     @PostMapping("/account/signup")
     @ApiOperation(value = "가입하기")
 
-    public Object signup(@Valid @RequestBody SignupRequest request) {
+    public Object signup(@Valid @RequestBody User request) {
+        System.out.println("logger - signup method");
         // 이메일, 닉네임 중복처리 필수
-        // 회원가입단을 생성해 보세요.
+        
+        System.out.println(request.getEmail());
+        User user = userDao.getUserByEmail(request.getEmail());
+        
+        
+        if(user!=null){
+            System.out.println("logger - 해당 이메일이 이미 있음 ");
+        } else{
+            //회원가입 
+            System.out.println("logger - 회원가입 진행");
+            userDao.save(request);
+        }
+        //회원가입단을 생성해 보세요.
 
         final BasicResponse result = new BasicResponse();
         result.status = true;
