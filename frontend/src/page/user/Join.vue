@@ -74,25 +74,19 @@
 <script>
 import "../../assets/css/user.scss";
 import axios from "axios";
-// import {mapGetters} from 'vuex'
+import { mapGetters } from "vuex";
+
 export default {
   components: {},
-  created() {
-  },
-  computed:{
-      getKakaoIdM () {
-          console.log(this.$store.getters.getKakaoId)
-        //   this.uid = this.$store.getters.getKakaoId;
-    // return this.$store.getters.getKakaoId;
-  },
-    //   ...mapGetters([
-    //     getKakaoId,
-    //   ]),
+  created() {},
+  computed: {
+    ...mapGetters(["getKakaoId",
+    "getBaseUrl"]),
   },
   methods: {
     sendSignupFrom() {
       var user = {
-        uid: this.$store.getters.getKakaoId,
+        uid: this.getKakaoId,
         email: this.email,
         name: this.name,
         gender: this.gender,
@@ -101,7 +95,7 @@ export default {
         learningfile: this.learningfile,
       };
       axios
-        .post(`http://localhost:8080/account/signup`, user)
+        .post(`${this.getBaseUrl}/account/signup`, user)
         .then((Response) => {
           console.log(Response.data);
         })
@@ -113,7 +107,7 @@ export default {
   watch: {},
   data: () => {
     return {
-      uid: "1231",
+      uid: "",
       email: "",
       name: "",
       gender: "",

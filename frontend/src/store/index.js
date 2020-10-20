@@ -6,6 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
       kakaoId:'dldldldldl',
+      baseUrl:'http://localhost:8080',
   },
   mutations: {
     kakaoIdUpdate(state,payload){
@@ -16,9 +17,11 @@ export default new Vuex.Store({
   },
   getters:{
       getKakaoId(state){
-          console.log(state.kakaoId)
         return state.kakaoId;
       },
+      getBaseUrl(state){
+        return state.baseUrl;
+    },
   },
   modules: {
   }
