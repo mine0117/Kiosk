@@ -6,9 +6,9 @@ import java.util.Optional;
 import com.web.blog.model.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserDao extends JpaRepository<User, String> {
+public interface UserDao extends JpaRepository<User, Integer> {
     User getUserByEmail(String email);
-
-    Optional<User> findUserByEmailAndPassword(String email, String password);
+    Optional<User> findUserByUid(int uid);
+    // Optional<User> findUserByEmailAndPassword(String email, String password);
 
 }
