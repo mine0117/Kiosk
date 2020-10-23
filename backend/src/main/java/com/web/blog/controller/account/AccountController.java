@@ -28,6 +28,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.io.FileReader;
+import java.io.StringWriter;
+ 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+import javax.script.ScriptContext;
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.SimpleScriptContext;
+
 @ApiResponses(value = { @ApiResponse(code = 401, message = "Unauthorized", response = BasicResponse.class),
         @ApiResponse(code = 403, message = "Forbidden", response = BasicResponse.class),
         @ApiResponse(code = 404, message = "Not Found", response = BasicResponse.class),
@@ -148,7 +159,41 @@ public class AccountController {
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-    }   
+    }
+
+    @GetMapping("/test")
+    @ApiOperation(value = "토큰으로 유저정보 가져오기")
+    public Object test() throws IOException{
+        // ProcessBuilder pb = new ProcessBuilder("python", "C:/Users/multicampus/Desktop/project/pjt3/face_recognition/examples/blur_faces_on_webcam.py");
+        ProcessBuilder pb = new ProcessBuilder("python", "./test.py");
+        // , "0", "-d", "-S", "0.1", "-c", "woong");
+        Process p = pb.start();
+        BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream(), "utf-8"));
+        String line = "";
+            while ((line = br.readLine()) != null) {
+                System.out.println(line);
+            }
+        System.out.println("한글");
+        // try {
+        //     String line = "";
+        //     while ((line = br.readLine()) != null) {
+        //         System.out.println(line);
+        //     }
+        // } finally {
+        //     try {
+        //         if (br != null) {
+        //             br.close();
+        //         }
+        //     } catch (Exception e) {
+        //         e.printStackTrace();
+        //     }
+        // }
+
+        final BasicResponse result = new BasicResponse();
+        result.status = true;
+        result.data = "success";
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
 
     // @PutMapping("/modify/{pwvalidated}")
     // @ApiOperation(value = "회원정보수정")
