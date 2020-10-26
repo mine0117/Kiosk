@@ -1,6 +1,7 @@
 export default {
-    TITLE: 'SSAFY 개발블로그',
-    baseUrl: 'http://ec2-54-180-116-157.ap-northeast-2.compute.amazonaws.com:8888',
+    TITLE: '키.완.얼',
+    baseUrl: 'http://k3b107.p.ssafy.io',
+    // baseUrl: 'http://localhost:8080'
     LS_KEY: {
         USER_TOKEN: 'userToken',
     },

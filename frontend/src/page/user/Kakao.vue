@@ -1,7 +1,7 @@
 <template>
   <div id="kakao-login-btn" @click="kakaojoin">
     <div>{{ this.$store.state.kakaoId }}</div>
-    <div @click="kakaoInfoUpdate">제발 실행되라~!@#!@#!@#$</div>
+    <div @click="kakaoInfoUpdate">jenkins 되냐 안되냐 돼라 제발 ㅇㅇㅇㅇㅇ</div>
     <img
       src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg"
       width="222"
@@ -11,8 +11,10 @@
 
 <script>
 import axios from "axios";
+import constants from '../lib/constants';
 
-const baseURL = "http://localhost:8080";
+
+const baseURL = constants.baseURL;
 
 export default {
   name: "Kakao",
