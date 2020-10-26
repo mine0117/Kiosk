@@ -75,7 +75,10 @@ class FaceClassifier():
             aligned_image = face_alignment_dlib.get_aligned_face(self.predictor, face_image)
 
             filename = now.strftime('%Y%m%d_%H%M%S.%f')[:-3] + '.png'
-            pathname = os.path.join("knn_examples/train/" + args.capture, filename)
+            if capture_A == 'test':
+                pathname = os.path.join(base_path + "knn_examples/test", filename)
+            else:
+                pathname = os.path.join(base_path + "knn_examples/train/" + capture_B, filename)
             tmp += 1
             cv2.imwrite(pathname, aligned_image)
         return faces
@@ -106,6 +109,8 @@ if __name__ == '__main__':
                     help="resize the frame to process (less time, less accuracy)")
     args = ap.parse_args()
 
+    base_path = "C:/Users/multicampus/Desktop/project/pjt3/s03p31b107_3/face_classifier/"
+
     src_file = args.inputfile
     if src_file == "0":
         src_file = 0
@@ -125,9 +130,10 @@ if __name__ == '__main__':
         s += " -> %dx%d" % (int(src.get(3) * ratio), int(src.get(4) * ratio))
 
     num_capture = 0
-    if args.capture:
-        if not os.path.isdir("knn_examples/train/" + args.capture):
-            os.mkdir("knn_examples/train/" + args.capture)
+    capture_A, capture_B = args.capture.split("/")
+    if capture_A != "test" and capture_B:
+        if not os.path.isdir(base_path + "knn_examples/train/" + capture_B):
+            os.mkdir(base_path + "knn_examples/train/" + capture_B)
 
 
     # set SIGINT (^C) handler
@@ -164,8 +170,8 @@ if __name__ == '__main__':
         if tmp >= 20:
             running = False
 
-        if args.display or args.capture:
-            if args.capture and len(faces) > 0:
+        if args.display or capture_B:
+            if capture_B and len(faces) > 0:
                 num_capture += 1
             if args.display:
                 cv2.imshow("Frame", frame)
@@ -182,3 +188,4 @@ if __name__ == '__main__':
     running = False
     src.release()
     total_elapsed_time = time.time() - total_start_time
+    print(total_elapsed_time)
