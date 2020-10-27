@@ -204,8 +204,7 @@ public class AccountController {
         PumpStreamHandler pumpStreamHandler = new PumpStreamHandler(outputStream);
         DefaultExecutor executor = new DefaultExecutor();
         executor.setStreamHandler(pumpStreamHandler);
-        int[] ev = {0,1};
-        executor.setExitValues(ev); 
+        executor.setExitValue(0); 
         int result = executor.execute(commandLine);
         System.out.println("result: " + result);
         System.out.println("output: " + outputStream.toString());
