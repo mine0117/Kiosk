@@ -6,7 +6,7 @@ import constants from '../lib/constants'
 // 유저
 import Login from '../page/user/Login.vue'
 import Join from '../page/user/Join.vue'
-
+import MyPage from '../page/user/MyPage.vue'
 
 // 포스트
 import List from '../page/post/List.vue'
@@ -27,12 +27,12 @@ export default new Router({
       // name: 'Join',
       component: Join
     },
-    // { 
-    //   path: '/user/signup',
-    //   name: constants.URL_TYPE.USER.SIGNUP,
-    //   component: Singup
-    // },
-    // 포스트
+    { // 마이페이지
+      path: '/user/mypage',
+      name: constants.URL_TYPE.USER.MYPAGE,
+      // name: 'Join',
+      component: MyPage
+    },
     { 
       path: '/',
       name: constants.URL_TYPE.POST.MAIN,

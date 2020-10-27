@@ -94,6 +94,17 @@
             </b-tabs>
           </div>
         </b-tab>
+        <b-tab title="Thrid">
+          <div>
+            <b-tabs content-class="mt-3" pills>
+              <b-tab title="First" active><p>I'm the first tab</p></b-tab>
+              <b-tab title="Second">
+                <button class="btn" @click="test2">히히힣</button>
+              </b-tab>
+            </b-tabs>
+          </div>
+        </b-tab>
+        
       </b-tabs>
     </b-card>
   </div>
