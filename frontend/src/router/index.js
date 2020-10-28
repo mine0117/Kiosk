@@ -10,7 +10,7 @@ import Join from '../page/user/Join.vue'
 
 // 포스트
 import List from '../page/post/List.vue'
- 
+import Main from '../page/post/Main.vue'
 Vue.use(Router) 
  
 export default new Router({
@@ -37,6 +37,11 @@ export default new Router({
       path: '/',
       name: constants.URL_TYPE.POST.MAIN,
       component: List,
+    },
+    { 
+      path: '/main',
+      name: constants.URL_TYPE.POST.MAIN,
+      component: Main,
     },
   ]
 })
