@@ -48,5 +48,11 @@ export default new Router({
       name: constants.URL_TYPE.POST.MAIN,
       component: Main,
     },
+    { // 마이페이지
+      path: '/user/mypage',
+      name: constants.URL_TYPE.USER.MYPAGE,
+      // name: 'Join',
+      component: MyPage
+    },
   ]
 })

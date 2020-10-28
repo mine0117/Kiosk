@@ -23,9 +23,6 @@ export default {
   watch: {},
   created() {}, 
   methods: {
-    kakaoInfoUpdate: function(id) {
-      this.$store.commit("kakaoIdUpdate", id);
-    },
     kakaojoin() {
       let x = this;
       // var kakaotempToken = "";
@@ -48,10 +45,7 @@ export default {
                     kakaoToken = response.data;
                     x.$cookies.set("Auth-Token", kakaoToken);
                     x.$router.push("/");
-                  } else {
-              
-                    x.kakaoInfoUpdate(res.id);
-                    
+                  } else {        
                     x.$router.push({ name: "join" });
                   }
                 }).catch(err => console.log(err.response))
