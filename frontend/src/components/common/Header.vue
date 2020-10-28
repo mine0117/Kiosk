@@ -1,72 +1,133 @@
 <template>
-    <div id="header" v-if="isHeader">
-        <h1>
-            <router-link v-bind:to="{name:constants.URL_TYPE.POST.MAIN}">
-                SS_log
-            </router-link>
-        </h1>
-        <div class="right">
-            <div class="search-input">
-                <i class="fas fa-search"></i>
-                <input v-model="keyword" type="text"/>
-            </div> 
-            
-            <router-link v-bind:to="{name:constants.URL_TYPE.USER.LOGIN}" class="login-btn">
-               <a
-              v-if="!this.$cookies.isKey('Auth-Token')"
-            
-            >
-              <i class="fas fa-sign-in-alt mr-1"></i>로그인
-            </a> 
-            </router-link>  
-            
-            <li class="nav-item">
-            <a v-if="this.$cookies.isKey('Auth-Token')" @click="logout" class="nav-link mt-3 pl-1">
-             로그아웃
-            </a>
-          </li>
+  <div v-if="isHeader">
+    <div>
+      <b-navbar class="m-0" type="light" variant="light">
+        <b-navbar-nav>
+          <b-nav-item>Home</b-nav-item>
 
-        </div>  
-        
+          <!-- Navbar dropdowns -->
+
+          <b-nav-item-dropdown
+            text="User"
+            right
+            v-if="this.$cookies.isKey('Auth-Token')"
+          >
+            <b-dropdown-item href="#">Account</b-dropdown-item>
+            <b-dropdown-item href="#">Settings</b-dropdown-item>
+          </b-nav-item-dropdown>
+          <b-nav-item v-if="this.$cookies.isKey('Auth-Token')" @click="logout"
+            >logout
+          </b-nav-item>
+        </b-navbar-nav>
+
+        <a v-if="!this.$cookies.isKey('Auth-Token')">
+          <a id="kakao-login-btn" @click="kakaojoin">
+            <img
+              src="../../assets/img/kk.png"
+              style="width:50px"
+              @click="kakaoInfoUpdate"
+            />
+          </a>
+        </a>
+      </b-navbar>
     </div>
-</template>   
+  </div>
+</template>
 
-<script> 
-    import constants from '../../lib/constants'
+<script>
+import axios from "axios";
+import constants from "../../lib/constants";
 
-    export default {
-        name: 'Header',
-        components: { 
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap-vue/dist/bootstrap-vue.css";
+// import "../../assets/css/Header-Blue.css";
+const baseURL = constants.baseUrl;
+export default {
+  name: "Kakao",
+  name: "Header",
+  components: {},
+  props: ["isHeader"],
+  computed: {},
+  watch: {},
+  created() {},
+  methods: {
+    kakaoInfoUpdate: function(id) {
+      this.$store.commit("kakaoIdUpdate", id);
+    },
 
+    kakaojoin() {
+      let x = this;
+      // var kakaotempToken = "";
+      var a = 0;
+      var kakaoToken = "";
+      Kakao.Auth.login({
+        success: function(authObj) {
+          Kakao.API.request({
+            url: "/v2/user/me",
+
+            success: function(res) {
+              x.kakao.uid = res.id;
+              x.kakao.name = res.properties.nickname;
+<<<<<<< HEAD
+            
+=======
+>>>>>>> c10a8b50499859803da6d7d7baaf6fde50a92324
+              axios
+                .post(`${baseURL}/account/kakaologin`, x.kakao)
+                .then((response) => {
+                  console.log(response.data);
+                  console.log("logger - check line");
+                  if (response.data != "") {
+                    kakaoToken = response.data;
+                    x.$cookies.set("Auth-Token", kakaoToken);
+                    console.log("logger - test111");
+                    x.$router.go("/");
+                    // x.$router.push({name: "main"}).catch((err) => {
+                    //   console.log(err);
+                    // });
+                    console.log("logger - test222");
+                  } else {
+                    x.kakaoInfoUpdate(res.id);
+
+                    x.$router.push({ name: "join" });
+                  }
+                })
+                .catch((err) => console.log(err.response));
+              console.log("hh");
+            },
+          });
         },
-        props: ['isHeader'],
-        computed:{
+
+        fail: function(error) {
+          alert(JSON.stringify(error));
         },
-        watch: {
-        },
-        created() {
-        },
-        methods : {
+      });
+      setTimeout(() => {
+        console.log(a);
+      }, 5);
+    },
 
     logout: function() {
-      this.$cookies.remove('Auth-Token');
-      
+      this.$cookies.remove("Auth-Token");
+
       setTimeout(() => {
-        this.$router.push('/').catch((err) => {
+        this.$router.push("/").catch((err) => {
           console.log(err);
         });
         this.$router.go();
       }, 1000);
-    }
+    },
+  },
 
-
-        },
-        data: function() {
-           return {
-               constants,
-               keyword : "",
-           }
-        },
-
-    }
+  data: function() {
+    return {
+      kakao: {
+        uid: "",
+        name: "",
+      },
+      constants,
+      keyword: "",
+    };
+  },
+};
 </script>

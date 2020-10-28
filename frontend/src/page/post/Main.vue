@@ -1,0 +1,35 @@
+<template>
+ <div class="header-blue">
+  <div class="container hero">
+    <div class="row">
+      <div class="col-lg-5 col-lg-offset-1 col-md-6 col-md-offset-0">
+        <h1>이것은 혁명입니다.</h1>
+        <p>
+          Mauris egestas tellus non ex condimentum, ac ullamcorper sapien
+          dictum. Nam consequat neque quis sapien viverra convallis. In non
+          tempus lorem.
+        </p>
+        <button class="btn btn-default btn-lg action-button" type="button">
+          Learn More
+        </button>
+      </div>
+      <div
+        class="col-lg-5 col-lg-offset-0 col-md-5 col-md-offset-1 hidden-xs hidden-sm phone-holder"
+      >
+        <div class="iphone-mockup">
+          <img src="../../assets/img/iphone.svg" class="device" />
+          <div class="screen"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+ </div>
+</template>
+
+<script>
+import "../../assets/css/Header-Blue.css";
+export default {
+
+    
+};
+</script>

@@ -1,35 +1,51 @@
 <template>
   <div id="app">
-    <router-view/>
+    <Header :isHeader="isHeader" />
+    <router-view />
   </div>
 </template>
 
-<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>  
-<script> 
-import constants from './lib/constants'
-
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+<script>
+import constants from "./lib/constants";
+import Header from "./components/common/Header.vue";
 export default {
-  name: 'App',
-  components: { 
-    // Header,
+  name: "App",
+  components: {
+    Header,
     // SignupForm,
-
   },
   created() {
+    let url = this.$route.name;
 
+    this.checkUrl(url);
   },
   watch: {
+    $route(to) {
+      this.checkUrl(to.name);
+    },
   },
-  methods : {
+  methods: {
+    checkUrl(url) {
+      let array = [
+        constants.URL_TYPE.USER.LOGIN,
+        //   constants.URL_TYPE.USER.JOIN,
+      ];
+
+      let isHeader = true;
+      array.map((path) => {
+        if (url === path) isHeader = false;
+      });
+      this.isHeader = isHeader;
+    },
   },
   data: function () {
-        return {
-            isHeader: true,
-            constants
-        } 
-    }
-}
+    return {
+      isHeader: true,
+      constants,
+    };
+  },
+};
 </script>
 
-<style>
-</style>
+<style></style>
