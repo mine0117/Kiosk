@@ -6,7 +6,7 @@ import constants from '../lib/constants'
 // 유저
 import Login from '../page/user/Login.vue'
 import Join from '../page/user/Join.vue'
-
+import MyPage from '../page/user/MyPage.vue'
 
 // 포스트
 import List from '../page/post/List.vue'

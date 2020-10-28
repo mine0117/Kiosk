@@ -3,6 +3,9 @@ import App from './App.vue'
 import router from './router'
 import VueCookies from 'vue-cookies';
 import store from './store'
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 /* eslint-disable no-new */
@@ -13,6 +16,7 @@ Vue.use(BootstrapVue)
 // Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin)
 Vue.use(VueCookies);
+
 new Vue({
   el: '#app',
   router,
