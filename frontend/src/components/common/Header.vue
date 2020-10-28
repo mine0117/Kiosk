@@ -68,7 +68,10 @@ export default {
             success: function(res) {
               x.kakao.uid = res.id;
               x.kakao.name = res.properties.nickname;
+<<<<<<< HEAD
             
+=======
+>>>>>>> c10a8b50499859803da6d7d7baaf6fde50a92324
               axios
                 .post(`${baseURL}/account/kakaologin`, x.kakao)
                 .then((response) => {

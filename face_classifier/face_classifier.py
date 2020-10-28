@@ -75,10 +75,14 @@ class FaceClassifier():
             aligned_image = face_alignment_dlib.get_aligned_face(self.predictor, face_image)
 
             filename = now.strftime('%Y%m%d_%H%M%S.%f')[:-3] + '.png'
+<<<<<<< HEAD
+            pathname = os.path.join("C:/Users/multicampus/Desktop/lastpjt/s03p31b107/face_classifier/knn_examples/train/" + args.capture, filename)
+=======
             if capture_A == 'test':
                 pathname = os.path.join(base_path + "knn_examples/test", filename)
             else:
                 pathname = os.path.join(base_path + "knn_examples/train/" + capture_B, filename)
+>>>>>>> 86820ee01195305353fc89748218dd26abd12d69
             tmp += 1
             cv2.imwrite(pathname, aligned_image)
         return faces
@@ -90,6 +94,7 @@ if __name__ == '__main__':
     import time
     import os
 
+    print("aa")
     ap = argparse.ArgumentParser()
     ap.add_argument("inputfile",
                     help="video file to detect or '0' to detect from web cam")
@@ -130,10 +135,16 @@ if __name__ == '__main__':
         s += " -> %dx%d" % (int(src.get(3) * ratio), int(src.get(4) * ratio))
 
     num_capture = 0
+<<<<<<< HEAD
+    if args.capture:
+        if not os.path.isdir("C:/Users/multicampus/Desktop/lastpjt/s03p31b107/face_classifier/knn_examples/train/" + args.capture):
+            os.mkdir("C:/Users/multicampus/Desktop/lastpjt/s03p31b107/face_classifier/knn_examples/train/" + args.capture)
+=======
     capture_A, capture_B = args.capture.split("/")
     if capture_A != "test" and capture_B:
         if not os.path.isdir(base_path + "knn_examples/train/" + capture_B):
             os.mkdir(base_path + "knn_examples/train/" + capture_B)
+>>>>>>> 86820ee01195305353fc89748218dd26abd12d69
 
 
     # set SIGINT (^C) handler
@@ -170,8 +181,15 @@ if __name__ == '__main__':
         if tmp >= 20:
             running = False
 
+<<<<<<< HEAD
+        if args.display or args.capture:
+            print("1")
+            if args.capture and len(faces) > 0:
+                print("2")
+=======
         if args.display or capture_B:
             if capture_B and len(faces) > 0:
+>>>>>>> 86820ee01195305353fc89748218dd26abd12d69
                 num_capture += 1
             if args.display:
                 cv2.imshow("Frame", frame)
