@@ -83,7 +83,7 @@ public class AccountController {
     @ApiOperation(value = "카카오 로그인")
     public Object viewInfo(@RequestBody User request) throws SQLException, IOException {
         String token = null;
-
+        
         try {
             Optional<User> userOpt = userDao.findUserByUid(request.getUid());
             if (userOpt.isPresent()) {
@@ -91,7 +91,7 @@ public class AccountController {
                 tokenuser.setUid(userOpt.get().getUid());
                 tokenuser.setName(userOpt.get().getName());
                 token = jwtService.createLoginToken(tokenuser);
-
+                System.out.println(token);
                 return new ResponseEntity<>(token, HttpStatus.ACCEPTED);
             } else {
                 System.out.println("2번째");
@@ -112,7 +112,7 @@ public class AccountController {
         System.out.println("logger - signup method");
         // 이메일, 닉네임 중복처리 필수
 
-        System.out.println(request.getEmail());
+        System.out.println(request.getUid());
         User user = userDao.getUserByEmail(request.getEmail());
 
         if (user != null) {

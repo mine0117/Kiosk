@@ -7,7 +7,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-      kakaoId:'dldldldldl',
+      kakaoId:'1212',
       baseUrl:'http://localhost:8080',
   },
   mutations: {

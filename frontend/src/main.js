@@ -4,8 +4,14 @@ import router from './router'
 import VueCookies from 'vue-cookies';
 import store from './store'
 
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 /* eslint-disable no-new */
-
+import { NavbarPlugin } from 'bootstrap-vue'
+Vue.use(NavbarPlugin)
+// Install BootstrapVue
+Vue.use(BootstrapVue)
+// Optionally install the BootstrapVue icon components plugin
+Vue.use(IconsPlugin)
 Vue.use(VueCookies);
 new Vue({
   el: '#app',

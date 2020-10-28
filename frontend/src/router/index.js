@@ -10,7 +10,7 @@ import Join from '../page/user/Join.vue'
 
 // 포스트
 import List from '../page/post/List.vue'
- 
+import Main from '../page/post/Main.vue'
 Vue.use(Router) 
  
 export default new Router({
@@ -23,8 +23,8 @@ export default new Router({
     },
     {
       path: '/user/join',
-      name: constants.URL_TYPE.USER.JOIN,
-      // name: 'Join',
+      // name: constants.URL_TYPE.USER.JOIN,
+      name: 'join',
       component: Join
     },
     // { 
@@ -33,10 +33,15 @@ export default new Router({
     //   component: Singup
     // },
     // 포스트
+    // { 
+    //   path: '/',
+    //   name: constants.URL_TYPE.POST.MAIN,
+    //   component: List,
+    // },
     { 
       path: '/',
       name: constants.URL_TYPE.POST.MAIN,
-      component: List,
+      component: Main,
     },
   ]
 })
