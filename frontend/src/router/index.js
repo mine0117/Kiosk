@@ -6,11 +6,11 @@ import constants from '../lib/constants'
 // 유저
 import Login from '../page/user/Login.vue'
 import Join from '../page/user/Join.vue'
-
+import MyPage from '../page/user/MyPage.vue'
 
 // 포스트
 import List from '../page/post/List.vue'
- 
+import Main from '../page/post/Main.vue'
 Vue.use(Router) 
  
 export default new Router({
@@ -23,8 +23,8 @@ export default new Router({
     },
     {
       path: '/user/join',
-      name: constants.URL_TYPE.USER.JOIN,
-      // name: 'Join',
+      // name: constants.URL_TYPE.USER.JOIN,
+      name: 'join',
       component: Join
     },
     // { 
@@ -34,9 +34,25 @@ export default new Router({
     // },
     // 포스트
     { 
+      path: '/list',
+      name: constants.URL_TYPE.POST.LIST,
+      component: List,
+    },
+    { 
       path: '/',
       name: constants.URL_TYPE.POST.MAIN,
-      component: List,
+      component: Main,
+    },
+    // { 
+    //   path: '/main',
+    //   name: constants.URL_TYPE.POST.MAIN,
+    //   component: Main,
+    // },
+    { // 마이페이지
+      path: '/user/mypage',
+      name: constants.URL_TYPE.USER.MYPAGE,
+      // name: 'Join',
+      component: MyPage
     },
   ]
 })

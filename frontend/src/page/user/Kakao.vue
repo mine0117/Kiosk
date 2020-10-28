@@ -21,11 +21,8 @@ export default {
   components: {},
   computed: {},
   watch: {},
-  created() {},
+  created() {}, 
   methods: {
-    kakaoInfoUpdate: function(id) {
-      this.$store.commit("kakaoIdUpdate", id);
-    },
     kakaojoin() {
       let x = this;
       // var kakaotempToken = "";
@@ -48,34 +45,11 @@ export default {
                     kakaoToken = response.data;
                     x.$cookies.set("Auth-Token", kakaoToken);
                     x.$router.push("/");
-                  } else {
-              
-                    x.kakaoInfoUpdate(res.id);
-                    
+                  } else {        
                     x.$router.push({ name: "join" });
                   }
                 }).catch(err => console.log(err.response))
-                
-
-              //    alert(kakaotempToken)
-
-              // })
-              // alert(JSON.stringify(res)); //<---- kakao.api.request 에서 불러온 결과값 json형태로 출력
-
-              // alert(JSON.stringify(authObj)); //<----Kakao.Auth.createLoginButton에서 불러온 결과값 json형태로 출력
-
-              // console.log(res.id);//<---- 콘솔 로그에 id 정보 출력(id는 res안에 있기 때문에  res.id 로 불러온다)
-
-              // console.log(res.account_email);//<---- 콘솔 로그에 email 정보 출력
-
-              // console.log(res.properties['nickname']);//<---- 콘솔 로그에 닉네임 출력(properties에 있는 nickname 접근
-
-              //res.properties.nickname으로도 접근 가능 )
-
-              // this.kakaoInfoUpdate();
-
-              console.log("hh");
-              // console.log(authObj.access_token);//<---- 콘솔 로그에 토큰값 출력
+              
             },
           });
         },
