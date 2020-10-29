@@ -14,6 +14,7 @@ import Main from '../page/post/Main.vue'
 Vue.use(Router) 
  
 export default new Router({
+  mode: 'history',
   routes: [   
     // 로그인/가입
     { 
@@ -33,21 +34,21 @@ export default new Router({
     //   component: Singup
     // },
     // 포스트
-    // { 
-    //   path: '/',
-    //   name: constants.URL_TYPE.POST.MAIN,
-    //   component: List,
-    // },
+    { 
+      path: '/list',
+      name: constants.URL_TYPE.POST.LIST,
+      component: List,
+    },
     { 
       path: '/',
       name: constants.URL_TYPE.POST.MAIN,
       component: Main,
     },
-    { 
-      path: '/main',
-      name: constants.URL_TYPE.POST.MAIN,
-      component: Main,
-    },
+    // { 
+    //   path: '/main',
+    //   name: constants.URL_TYPE.POST.MAIN,
+    //   component: Main,
+    // },
     { // 마이페이지
       path: '/user/mypage',
       name: constants.URL_TYPE.USER.MYPAGE,

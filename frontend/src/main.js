@@ -7,6 +7,8 @@ import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
+import { FormGroupPlugin } from 'bootstrap-vue'
+Vue.use(FormGroupPlugin)
 /* eslint-disable no-new */
 import { NavbarPlugin } from 'bootstrap-vue'
 Vue.use(NavbarPlugin)
