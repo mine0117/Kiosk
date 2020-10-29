@@ -1,106 +1,141 @@
 <template>
   <div class="user" id="join">
-    <div id="app">
-      <div class="container">
-        <div class="row">
-          <div
-            class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3"
-          >
-            <h1>Signup</h1>
-            <hr />
-            <div class="form-group">
-              <label for="firstName">Name</label>
-              <input
-                type="text"
-                v-model="name"
-                id="name"
-                class="form-control"
-                placeholder="이름을 입력해주세요"
-              />
-            </div>
-            <div class="form-group">
-              <label for="lastName">Email</label>
-              <input
-                type="text"
-                v-model="email"
-                id="email"
-                placeholder="이메일을 입력해주세요"
-                class="form-control"
-              />
-            </div>
-            <div class="form-group">
-              <label for="email">전화번호</label>
-              <input
-                type="text"
-                v-model="tel"
-                id="tel"
-                class="form-control"
-                placeholder="전화번호를 입력해주세요"
-              />
-            </div>
-            <div class="form-group">
-              <label for="lastName">나이</label>
-              <input
-                type="text"
-                v-model="age"
-                id="age"
-                placeholder="나이를 입력해주세요"
-                class="form-control"
-              />
-            </div>
+    <h1 style="text-align: center">회원가입</h1>
 
+    <!-- 이름 -->
+    <b-form-group
+      id="input-group-1"
+      label="Name"
+      label-size="lg"
+      label-for="input-1"
+      valid-feedback="Good!"
+      invalid-feedback="2글자 이상"
+      
+    >
+      <b-input-group size="lg">
+        <b-input-group-prepend is-text>
+          <b-icon icon="person-fill"></b-icon>
+        </b-input-group-prepend>
+        <b-form-input
+          id="input-1"
+          v-model="name"
+          required
+          aria-describedby="input-live-help input-live-feedback"
+          placeholder="Enter name"
+        ></b-form-input>
+      </b-input-group>
+      <!-- <b-form-invalid-feedback id="input-live-feedback">
+          2글자 이상
+        </b-form-invalid-feedback> -->
+    </b-form-group>
 
+    <!-- 이메일 -->
+    <b-form-group
+      id="input-group-2"
+      label="Email"
+      label-size="lg"
+      label-for="input-2"
+      description="We'll never share your email with anyone else."
+      valid-feedback="Good!"
+      invalid-feedback="이메일 형식에 맞춰 쓰세요."
+    >
+      <b-input-group size="lg">
+        <b-input-group-prepend is-text>
+          <b-icon icon="envelope"></b-icon>
+        </b-input-group-prepend>
+        <b-form-input
+          id="input-2"
+          v-model="email"
+          type="email"
+          required
+          placeholder="me@example.com"
+        ></b-form-input>
+      </b-input-group>
+      <b-form-invalid-feedback id="input-live-feedback">
+        Your email doesn't match an email form.
+      </b-form-invalid-feedback>
+    </b-form-group>
 
+    <!-- 성별 -->
+    <b-form-group
+      id="input-group-3"
+      label="Gender"
+      label-size="lg"
+      label-for="input-3"
+    >
+      <b-form-input
+        id="input-3"
+        v-model="gender"
+        required
+        placeholder="Enter gender"
+      ></b-form-input>
+    </b-form-group>
 
-            <div class="form-group">
-              <label for="password">얼굴인식 해주세요</label>
-              <input
-                type="text"
-                v-model="learningfile"
-                id="learningfile"
-                placeholder="파일를 입력해주세요"
-                class="form-control"
-              />
-              <p></p>
-            </div>
-            <div class="row">
-              <div
-                class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 form-group"
-              >
-                <label for="yes">
-                  <input
-                    type="radio"
-                    name="gender"
-                    value="female"
-                    id="gender"
-                    v-model="gender"
-                  />
-                  남
-                </label>
-                <label for="no">
-                  <input
-                    type="radio"
-                    name="gender"
-                    value="male"
-                    id="gender"
-                    v-model="gender"
-                  />
-                  여
-                </label>
-              </div>
-            </div>
-          </div>
-        </div>
-        <label>
-          <input v-model="isTerm" type="checkbox" id="term" />
-          <span>약관에 동의합니다</span>
-        </label>
-        <button class="btn" @click="sendSignupFrom()">
-          Submit!
-        </button>
-        
-      </div>
-    </div>
+    <!-- 나이 -->
+    <b-form-group
+      id="input-group-4"
+      label="Age"
+      label-size="lg"
+      label-for="input-4"
+    >
+      <b-form-input
+        id="input-4"
+        v-model="age"
+        type="number"
+        required
+        placeholder="Enter age"
+      ></b-form-input>
+    </b-form-group>
+
+    <!-- 전화번호 -->
+    <b-form-group
+      id="input-group-5"
+      label="Tel"
+      label-size="lg"
+      label-for="input-5"
+    >
+      <b-input-group size="lg">
+        <b-input-group-prepend is-text>
+          <b-icon icon="telephone-fill"></b-icon>
+        </b-input-group-prepend>
+        <b-form-input
+          id="input-5"
+          v-model="tel"
+          required
+          placeholder="Enter tel"
+        ></b-form-input>
+      </b-input-group>
+    </b-form-group>
+
+    <!-- 파일 -->
+    <b-form-group
+      id="input-group-6"
+      label="Images"
+      label-size="lg"
+      label-for="input-6"
+    >
+      <b-input-group size="lg">
+        <b-input-group-prepend is-text>
+          <b-icon icon="images"></b-icon>
+        </b-input-group-prepend>
+        <b-form-input
+          id="input-6"
+          v-model="learningfile"
+          required
+          placeholder="Enter images"
+        ></b-form-input>
+      </b-input-group>
+    </b-form-group>
+
+    <b-row>
+      <b-col lg="4" class="pb-2"></b-col>
+      <b-col lg="4" class="pb-2"
+        ><b-button type="submit" variant="success">수정하기</b-button></b-col
+      >
+      <b-col lg="4" class="pb-2"></b-col>
+    </b-row>
+
+    <!-- <b-button type="reset" variant="danger">Reset</b-button> -->
   </div>
 </template>
 
@@ -156,12 +191,65 @@ export default {
 };
 </script>
 
-<style>
-#join.user {
-  background: url(../../assets/img/123.jpg);
-
-  background-repeat: no-repeat;
-
-  background-size: auto;
+<style scoped>
+h1 {
+  margin-bottom: 50px;
 }
+.container {
+  background-color: #faebd7;
+  /* padding: 0 30px 0 30px; */
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 70px 30px 50px 30px;
+    width: 700px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    padding: 70px 50px 50px 50px;
+    width: 700px;
+  }
+}
+
+#input-group-1 {
+  padding: 10px 20px 10px 20px;
+  border: 1px solid gray;
+}
+
+#input-group-2 {
+  padding: 10px 20px 10px 20px;
+  border: 1px solid gray;
+  margin-bottom: 0;
+}
+
+#input-group-3 {
+  padding: 10px 20px 10px 20px;
+  border: 1px solid gray;
+  margin-bottom: 0;
+}
+
+#input-group-4 {
+  padding: 10px 20px 10px 20px;
+  border: 1px solid gray;
+  margin-bottom: 0;
+}
+#input-group-5 {
+  padding: 10px 20px 10px 20px;
+  border: 1px solid gray;
+  margin-bottom: 0;
+}
+#input-group-6 {
+  padding: 10px 20px 10px 20px;
+  border: 1px solid gray;
+  margin-bottom: 50px;
+}
+
+/* @media (min-width: 1200px) {
+  .container {
+    width: 700px;
+  }
+} */
 </style>
