@@ -12,7 +12,7 @@
             right
             v-if="this.$cookies.isKey('Auth-Token')"
           >
-            <b-dropdown-item href="#">Account</b-dropdown-item>
+            <b-dropdown-item router-link :to="{name:'mypage'}">Account</b-dropdown-item>
             <b-dropdown-item href="#">Settings</b-dropdown-item>
           </b-nav-item-dropdown>
           <b-nav-item v-if="this.$cookies.isKey('Auth-Token')" @click="logout"
