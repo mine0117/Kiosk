@@ -7,6 +7,9 @@ import constants from '../lib/constants'
 import Login from '../page/user/Login.vue'
 import Join from '../page/user/Join.vue'
 import MyPage from '../page/user/MyPage.vue'
+import UserUpdate from '../page/user/UserUpdate.vue'
+import UserInfo from '../components/User/UserInfo.vue'
+import OrderList from '../components/User/OrderList.vue'
 
 // 포스트
 import List from '../page/post/List.vue'
@@ -52,8 +55,22 @@ export default new Router({
     { // 마이페이지
       path: '/user/mypage',
       name: constants.URL_TYPE.USER.MYPAGE,
-      // name: 'Join',
       component: MyPage
+    },
+    { // 유저업데이트
+      path: '/user/update',
+      name: constants.URL_TYPE.USER.USER_UPDATE,
+      component: UserUpdate
+    },
+    { // 유저정보
+      path: '/user/userinfo',
+      name: constants.URL_TYPE.USER.USER_INFO,
+      component: UserInfo
+    },
+    { // 구매내역
+      path: '/user/orderlist',
+      name: constants.URL_TYPE.USER.ORDER_LIST,
+      component: OrderList
     },
   ]
 })

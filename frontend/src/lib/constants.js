@@ -12,7 +12,10 @@ export default {
         USER: {
             LOGIN: 'login',
             JOIN: 'join',
-            MYPAGE: 'mypage', 
+            MYPAGE: 'mypage',
+            USER_UPDATE: 'userupdate',
+            USER_INFO: 'userinfo',
+            ORDER_LIST: 'orderlist',
         },
         POST: {
             MAIN : "main",
