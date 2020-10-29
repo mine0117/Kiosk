@@ -1,154 +1,180 @@
 <template>
   <div class="user" id="join">
-    <h1 style="text-align: center">회원가입</h1>
+    <div class="container">
+      <h1 style="text-align: center">회원가입</h1>
 
-    <!-- 이름 -->
-    <b-form-group
-      id="input-group-1"
-      label="Name"
-      label-size="lg"
-      label-for="input-1"
-      valid-feedback="Good!"
-      invalid-feedback="2글자 이상"
-      
-    >
-      <b-input-group size="lg">
-        <b-input-group-prepend is-text>
-          <b-icon icon="person-fill"></b-icon>
-        </b-input-group-prepend>
-        <b-form-input
-          id="input-1"
-          v-model="name"
-          required
-          aria-describedby="input-live-help input-live-feedback"
-          placeholder="Enter name"
-        ></b-form-input>
-      </b-input-group>
-      <!-- <b-form-invalid-feedback id="input-live-feedback">
+      <!-- 이름 -->
+      <b-form-group
+        id="input-group-1"
+        label="Name"
+        label-size="lg"
+        label-for="input-1"
+        valid-feedback="Good!"
+        invalid-feedback="2글자 이상"
+        :state="nameState"
+      >
+        <b-input-group size="lg">
+          <b-input-group-prepend is-text>
+            <b-icon icon="person-fill"></b-icon>
+          </b-input-group-prepend>
+          <b-form-input
+            id="input-1"
+            v-model="name"
+            :state="nameState"
+            required
+            aria-describedby="input-live-help input-live-feedback"
+            placeholder="Enter name"
+          ></b-form-input>
+        </b-input-group>
+        <!-- <b-form-invalid-feedback id="input-live-feedback">
           2글자 이상
         </b-form-invalid-feedback> -->
-    </b-form-group>
+      </b-form-group>
 
-    <!-- 이메일 -->
-    <b-form-group
-      id="input-group-2"
-      label="Email"
-      label-size="lg"
-      label-for="input-2"
-      description="We'll never share your email with anyone else."
-      valid-feedback="Good!"
-      invalid-feedback="이메일 형식에 맞춰 쓰세요."
-    >
-      <b-input-group size="lg">
-        <b-input-group-prepend is-text>
-          <b-icon icon="envelope"></b-icon>
-        </b-input-group-prepend>
-        <b-form-input
-          id="input-2"
-          v-model="email"
-          type="email"
-          required
-          placeholder="me@example.com"
-        ></b-form-input>
-      </b-input-group>
-      <b-form-invalid-feedback id="input-live-feedback">
-        Your email doesn't match an email form.
-      </b-form-invalid-feedback>
-    </b-form-group>
-
-    <!-- 성별 -->
-    <b-form-group
-      id="input-group-3"
-      label="Gender"
-      label-size="lg"
-      label-for="input-3"
-    >
-      <b-form-input
-        id="input-3"
-        v-model="gender"
-        required
-        placeholder="Enter gender"
-      ></b-form-input>
-    </b-form-group>
-
-    <!-- 나이 -->
-    <b-form-group
-      id="input-group-4"
-      label="Age"
-      label-size="lg"
-      label-for="input-4"
-    >
-      <b-form-input
-        id="input-4"
-        v-model="age"
-        type="number"
-        required
-        placeholder="Enter age"
-      ></b-form-input>
-    </b-form-group>
-
-    <!-- 전화번호 -->
-    <b-form-group
-      id="input-group-5"
-      label="Tel"
-      label-size="lg"
-      label-for="input-5"
-    >
-      <b-input-group size="lg">
-        <b-input-group-prepend is-text>
-          <b-icon icon="telephone-fill"></b-icon>
-        </b-input-group-prepend>
-        <b-form-input
-          id="input-5"
-          v-model="tel"
-          required
-          placeholder="Enter tel"
-        ></b-form-input>
-      </b-input-group>
-    </b-form-group>
-
-    <!-- 파일 -->
-    <b-form-group
-      id="input-group-6"
-      label="Images"
-      label-size="lg"
-      label-for="input-6"
-    >
-      <b-input-group size="lg">
-        <b-input-group-prepend is-text>
-          <b-icon icon="images"></b-icon>
-        </b-input-group-prepend>
-        <b-form-input
-          id="input-6"
-          v-model="learningfile"
-          required
-          placeholder="Enter images"
-        ></b-form-input>
-      </b-input-group>
-    </b-form-group>
-
-    <b-row>
-      <b-col lg="4" class="pb-2"></b-col>
-      <b-col lg="4" class="pb-2"
-        ><b-button type="submit" variant="success">수정하기</b-button></b-col
+      <!-- 이메일 -->
+      <b-form-group
+        id="input-group-2"
+        label="Email"
+        label-size="lg"
+        label-for="input-2"
+        description="We'll never share your email with anyone else."
+        valid-feedback="Good!"
+        invalid-feedback="이메일 형식에 맞춰 쓰세요."
+        :state="emailState"
       >
-      <b-col lg="4" class="pb-2"></b-col>
-    </b-row>
+        <b-input-group size="lg">
+          <b-input-group-prepend is-text>
+            <b-icon icon="envelope"></b-icon>
+          </b-input-group-prepend>
+          <b-form-input
+            id="input-2"
+            v-model="email"
+            type="email"
+            :state="emailState"
+            required
+            placeholder="me@example.com"
+          ></b-form-input>
+        </b-input-group>
+        <b-form-invalid-feedback id="input-live-feedback">
+          Your email doesn't match an email form.
+        </b-form-invalid-feedback>
+      </b-form-group>
 
-    <!-- <b-button type="reset" variant="danger">Reset</b-button> -->
+      <!-- 성별 -->
+      <b-form-group
+        id="input-group-3"
+        label="Gender"
+        label-size="lg"
+        label-for="input-3"
+      >
+        <b-form-radio v-model="gender" name="gender" value="남"
+          >남</b-form-radio
+        >
+        <b-form-radio v-model="gender" name="gender" value="여"
+          >여</b-form-radio
+        >
+      </b-form-group>
+
+      <!-- 나이 -->
+      <b-form-group
+        id="input-group-4"
+        label="Age"
+        label-size="lg"
+        label-for="input-4"
+      >
+        <b-form-input
+          id="input-4"
+          v-model="age"
+          type="number"
+          required
+          placeholder="Enter age"
+        ></b-form-input>
+      </b-form-group>
+
+      <!-- 전화번호 -->
+      <b-form-group
+        id="input-group-5"
+        label="Tel"
+        label-size="lg"
+        label-for="input-5"
+      >
+        <b-input-group size="lg">
+          <b-input-group-prepend is-text>
+            <b-icon icon="telephone-fill"></b-icon>
+          </b-input-group-prepend>
+          <b-form-input
+            id="input-5"
+            v-model="tel"
+            required
+            placeholder="Enter tel"
+          ></b-form-input>
+        </b-input-group>
+      </b-form-group>
+
+      <!-- 파일 -->
+      <b-form-group
+        id="input-group-6"
+        label="Images"
+        label-size="lg"
+        label-for="input-6"
+      >
+        <b-input-group size="lg">
+          <b-input-group-prepend is-text>
+            <b-icon icon="images"></b-icon>
+          </b-input-group-prepend>
+          <b-form-input
+            id="input-6"
+            v-model="learningfile"
+            required
+            placeholder="Enter images"
+          ></b-form-input>
+        </b-input-group>
+      </b-form-group>
+
+      <b-row>
+        <b-col lg="4" class="pb-2"></b-col>
+        <b-col lg="4" class="pb-2"
+          ><b-button
+            type="submit"
+            variant="success"
+            block
+            :disabled="!(emailState && nameState)"
+            @click="sendSignupFrom()"
+            >가입하기</b-button
+          ></b-col
+        >
+        <b-col lg="4" class="pb-2"></b-col>
+      </b-row>
+
+      <!-- <b-button type="reset" variant="danger">Reset</b-button> -->
+    </div>
   </div>
 </template>
 
 <script>
-import "../../assets/css/user.scss";
 import axios from "axios";
-import constants from '../../lib/constants';
+import constants from "../../lib/constants";
 import { mapGetters } from "vuex";
 
 export default {
   components: {},
   created() {},
   computed: {
+    emailState() {
+      const regExp = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
+
+      return regExp.test(this.email);
+    },
+    nameState() {
+      return this.name.length > 2 ? true : false;
+    },
+    invalidName() {
+      if (this.name.length > 0) {
+        return "Enter at least 4 characters.";
+      }
+      return "Please enter something.";
+    },
+
     ...mapGetters(["getKakaoId"]),
   },
   methods: {
@@ -186,7 +212,7 @@ export default {
       age: "",
       tel: "",
       learningfile: "",
-      isTerm: false,
+      // isTerm: false,
     };
   },
 };

@@ -2,7 +2,6 @@
   <div class="container">
     <h1 style="text-align: center">회원 정보 수정</h1>
     <b-form @submit="onSubmit" @reset="onReset" v-if="show">
-      
       <!-- 이름 -->
       <b-form-group
         id="input-group-1"
@@ -67,12 +66,18 @@
         label-size="lg"
         label-for="input-3"
       >
-        <b-form-input
+        <!-- <b-form-input
           id="input-3"
           v-model="form.gender"
           required
           placeholder="Enter gender"
-        ></b-form-input>
+        ></b-form-input> -->
+        <b-form-radio v-model="form.gender" name="gender" value="남"
+          >남</b-form-radio
+        >
+        <b-form-radio v-model="form.gender" name="gender" value="여"
+          >여</b-form-radio
+        >
       </b-form-group>
 
       <!-- 나이 -->
@@ -131,19 +136,19 @@
         </b-input-group>
       </b-form-group>
 
-
-<b-row>
-  <b-col lg="4" class="pb-2"></b-col>
-  <b-col lg="4" class="pb-2"><b-button
-        type="submit"
-        variant="success"
-        block
-        :disabled="!(emailState && nameState)"
-        >수정하기</b-button
-      ></b-col>
-  <b-col lg="4" class="pb-2"></b-col>
-</b-row>
-
+      <b-row>
+        <b-col lg="4" class="pb-2"></b-col>
+        <b-col lg="4" class="pb-2"
+          ><b-button
+            type="submit"
+            variant="success"
+            block
+            :disabled="!(emailState && nameState)"
+            >수정하기</b-button
+          ></b-col
+        >
+        <b-col lg="4" class="pb-2"></b-col>
+      </b-row>
 
       <!-- <b-button type="reset" variant="danger">Reset</b-button> -->
     </b-form>
@@ -182,13 +187,12 @@ export default {
     nameState() {
       return this.form.name.length > 2 ? true : false;
     },
-    invalidName(){
+    invalidName() {
       if (this.name.length > 0) {
-          return 'Enter at least 4 characters.'
-        }
-        return 'Please enter something.'
-      
-    }
+        return "Enter at least 4 characters.";
+      }
+      return "Please enter something.";
+    },
   },
   methods: {
     getUserInfo() {
@@ -222,6 +226,7 @@ export default {
         .put(`${constants.baseUrl}/updateuser`, this.form, axiosConfig)
         .then((res) => {
           alert("정보가 수정되었습니다.");
+          this.$router.push("/");
         })
         .catch((err) => {
           console.log(err);
@@ -251,8 +256,8 @@ export default {
 h1 {
   margin-bottom: 50px;
 }
-.container{
-  background-color: #FAEBD7;
+.container {
+  background-color: #faebd7;
   /* padding: 0 30px 0 30px; */
 }
 
@@ -277,29 +282,29 @@ h1 {
 
 #input-group-2 {
   padding: 10px 20px 10px 20px;
-  border: 1px solid gray; 
+  border: 1px solid gray;
   margin-bottom: 0;
 }
 
 #input-group-3 {
   padding: 10px 20px 10px 20px;
-  border: 1px solid gray; 
+  border: 1px solid gray;
   margin-bottom: 0;
 }
 
 #input-group-4 {
   padding: 10px 20px 10px 20px;
-  border: 1px solid gray; 
+  border: 1px solid gray;
   margin-bottom: 0;
 }
 #input-group-5 {
   padding: 10px 20px 10px 20px;
-  border: 1px solid gray; 
+  border: 1px solid gray;
   margin-bottom: 0;
 }
 #input-group-6 {
   padding: 10px 20px 10px 20px;
-  border: 1px solid gray; 
+  border: 1px solid gray;
   margin-bottom: 50px;
 }
 
