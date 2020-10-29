@@ -1,61 +1,77 @@
 <template>
   <div v-if="isHeader">
-    <div>
-      <b-navbar class="m-0" type="light" variant="light">
-        <b-navbar-nav>
-          <b-nav-item router-link :to="{name:'main'}">Home</b-nav-item>
-          <b-nav-item router-link :to="{name:'list'}">KIOSK</b-nav-item>
-          <!-- Navbar dropdowns -->
-
-          <b-nav-item-dropdown
-            text="User"
-            right
-            v-if="this.$cookies.isKey('Auth-Token')"
-          >
-            <b-dropdown-item router-link :to="{name:'mypage'}">Account</b-dropdown-item>
-            <b-dropdown-item href="#">Settings</b-dropdown-item>
-          </b-nav-item-dropdown>
-          <b-nav-item v-if="this.$cookies.isKey('Auth-Token')" @click="logout"
-            >logout
-          </b-nav-item>
-        </b-navbar-nav>
-
-        <a v-if="!this.$cookies.isKey('Auth-Token')">
-          <a id="kakao-login-btn" @click="kakaojoin">
-            <img
-              src="../../assets/img/kk.png"
-              style="width:50px"
-             
-            />
-          </a>
-        </a>
-      </b-navbar>
-    </div>
+    <nav class="navbar navbar-expand navbar-light bg-white py-3 shadow-sm">
+      <div id="navbarContent" class="collapse navbar-collapse">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item">
+            <router-link class="nav-link" to="/">
+              <div class="nav-link font-weight-bold text-uppercase">Home</div>
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/list">
+              <div class="nav-link font-weight-bold text-uppercase">KIOSK</div>
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/user/mypage">
+              <div
+                class="nav-link font-weight-bold text-uppercase"
+                v-if="this.$cookies.isKey('Auth-Token')"
+              >
+                Account
+              </div>
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/">
+              <div
+                class="nav-link font-weight-bold text-uppercase"
+                v-if="this.$cookies.isKey('Auth-Token')"
+                @click="logout"
+              >
+                Logout
+              </div>
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/">
+              <div
+                
+                v-if="!this.$cookies.isKey('Auth-Token')"
+              >
+                <KakaoVue />
+              </div>
+            </router-link>
+          </li>
+        </ul>
+      </div>
+    </nav>
   </div>
 </template>
 
 <script>
 import axios from "axios";
 import constants from "../../lib/constants";
-
+import "../../assets/css/header.css";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
+import KakaoVue from "../../page/user/Kakao.vue";
 // import "../../assets/css/Header-Blue.css";
 const baseURL = constants.baseUrl;
 export default {
   name: "Kakao",
   name: "Header",
-  components: {},
+  components: {
+    KakaoVue,
+  },
   props: ["isHeader"],
   computed: {},
   watch: {},
   created() {},
   methods: {
-    // kakaoInfoUpdate: function(id) {
-    //   this.$store.commit("kakaoIdUpdate", id);
-    // },
-    goHome:function() {
-      this.$router.push('/');
+    kakaoInfoUpdate: function(id) {
+      this.$store.commit("kakaoIdUpdate", id);
     },
     kakaojoin() {
       let x = this;
@@ -70,7 +86,7 @@ export default {
             success: function(res) {
               x.kakao.uid = res.id;
               x.kakao.name = res.properties.nickname;
-              
+
               axios
                 .post(`${baseURL}/account/kakaologin`, x.kakao)
                 .then((response) => {
@@ -86,8 +102,8 @@ export default {
                     // });
                     console.log("logger - test222");
                   } else {
-                    // x.kakaoInfoUpdate(res.id);
-
+                    x.kakaoInfoUpdate(res.id);
+                    console.log(res.id);
                     x.$router.push({ name: "join" });
                   }
                 })
@@ -130,3 +146,9 @@ export default {
   },
 };
 </script>
+<style scoped>
+.navbar {
+  height: 100px;
+  font-size: 30px;
+}
+</style>

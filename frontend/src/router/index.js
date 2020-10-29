@@ -14,6 +14,7 @@ import OrderList from '../components/User/OrderList.vue'
 // 포스트
 import List from '../page/post/List.vue'
 import Main from '../page/post/Main.vue'
+
 Vue.use(Router) 
  
 export default new Router({
@@ -25,6 +26,8 @@ export default new Router({
       name: constants.URL_TYPE.USER.LOGIN,
       component: Login
     },
+
+    // 회원가입 
     {
       path: '/user/join',
       // name: constants.URL_TYPE.USER.JOIN,
@@ -36,12 +39,14 @@ export default new Router({
     //   name: constants.URL_TYPE.USER.SIGNUP,
     //   component: Singup
     // },
+
     // 포스트
     { 
       path: '/list',
       name: constants.URL_TYPE.POST.LIST,
       component: List,
     },
+
     { 
       path: '/',
       name: constants.URL_TYPE.POST.MAIN,
