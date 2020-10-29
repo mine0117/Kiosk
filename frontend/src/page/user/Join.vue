@@ -107,13 +107,14 @@
 <script>
 import "../../assets/css/user.scss";
 import axios from "axios";
+import constants from '../../lib/constants';
 import { mapGetters } from "vuex";
 
 export default {
   components: {},
   created() {},
   computed: {
-    ...mapGetters(["getKakaoId", "getBaseUrl"]),
+    ...mapGetters(["getKakaoId"]),
   },
   methods: {
     sendSignupFrom() {
@@ -128,7 +129,7 @@ export default {
         learningfile: this.learningfile,
       };
       axios
-        .post(`${this.getBaseUrl}/account/signup`, user)
+        .post(`${constants.baseUrl}/account/signup`, user)
         .then((Response) => {
           kakaoToken = Response.data;
           console.log(Response.data);
