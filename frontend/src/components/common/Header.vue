@@ -3,7 +3,7 @@
     <div>
       <b-navbar class="m-0" type="light" variant="light">
         <b-navbar-nav>
-          <b-nav-item>Home</b-nav-item>
+          <b-nav-item @click="goHome">Home</b-nav-item>
 
           <!-- Navbar dropdowns -->
 
@@ -25,7 +25,7 @@
             <img
               src="../../assets/img/kk.png"
               style="width:50px"
-              @click="kakaoInfoUpdate"
+             
             />
           </a>
         </a>
@@ -51,10 +51,12 @@ export default {
   watch: {},
   created() {},
   methods: {
-    kakaoInfoUpdate: function(id) {
-      this.$store.commit("kakaoIdUpdate", id);
+    // kakaoInfoUpdate: function(id) {
+    //   this.$store.commit("kakaoIdUpdate", id);
+    // },
+    goHome:function() {
+      this.$router.push('/');
     },
-
     kakaojoin() {
       let x = this;
       // var kakaotempToken = "";
@@ -68,7 +70,7 @@ export default {
             success: function(res) {
               x.kakao.uid = res.id;
               x.kakao.name = res.properties.nickname;
-            
+              
               axios
                 .post(`${baseURL}/account/kakaologin`, x.kakao)
                 .then((response) => {
@@ -84,7 +86,7 @@ export default {
                     // });
                     console.log("logger - test222");
                   } else {
-                    x.kakaoInfoUpdate(res.id);
+                    // x.kakaoInfoUpdate(res.id);
 
                     x.$router.push({ name: "join" });
                   }
