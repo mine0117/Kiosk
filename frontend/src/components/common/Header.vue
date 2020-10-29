@@ -4,7 +4,7 @@
       <b-navbar class="m-0" type="light" variant="light">
         <b-navbar-nav>
           <b-nav-item router-link :to="{name:'main'}">Home</b-nav-item>
-
+          <b-nav-item router-link :to="{name:'list'}">KIOSK</b-nav-item>
           <!-- Navbar dropdowns -->
 
           <b-nav-item-dropdown
