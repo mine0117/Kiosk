@@ -1,8 +1,7 @@
 <template>
-  <div class="user" id="join">
-    <div class="container">
-      <h1 style="text-align: center">회원가입</h1>
-
+   <div class="container">
+    <h1 style="text-align: center">회원 정보 수정</h1>
+    <b-form @submit="onSubmit" @reset="onReset" v-if="show">
       <!-- 이름 -->
       <b-form-group
         id="input-group-1"
@@ -19,7 +18,7 @@
           </b-input-group-prepend>
           <b-form-input
             id="input-1"
-            v-model="name"
+            v-model="form.name"
             :state="nameState"
             required
             aria-describedby="input-live-help input-live-feedback"
@@ -48,7 +47,7 @@
           </b-input-group-prepend>
           <b-form-input
             id="input-2"
-            v-model="email"
+            v-model="form.email"
             type="email"
             :state="emailState"
             required
@@ -67,10 +66,16 @@
         label-size="lg"
         label-for="input-3"
       >
-        <b-form-radio v-model="gender" name="gender" value="남"
+        <!-- <b-form-input
+          id="input-3"
+          v-model="form.gender"
+          required
+          placeholder="Enter gender"
+        ></b-form-input> -->
+        <b-form-radio v-model="form.gender" name="gender" value="남"
           >남</b-form-radio
         >
-        <b-form-radio v-model="gender" name="gender" value="여"
+        <b-form-radio v-model="form.gender" name="gender" value="여"
           >여</b-form-radio
         >
       </b-form-group>
@@ -84,7 +89,7 @@
       >
         <b-form-input
           id="input-4"
-          v-model="age"
+          v-model="form.age"
           type="number"
           required
           placeholder="Enter age"
@@ -104,7 +109,7 @@
           </b-input-group-prepend>
           <b-form-input
             id="input-5"
-            v-model="tel"
+            v-model="form.tel"
             required
             placeholder="Enter tel"
           ></b-form-input>
@@ -124,7 +129,7 @@
           </b-input-group-prepend>
           <b-form-input
             id="input-6"
-            v-model="learningfile"
+            v-model="form.learningfile"
             required
             placeholder="Enter images"
           ></b-form-input>
@@ -139,34 +144,48 @@
             variant="success"
             block
             :disabled="!(emailState && nameState)"
-            @click="sendSignupFrom()"
-            >가입하기</b-button
+            >수정하기</b-button
           ></b-col
         >
         <b-col lg="4" class="pb-2"></b-col>
       </b-row>
 
       <!-- <b-button type="reset" variant="danger">Reset</b-button> -->
-    </div>
+    </b-form>
   </div>
 </template>
-
 <script>
 import axios from "axios";
 import constants from "../../lib/constants";
-import { mapGetters } from "vuex";
 
 export default {
-  components: {},
-  created() {},
+  name: "UserUpdate",
+  data() {
+    return {
+      form: {
+        uid: "",
+        email: "",
+        name: "",
+        gender: "",
+        age: "",
+        tel: "",
+        learningfile: "",
+      },
+      show: true,
+    };
+  },
+  created() {
+    console.log("created - MyPage");
+    this.getUserInfo();
+  },
   computed: {
     emailState() {
       const regExp = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
 
-      return regExp.test(this.email);
+      return regExp.test(this.form.email);
     },
     nameState() {
-      return this.name.length > 2 ? true : false;
+      return this.form.name.length > 2 ? true : false;
     },
     invalidName() {
       if (this.name.length > 0) {
@@ -174,47 +193,61 @@ export default {
       }
       return "Please enter something.";
     },
-
-    ...mapGetters(["getKakaoId"]),
   },
   methods: {
-    sendSignupFrom() {
-      var kakaoToken = "";
-      var user = {
-        uid: this.getKakaoId,
-        email: this.email,
-        name: this.name,
-        gender: this.gender,
-        age: this.age,
-        tel: this.tel,
-        learningfile: this.learningfile,
+    getUserInfo() {
+      console.log("method - getUserInfo");
+
+      const axiosConfig = {
+        headers: {
+          jwtToken: `${this.$cookies.get("Auth-Token")}`,
+        },
       };
+      console.log(axiosConfig);
       axios
-        .post(`${constants.baseUrl}/account/signup`, user)
-        .then((Response) => {
-          kakaoToken = Response.data;
-          console.log(Response.data);
-          this.$cookies.set("Auth-Token", kakaoToken);
+        .post(`${constants.baseUrl}/authuser`, "", axiosConfig)
+        .then((res) => {
+          console.log(res.data.uid);
+          this.form = res.data;
+        })
+        .catch((err) => console.log(err));
+    },
+    // template
+    onSubmit(evt) {
+      evt.preventDefault();
+
+      const axiosConfig = {
+        headers: {
+          jwtToken: `${this.$cookies.get("Auth-Token")}`,
+        },
+      };
+      console.log(this.form);
+      axios
+        .put(`${constants.baseUrl}/updateuser`, this.form, axiosConfig)
+        .then((res) => {
+          alert("정보가 수정되었습니다.");
           this.$router.push("/");
         })
-        .catch((Error) => {
-          console.log(Error);
+        .catch((err) => {
+          console.log(err);
         });
+
+      alert(JSON.stringify(this.form));
     },
-  },
-  watch: {},
-  data: () => {
-    return {
-      uid: "",
-      email: "",
-      name: "",
-      gender: "",
-      age: "",
-      tel: "",
-      learningfile: "",
-      // isTerm: false,
-    };
-  },
+    onReset(evt) {
+      evt.preventDefault();
+      // Reset our form values
+      this.form.email = this.form.email;
+      this.form.name = this.form.name;
+      this.form.gender = this.form.gender;
+      this.form.age = this.form.age;
+      this.form.tel = this.form.tel;
+      // Trick to reset/clear native browser form validation state
+      this.show = false;
+      this.$nextTick(() => {
+        this.show = true;
+      });
+    },}
 };
 </script>
 

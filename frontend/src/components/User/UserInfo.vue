@@ -1,0 +1,99 @@
+<template>
+  <div class="container" style="background-color: whitesmoke">
+    <h1 style="text-align: center">회원 정보</h1>
+    <br />
+    <!-- <span>이메일 : {{form.email}}</span><br />
+    <span>이름 : {{form.name}}</span><br />
+    <span>성별 : {{form.gender}}</span><br /> -->
+    <div>
+      <table class="table table-bordered table-striped table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">정보</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">이름</th>
+            <td>{{ form.name }}</td>
+          </tr>
+          <tr>
+            <th scope="row">이메일</th>
+            <td>{{ form.email }}</td>
+          </tr>
+          <tr>
+            <th scope="row">성별</th>
+            <td>{{ form.gender }}</td>
+          </tr>
+          <tr>
+            <th scope="row">나이</th>
+            <td>{{ form.age }}</td>
+          </tr>
+          <tr>
+            <th scope="row">전화번호</th>
+            <td>{{ form.tel }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <b-button
+      fill
+      block
+      variant="info"
+      router-link
+      :to="{ name: 'userupdate' }"
+    >
+      개인정보 수정</b-button
+    >
+  </div>
+</template>
+<script>
+import axios from "axios";
+import constants from "../../lib/constants";
+
+export default {
+  name: "UserInfo",
+  data() {
+    return {
+      form: {
+        uid: "",
+        email: "",
+        name: "",
+        gender: "",
+        age: "",
+        tel: "",
+        learningfile: "",
+      },
+    };
+  },
+  created() {
+    console.log("created - MyPage");
+    this.getUserInfo();
+  },
+  methods: {
+    getUserInfo() {
+      console.log("method - getUserInfo");
+
+      const axiosConfig = {
+        headers: {
+          jwtToken: `${this.$cookies.get("Auth-Token")}`,
+        },
+      };
+      console.log(axiosConfig);
+      axios
+        .post(`${constants.baseUrl}/authuser`, "", axiosConfig)
+        .then((res) => {
+          console.log(res.data.uid);
+          this.form = res.data;
+        })
+        .catch((err) => console.log(err));
+    },
+  },
+};
+</script>
+<style scoped>
+/* .container {
+  background-color: whitesmoke;
+} */
+</style>
