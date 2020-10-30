@@ -5,7 +5,7 @@
   </div>
 </template>
 
-<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+ <!--<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>-->
 <script>
 import constants from "./lib/constants";
 import Header from "./components/common/Header.vue";

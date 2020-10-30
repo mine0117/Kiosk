@@ -16,7 +16,12 @@ export default {
             USER_UPDATE: 'userupdate',
             USER_INFO: 'userinfo',
             ORDER_LIST: 'orderlist',
+            ADMIN : 'admin',
         },
+        ADMIN: {
+            DASHBOARD: 'dashboard',
+                },
+                
         POST: {
             MAIN : "main",
             LIST : "list",

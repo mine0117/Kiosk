@@ -11,6 +11,10 @@ import UserUpdate from '../page/user/UserUpdate.vue'
 import UserInfo from '../components/User/UserInfo.vue'
 import OrderList from '../components/User/OrderList.vue'
 
+// 어드민
+import Admin from '../page/user/Admin.vue'
+import DashBoard from '@/components/admin/DashBoard.vue'
+
 // 포스트
 import List from '../page/post/List.vue'
 import Main from '../page/post/Main.vue'
@@ -76,6 +80,16 @@ export default new Router({
       path: '/user/orderlist',
       name: constants.URL_TYPE.USER.ORDER_LIST,
       component: OrderList
+    },
+    { // 어드민
+      path: '/admin',
+      name: constants.URL_TYPE.USER.ADMIN,
+      component: Admin
+    },
+    { // 어드민
+      path: '/admin/dashboard',
+      name: constants.URL_TYPE.ADMIN.DASHBOARD,
+      component: DashBoard
     },
   ]
 })
