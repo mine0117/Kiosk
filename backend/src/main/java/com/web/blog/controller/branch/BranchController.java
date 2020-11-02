@@ -36,9 +36,9 @@ public class BranchController {
     public Object menu(@RequestParam(required = true) int sid) {
 
     List<Branch> menulist = BranchDao.findBranchBySid(sid);
-    for (int i = 0; i < menulist.size(); i++) {
-        System.out.println(menulist.get(i));
-    }
+    // for (int i = 0; i < menulist.size(); i++) {
+    //     System.out.println(menulist.get(i));
+    // }
     ResponseEntity<Object> response = null;
     
     BasicResponse result = new BasicResponse();
