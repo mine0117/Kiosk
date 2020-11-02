@@ -1,11 +1,9 @@
 <template>
   <b-container>
-    <h1 class="border-bottom border-secondary" style="text-align: center">
-      <strong>MY PAGE</strong>
-    </h1>
-    <div>
-      <b-card no-body>
-        <b-tabs pills card vertical>
+
+    <div >
+      <b-card no-body borderless>
+        <b-tabs pills align="right">
           <b-tab title="회원 정보" active><b-card-text><user-info /></b-card-text></b-tab>
           <b-tab title="구매 내역"><b-card-text><order-list /></b-card-text></b-tab>
         </b-tabs>
@@ -50,8 +48,8 @@ export default {
 
 <style scoped>
 .container {
-  background-color: #faebd7;
-  padding: 70px 30px 50px 30px;
+  background-color: white;
+  padding: 0;
 }
 h1{
   margin-bottom:50px;
