@@ -1,7 +1,7 @@
 export default {
     TITLE: '키.완.얼',
-    // baseUrl: 'https://k3b107.p.ssafy.io',
-    baseUrl: 'http://localhost:8080',
+    baseUrl: 'https://k3b107.p.ssafy.io',
+    // baseUrl: 'http://localhost:8080',
     LS_KEY: {
         USER_TOKEN: 'userToken',
     },
@@ -20,6 +20,7 @@ export default {
         },
         ADMIN: {
             DASHBOARD: 'dashboard',
+            UPDATEMENU: 'updatemenu',
                 },
                 
         POST: {
