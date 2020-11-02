@@ -5,8 +5,8 @@ export default {
     LS_KEY: {
         USER_TOKEN: 'userToken',
     },
-    ERROR: { 
-        FRONT_ERROR: 'FE00' 
+    ERROR: {
+        FRONT_ERROR: 'FE00'
     },
     URL_TYPE: {
         USER: {
@@ -16,16 +16,18 @@ export default {
             USER_UPDATE: 'userupdate',
             USER_INFO: 'userinfo',
             ORDER_LIST: 'orderlist',
-            ADMIN : 'admin',
+            ADMIN: 'admin',
         },
         ADMIN: {
             DASHBOARD: 'dashboard',
-                },
-                
+            UPDATEMENU: 'updatemenu',
+            VISITHISTORY: 'visithistory',
+        },
+
         POST: {
-            MAIN : "main",
-            LIST : "list",
-          
+            MAIN: "main",
+            LIST: "list",
+            KIOSKMAIN: "kisokmain",
         },
     }
 }

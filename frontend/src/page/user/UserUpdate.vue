@@ -256,8 +256,8 @@ h1 {
   margin-bottom: 50px;
 }
 .container {
-  background-color: #faebd7;
-  /* padding: 0 30px 0 30px; */
+  background-color: white;
+  margin-top: 50px;
 }
 
 @media (min-width: 768px) {

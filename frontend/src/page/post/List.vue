@@ -1,31 +1,43 @@
 <template>
   <div>
-    <!-- <FooterList v-if="basketCheck" /> -->
     <div>
       <b-sidebar id="sidebar-right" backdrop title="장바구니" right shadow>
         <div class="px-2 py-2">
-          <div class="d-flex mb-0" v-for="(menu,k) in basket" :key="k">
+          <div class="d-flex mb-4" v-for="(menu, k) in basket" :key="k">
             <th>
-            <b-img
-              :src= "menu.image"
-              class="rounded-circle image"
-              width= 140%
-            ></b-img>
+              <b-img
+                :src="menu.image"
+                class="rounded-circle image"
+                width="140%"
+              ></b-img>
             </th>
-            <th class ="px-3 align-items-start">
-              <tr style = "font-size:20px">
-            {{menu.name}}
+            <th class="px-3 py-3">
+              <tr style="font-size: 20px">
+                {{
+                  menu.name
+                }}
               </tr>
-              <tr style = "font-size: 20px">
-            {{menu.price}}원
+              <tr style="font-size: 20px">
+                {{
+                  menu.price
+                }}원
               </tr>
             </th>
-            <br/><br/>
+            <br /><br />
           </div>
         </div>
-        <div class ="px-2" style = "font-size : 30px">
-        <p>총 금액 : {{basketPrice}}원</p>
-        <b-button>결제하기</b-button>
+        <div class="px-2">
+          <p style="font-size: 20px">총 금액 : {{ basketPrice }}원</p>
+          <div>
+            <b-button v-b-modal.modal-1>결제하기</b-button>
+            <b-button v-b-toggle.sidebar-right @click="GetMenuListRecent()"
+              >최근 목록</b-button
+            >
+
+            <b-modal id="modal-1" title="결제 하기" @ok="GetMenuList()">
+              <p class="my-4">Hello from modal!</p>
+            </b-modal>
+          </div>
         </div>
       </b-sidebar>
     </div>
@@ -63,7 +75,6 @@
                         :key="i"
                         style="width: 32%; float: left"
                       >
-                        <!-- class="row col-3 m-2"     "GetMenuId(menu)"-->
                         <div v-if="menu.category2 == y">
                           <div
                             class="m-3 hover"
@@ -102,20 +113,23 @@
                     <b-tab title="아이스크림" @click="y = 7"></b-tab>
 
                     <br /><br />
-                    <div class="">
+                    <div>
                       <div
                         v-for="(menu, i) in menusCate2"
                         :key="i"
                         style="width: 32%; float: left"
                       >
-                        <!-- class="row col-3 m-2" -->
                         <div v-if="menu.category2 == y">
-                          <div class="m-4">
+                          <div
+                            class="m-3 hover"
+                            @click="GetMenuId(menu)"
+                            v-b-toggle.sidebar-right
+                          >
                             <div>
                               <img
                                 style="width: 100%"
                                 :src="menu.image"
-                                class="rounded-circle"
+                                class="rounded-circle image"
                               />
                             </div>
                             <div style="text-align: center; font-size: 20px">
@@ -124,7 +138,6 @@
                             <div style="text-align: center; font-size: 20px">
                               {{ menu.price }}원
                             </div>
-                            <br /><br />
                           </div>
                         </div>
                       </div>
@@ -165,9 +178,10 @@ export default {
       test: true,
       menusCate1: {},
       menusCate2: {},
-      menuAll:{},
+      menuAll: {},
       y: 1,
       basket: [],
+      basketRecent: [],
       modalShow: false,
       basketPrice: 0,
     };
@@ -193,6 +207,23 @@ export default {
       this.basket.push(res);
       // console.log(this.basket);
     },
+    GetMenuList() {
+      axios
+        .post(baseURL + "/create/order", this.basket)
+        .then(() => {
+          console.log(this.basket);
+        })
+        .catch((err) => console.log(err.response));
+    },
+    GetMenuListRecent() {
+      axios
+        .get(baseURL + "/get/orderlist/recent", { params: { sid: 1, uid: 11 } })
+        .then((res) => {
+          this.basketRecent = res.data.object;
+          console.log(this.basketRecent);
+        })
+        .catch((err) => console.log(err.response));
+    },
   },
 };
 </script>
@@ -211,4 +242,6 @@ export default {
   background-color: #eee;
   cursor: pointer;
 }
+
+
 </style>

@@ -2,7 +2,7 @@
   <div v-if="isHeader">
     <nav class="navbar navbar-expand navbar-light bg-white py-3 shadow-sm">
       <div id="navbarContent" class="collapse navbar-collapse">
-        <ul class="navbar-nav mx-auto">
+        <ul class="navbar-nav ml-auto">
           <li class="nav-item">
             <router-link class="nav-link" to="/">
               <div class="nav-link font-weight-bold text-uppercase">Home</div>
@@ -53,11 +53,8 @@
 <script>
 import axios from "axios";
 import constants from "../../lib/constants";
-import "../../assets/css/header.css";
-import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap-vue/dist/bootstrap-vue.css";
 import KakaoVue from "../../page/user/Kakao.vue";
-// import "../../assets/css/Header-Blue.css";
+
 const baseURL = constants.baseUrl;
 export default {
   name: "Kakao",

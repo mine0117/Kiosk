@@ -1,6 +1,9 @@
 <template>
-  <div class="container" style="background-color: whitesmoke">
-    <h1 style="text-align: center">회원 정보</h1>
+  <div class="container">
+    <!-- <h1 style="text-align: center">회원 정보</h1> -->
+        <h1 class="border-bottom border-secondary" style="text-align: center">
+      <strong>MY PAGE</strong>
+    </h1>
     <br />
     <!-- <span>이메일 : {{form.email}}</span><br />
     <span>이름 : {{form.name}}</span><br />
