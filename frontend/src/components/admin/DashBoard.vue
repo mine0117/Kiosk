@@ -8,8 +8,8 @@
             <p class="card-text" style="font-size:3em">
               {{todayCount}}
             </p>
-            <!-- <b-btn href="#" class="card-link" router-link :to="{name: 'updatemenu'}">방문기록 확인</b-btn> -->
-            <b-btn href="#" class="card-link">방문기록 확인</b-btn>
+            <b-btn href="#" class="card-link" router-link :to="{name: 'visithisotry'}">방문기록 확인</b-btn>
+            <!-- <b-btn href="#" class="card-link">방문기록 확인</b-btn> -->
           </div>
         </div>
       </div>
