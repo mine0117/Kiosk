@@ -25,7 +25,7 @@ export default {
         POST: {
             MAIN : "main",
             LIST : "list",
-          
+            KIOSKMAIN : "kisokmain",
         },
     }
 }

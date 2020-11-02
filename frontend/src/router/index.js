@@ -18,6 +18,7 @@ import DashBoard from '@/components/admin/DashBoard.vue'
 // 포스트
 import List from '../page/post/List.vue'
 import Main from '../page/post/Main.vue'
+import KioskMain from '../page/post/KioskMain.vue'
 
 Vue.use(Router) 
  
@@ -56,11 +57,11 @@ export default new Router({
       name: constants.URL_TYPE.POST.MAIN,
       component: Main,
     },
-    // { 
-    //   path: '/main',
-    //   name: constants.URL_TYPE.POST.MAIN,
-    //   component: Main,
-    // },
+    { 
+      path: '/kiosk/main',
+      name: constants.URL_TYPE.POST.KIOSKMAIN,
+      component: KioskMain,
+    },
     { // 마이페이지
       path: '/user/mypage',
       name: constants.URL_TYPE.USER.MYPAGE,
