@@ -29,7 +29,8 @@ export default {
     checkUrl(url) {
       let array = [
         constants.URL_TYPE.USER.LOGIN,
-          constants.URL_TYPE.POST.KIOSKMAIN,
+        constants.URL_TYPE.POST.KIOSKMAIN,
+        constants.URL_TYPE.ADMIN.DASHBOARD,
       ];
 
       let isHeader = true;

@@ -14,6 +14,7 @@ import OrderList from '../components/User/OrderList.vue'
 // 어드민
 import Admin from '../page/user/Admin.vue'
 import DashBoard from '@/components/admin/DashBoard.vue'
+import UpdateMenu from '@/components/admin/UpdateMenu.vue'
 
 // 포스트
 import List from '../page/post/List.vue'
@@ -91,6 +92,11 @@ export default new Router({
       path: '/admin/dashboard',
       name: constants.URL_TYPE.ADMIN.DASHBOARD,
       component: DashBoard
+    },
+    { // 어드민 메뉴
+      path: '/admin/updatemenu',
+      name: constants.URL_TYPE.ADMIN.UPDATEMENU,
+      component: UpdateMenu
     },
   ]
 })
