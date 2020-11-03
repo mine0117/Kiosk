@@ -40,6 +40,9 @@ public class OrderlistController {
     UserDao userDao;
 
     @Autowired
+    BranchDao BranchDao;
+
+    @Autowired
     OrderlistDao OrderlistDao;
 
     @Autowired
@@ -49,9 +52,32 @@ public class OrderlistController {
     @ApiOperation(value = "주문 메뉴 전체 목록")
     public Object getorderlist(@RequestParam(required = true) int uid, int sid) {
 
-        List<Orderlist> orderlistlist = OrderlistDao.findOrderlistByUidAndSid(uid, sid);
-        ResponseEntity<Object> response = null;
+        ArrayList<Orderlist> orderlistlist = OrderlistDao.findOrderlistByUidAndSidOrderByOrderdateDesc(uid, sid);
+        System.out.println("///////////////////////////");
+        List<Branch> menulist = BranchDao.findBranchBySid(sid);
+        ArrayList<Object> ret = new ArrayList<>();
+        for (int i = 0; i < menulist.size(); i++) {
+            for (int j = 0; j < orderlistlist.size(); j++) {
+                if(menulist.get(i).getMenuid() == orderlistlist.get(j).getMenuid()){
+                    ret.add(menulist.get(i));
+                }
+            }
+        }
 
+        ResponseEntity<Object> response = null;
+        BasicResponse result = new BasicResponse();
+        result.status = true;
+        result.data = "주문 메뉴 전체 목록 조회 완료";
+        result.object = ret;
+        response = new ResponseEntity<>(result, HttpStatus.OK);
+        return response;
+    }
+
+    @GetMapping("/get/orderlist2")
+    @ApiOperation(value = "주문 메뉴 전체 목록2")
+    public Object getorderlist2(@RequestParam(required = true) int uid, int sid) {
+        ArrayList<Orderlist> orderlistlist = OrderlistDao.findOrderlistByUidAndSidOrderByOrderdateDesc(uid, sid);
+        ResponseEntity<Object> response = null;
         BasicResponse result = new BasicResponse();
         result.status = true;
         result.data = "주문 메뉴 전체 목록 조회 완료";
@@ -59,6 +85,8 @@ public class OrderlistController {
         response = new ResponseEntity<>(result, HttpStatus.OK);
         return response;
     }
+
+
 
     @GetMapping("/get/orderlist/recent")
     @ApiOperation(value = "최신 주문 메뉴")
@@ -68,8 +96,7 @@ public class OrderlistController {
         ResponseEntity<Object> response = null;
 
         ArrayList<Orderlist> asdf;
-        // orderlistrecent =
-        // OrderlistDao.find1OrderlistByUidAndSidOrderByOrderdateDesc(uid, sid);
+        // orderlistrecent = OrderlistDao.find1OrderlistByUidAndSidOrderByOrderdateDesc(uid, sid);
 
         asdf = OrderlistDao.findOrderlistByUidAndSidOrderByOrderdateDesc(uid, sid);
 
