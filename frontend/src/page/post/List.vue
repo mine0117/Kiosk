@@ -23,6 +23,7 @@
                 }}원
               </tr>
             </th>
+
             <br /><br />
           </div>
         </div>
@@ -52,6 +53,56 @@
               active-tab-class="font-weight-bold text-success"
               style="font-size: 40px"
             >
+              <b-tab title="최근먹은메뉴">
+                <div>
+                  <b-tabs content-class="mt-3" pills style="font-size: 20px">
+                    <!-- <b-tab title="콜드 브루" @click="y = 1"></b-tab>
+                    <b-tab title="리저브" @click="y = 2"></b-tab>
+                    <b-tab title="에스프레소" @click="y = 3"></b-tab>
+                    <b-tab title="블론드" @click="y = 5"></b-tab>
+                    <b-tab title="프라푸치노" @click="y = 6"></b-tab>
+                    <b-tab title="블렌디드" @click="y = 7"></b-tab>
+                    <b-tab title="피지오" @click="y = 8"></b-tab>
+                    <b-tab title="티바나" @click="y = 9"></b-tab>
+                    <b-tab title="브루드 커피" @click="y = 10"></b-tab>
+                    <b-tab title="기타" @click="y = 11"></b-tab>
+                    <b-tab title="병음료" @click="y = 12"></b-tab> -->
+
+                    <br /><br />
+
+                    <div v-if="basketRecent.length > 0">
+                      <div
+                        v-for="(slide, index) in basketRecent"
+                        :key="index"
+                        style="width: 32%; float: left"
+                      >
+                        <div>
+                          <div
+                            class="m-3 hover"
+                            @click="GetMenuId(slide)"
+                            v-b-toggle.sidebar-right
+                          >
+                            <div>
+                              <img
+                                style="width: 100%"
+                                :src="slide.image"
+                                class="rounded-circle image"
+                              />
+                            </div>
+                            <div style="text-align: center; font-size: 20px">
+                              {{ slide.name }}
+                            </div>
+                            <div style="text-align: center; font-size: 20px">
+                              {{ slide.price }}원
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </b-tabs>
+                </div>
+              </b-tab>
+
               <b-tab title="음료">
                 <div>
                   <b-tabs content-class="mt-5" pills style="font-size: 20px">
@@ -153,7 +204,7 @@
     </div>
   </div>
 </template>
- 
+
 <script>
 import axios from "axios";
 import constants from "../../lib/constants";
@@ -181,15 +232,34 @@ export default {
       menuAll: {},
       y: 1,
       basket: [],
-      basketRecent: [],
+      basketRecent: {},
       modalShow: false,
       basketPrice: 0,
+      uid: "",
     };
   },
   created() {
+    this.authUser();
+
     this.GetMenuInfo();
   },
   methods: {
+    authUser() {
+      console.log("method - authUser");
+      const axiosConfig = {
+        headers: {
+          jwtToken: `${this.$cookies.get("Auth-Token")}`,
+        },
+      };
+      axios
+        .post(`${constants.baseUrl}/authuser`, "", axiosConfig)
+        .then((res) => {
+          console.log(res.data.uid);
+          this.uid = res.data.uid;
+          this.GetMenuListRecent();
+        })
+        .catch((err) => console.log(err));
+    },
     GetMenuInfo() {
       axios
         .get(baseURL + "/branch/menu", { params: { sid: 1 } })
@@ -217,9 +287,9 @@ export default {
     },
     GetMenuListRecent() {
       axios
-        .get(baseURL + "/get/orderlist/recent", { params: { sid: 1, uid: 11 } })
+        .get(`${baseURL}/order/mymenu`, { params: { uid: this.uid, sid: 1 } })
         .then((res) => {
-          this.basketRecent = res.data.object;
+          this.basketRecent = res.data;
           console.log(this.basketRecent);
         })
         .catch((err) => console.log(err.response));
