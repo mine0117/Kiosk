@@ -45,8 +45,6 @@ public class OrderlistController {
     @Autowired
     OrderlistDao OrderlistDao;
 
-    @Autowired
-    BranchDao BranchDao;
 
     @GetMapping("/get/orderlist")
     @ApiOperation(value = "주문 메뉴 전체 목록")
