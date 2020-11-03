@@ -1,22 +1,25 @@
 <template>
-  <div class="overflow-auto">
+  <div class="container">
     <p class="mt-3">Current Page: {{ currentPage }}</p>
+    <add-menu></add-menu>
     <b-table
       id="my-table"
       :items="items"
       :per-page="perPage"
       :current-page="currentPage"
+      :fields="fields"
       small
       hover
     >
-      <template #cell(name)="data"> {{ data.item.name }} +III </template>
+
+      <template #cell(name)="data"> {{ data.item.name }} </template>
       <!-- <template #cell(name)="data">
         <b class="text-info">{{ data.sid }}</b>, <b>{{ data.value.name }}</b>
       </template> -->
       <template #cell(image)="data">
         <!-- <v-img :src="data.item.image" alt="" contain height="100px" width="150px">
         </v-img> -->
-        <img :src="data.item.image" />
+        <b-img :src="data.item.image" rounded />
         <!-- {{ data.item.image }} +III -->
       </template>
     </b-table>
@@ -24,21 +27,69 @@
       <b-pagination
         v-model="currentPage"
         :total-rows="rows"
+        :per-page="perPage"
+        aria-controls="my-table"
         align="center"
+        pills
+        size="lg"
       ></b-pagination>
     </div>
   </div>
 </template>
+
 <script>
 import axios from "axios";
 import constants from "../../lib/constants";
-
+import AddMenu from '@/components/admin/AddMenu.vue'
 const baseURL = constants.baseUrl;
 
 export default {
   name: "UpdateMenu",
+    components:{
+    AddMenu,
+  },
   data() {
     return {
+      fields:[
+        // {key:'삭제버튼'},
+        {
+          key:'sid',
+        label:'지점 번호'
+        },
+        {
+          key:'menuid',
+        label:'메뉴 번호'
+        },
+        {
+          key:'name',
+        label:'메뉴 이름'
+        },
+         {
+          key:'description',
+        label:'메뉴 설명'
+        },
+        {
+          key:'price',
+        label:'메뉴 가격'
+        },
+        {
+          key:'image',
+        label:'메뉴 번호'
+        },
+        {
+          key:'kcal',
+        // label:'kcal'
+        },
+        {
+        key:'category1',
+        label:'category1'
+        },
+        {
+        key:'category2',
+        label:'category2'
+        },
+      
+      ],
       perPage: 10,
       currentPage: 1,
       menuAll: {},
@@ -74,4 +125,12 @@ export default {
 };
 </script>
 <style scoped>
+.container {
+  width: 1400px;
+  margin: 100px auto;
+  padding: 20px;
+}
+img {
+  width: 100px;
+}
 </style>

@@ -8,7 +8,7 @@
             <p class="card-text" style="font-size:3em">
               {{todayCount}}
             </p>
-            <b-btn href="#" class="card-link" router-link :to="{name: 'visithisotry'}">방문기록 확인</b-btn>
+            <b-btn href="#" class="card-link" router-link :to="{name: 'visithistory'}">방문기록 확인</b-btn>
             <!-- <b-btn href="#" class="card-link">방문기록 확인</b-btn> -->
           </div>
         </div>
@@ -16,14 +16,13 @@
       <div class="col-sm">
         <div class="card" style="width: 18rem">
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
+            <h5 class="card-title">메뉴 관리</h5>
             <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
             <p class="card-text">
               Some quick example text to build on the card title and make up the
               bulk of the card's content.
             </p>
-            <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a>
+            <b-btn href="#" class="card-link" router-link :to="{name: 'updatemenu'}">메뉴 관리</b-btn>
           </div>
         </div>
       </div>
