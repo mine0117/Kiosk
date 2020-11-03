@@ -22,6 +22,7 @@ export default {
             DASHBOARD: 'dashboard',
             UPDATEMENU: 'updatemenu',
             VISITHISTORY: 'visithistory',
+            ADDMENU: 'addmenu',
         },
 
         POST: {

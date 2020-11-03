@@ -16,11 +16,13 @@ import Admin from '../page/user/Admin.vue'
 import DashBoard from '@/components/admin/DashBoard.vue'
 import UpdateMenu from '@/components/admin/UpdateMenu.vue'
 import VisitHistory from '@/components/admin/VisitHistory.vue'
+import AddMenu from '@/components/admin/AddMenu.vue'
 
 // 포스트
 import List from '../page/post/List.vue'
 import Main from '../page/post/Main.vue'
 import KioskMain from '../page/post/KioskMain.vue'
+
 
 Vue.use(Router) 
  
@@ -103,6 +105,11 @@ export default new Router({
       path: '/admin/visithistory',
       name: constants.URL_TYPE.ADMIN.VISITHISTORY,
       component: VisitHistory
+    },
+    { // 어드민 메뉴 추가
+      path: '/admin/visithistory',
+      name: constants.URL_TYPE.ADMIN.ADDMENU,
+      component: AddMenu
     },
 
   ]
