@@ -1,8 +1,10 @@
 package com.web.blog.controller.orderlist;
 
+import com.web.blog.dao.branch.BranchDao;
 import com.web.blog.dao.orderlist.OrderlistDao;
 import com.web.blog.dao.user.UserDao;
 import com.web.blog.model.BasicResponse;
+import com.web.blog.model.branch.Branch;
 import com.web.blog.model.orderlist.Orderlist;
 import com.web.blog.model.orderlist.OrderlistRequest;
 import com.web.blog.model.user.User;
@@ -40,6 +42,9 @@ public class OrderlistController {
     @Autowired
     OrderlistDao OrderlistDao;
 
+    @Autowired
+    BranchDao BranchDao;
+
     @GetMapping("/get/orderlist")
     @ApiOperation(value = "주문 메뉴 전체 목록")
     public Object getorderlist(@RequestParam(required = true) int uid, int sid) {
@@ -58,21 +63,24 @@ public class OrderlistController {
     @GetMapping("/get/orderlist/recent")
     @ApiOperation(value = "최신 주문 메뉴")
     public Object getorderlistrecent(@RequestParam(required = true) int uid, int sid) {
-
+        System.out.println("logger - 최신 주문 메뉴");
         Orderlist orderlistrecent = new Orderlist();
         ResponseEntity<Object> response = null;
 
-        Orderlist[] asdf;
-        // orderlistrecent = OrderlistDao.find1OrderlistByUidAndSidOrderByOrderdateDesc(uid, sid);
+        ArrayList<Orderlist> asdf;
+        // orderlistrecent =
+        // OrderlistDao.find1OrderlistByUidAndSidOrderByOrderdateDesc(uid, sid);
 
         asdf = OrderlistDao.findOrderlistByUidAndSidOrderByOrderdateDesc(uid, sid);
 
-
         BasicResponse result = new BasicResponse();
+
         result.status = true;
         result.data = "최신 주문 메뉴 조회 완료";
         result.object = asdf;
+        System.out.println(result.object);
         response = new ResponseEntity<>(result, HttpStatus.OK);
+
         return response;
     }
 
@@ -101,5 +109,25 @@ public class OrderlistController {
         }
 
         return response;
+    }
+
+    @GetMapping("/order/mymenu")
+    @ApiOperation(value = "최근 먹은 주문 메뉴")
+    public Object orderlistrecent(@RequestParam(required = true) int uid, int sid) {
+        System.out.println("logger - 최신 주문 메뉴");
+
+        List<Orderlist> orderlistlist = OrderlistDao.findOrderlistByUidAndSidOrderByOrderdateDesc(uid, sid);
+        List<Branch> menulist = BranchDao.findBranchBySid(sid);
+         
+        HashSet<Object> ret = new HashSet<>();
+        for (int i = 0; i < menulist.size(); i++) {
+            for (int j = 0; j < orderlistlist.size(); j++) {
+                if (menulist.get(i).getMenuid() == orderlistlist.get(j).getMenuid()) {
+                    ret.add(menulist.get(i));
+                }
+            }
+        }
+        System.out.println(ret);
+        return ret;
     }
 }
