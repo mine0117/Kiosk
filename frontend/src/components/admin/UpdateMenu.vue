@@ -11,6 +11,10 @@
       small
       hover
     >
+        <template #cell(actions)="row">
+          <b-btn v-text="row.item.menuid">hhhhhhhhhhhhh</b-btn>
+          <b-btn @click="test">ggggg</b-btn>
+        </template>
 
       <template #cell(name)="data"> {{ data.item.name }} </template>
       <!-- <template #cell(name)="data">
@@ -22,6 +26,7 @@
         <b-img :src="data.item.image" rounded />
         <!-- {{ data.item.image }} +III -->
       </template>
+
     </b-table>
     <div class="mt-3">
       <b-pagination
@@ -34,6 +39,11 @@
         size="lg"
       ></b-pagination>
     </div>
+        <!-- Info modal -->
+    <b-modal :id="infoModal.id" :title="infoModal.title" ok-only @hide="resetInfoModal">
+      <pre>{{ infoModal.content }}</pre>
+    </b-modal>
+    
   </div>
 </template>
 
@@ -50,8 +60,15 @@ export default {
   },
   data() {
     return {
+      infoModal: {
+          id: 'info-modal',
+          title: '',
+          content: ''
+        },
+        
       fields:[
         // {key:'삭제버튼'},
+        { key: 'actions', label: 'Actions' },
         {
           key:'sid',
         label:'지점 번호'
@@ -107,6 +124,18 @@ export default {
     },
   },
   methods: {
+    test(){
+      alert('hi!')
+    },
+    info(item, index, button) {
+        this.infoModal.title = `Row index: ${index}`
+        this.infoModal.content = JSON.stringify(item, null, 2)
+        this.$root.$emit('bv::show::modal', this.infoModal.id, button)
+      },
+            resetInfoModal() {
+        this.infoModal.title = ''
+        this.infoModal.content = ''
+      },
     GetMenuInfo() {
       axios
         .get(`${baseURL}/branch/menu`, { params: { sid: 1 } })

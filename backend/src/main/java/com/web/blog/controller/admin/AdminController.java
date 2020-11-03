@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.web.blog.dao.admin.AdminDao;
@@ -94,11 +95,23 @@ public class AdminController {
                 return new ResponseEntity<Boolean>(true, HttpStatus.OK);
             } catch (Exception e) {
                 e.printStackTrace();
-    
                 return new ResponseEntity<Boolean>(false, HttpStatus.NOT_FOUND);
             }
-    
+        }
         
+        @GetMapping("/admin/menuinfo")
+        @ApiOperation(value = "메뉴정보")
+        public ResponseEntity<Branch> menuInfo(@RequestParam int menuid) throws SQLException, IOException {
+            System.out.println("logger - : menuInfo: ");
+            Branch branch = null;
+            try {
+                // branch = branchDao.findById(menuid);
+                
+                return new ResponseEntity<Branch>(branch, HttpStatus.OK);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return new ResponseEntity<Branch>(branch, HttpStatus.NOT_FOUND);
+            }
         }
 
 }
