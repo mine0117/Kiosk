@@ -162,6 +162,49 @@ public class AccountController {
         }
     }
 
+    @GetMapping("/account/takepic")
+    public ResponseEntity<?> takePictoJoin() {
+        ResponseEntity<?> response = null;
+        String[] command = new String[8];
+
+        command[0] = "python";
+        command[1] = "C:\\Users\\multicampus\\Desktop\\project3\\s03p31b107\\face_classifier\\face_classifier.py";
+        command[2] = "0";
+        command[3] = "-d";
+        command[4] = "-S";
+        command[5] = "0.1";
+        command[6] = "-c";
+        command[7] = "a";
+
+        try {
+            ByteArrayOutputStream out = execPython(command);
+            String extact_result = out.toString();
+            for (int i = 0; i < extact_result.length(); i++) {
+                char c = extact_result.charAt(i);
+                if (c == '\n' || c == '\r') {
+                    break;
+                }
+            }
+
+            command = new String[2];
+            command[0] = "python";
+            command[1] = "C:\\Users\\multicampus\\Desktop\\project3\\s03p31b107\\face_classifier\\only_train.py";
+            try {
+                out = execPython(command);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        response = new ResponseEntity<>(null, HttpStatus.OK);
+
+        return response;
+
+    }
+
     @GetMapping("/kiosk/recog")
     public ResponseEntity<?> recog() {
         ResponseEntity<?> response = null;
@@ -189,10 +232,11 @@ public class AccountController {
                     // res.append(c);
                 }
             }
-            
+
             command = new String[2];
             command[0] = "python";
-            // command[1] = "C:\\Users\\multicampus\\Desktop\\project3\\s03p31b107\\face_classifier\\face_recognition_mlp.py";
+            // command[1] =
+            // "C:\\Users\\multicampus\\Desktop\\project3\\s03p31b107\\face_classifier\\face_recognition_mlp.py";
             command[1] = "C:\\Users\\multicampus\\Desktop\\project3\\s03p31b107\\face_classifier\\face_recognition_knn.py";
             // res = new StringBuffer();
             try {
@@ -215,11 +259,11 @@ public class AccountController {
             e.printStackTrace();
         }
 
-        if(res.toString().equals("INCORRECT")){
-            result.data= "찾을 수 없는 유저입니다.";
-            result.object ="Unknown";
-        }else{
-            result.data= "가입된 유저입니다.";
+        if (res.toString().equals("INCORRECT")) {
+            result.data = "찾을 수 없는 유저입니다.";
+            result.object = "Unknown";
+        } else {
+            result.data = "가입된 유저입니다.";
             result.object = res.toString().split(":")[1];
         }
         System.out.println(result.data);
