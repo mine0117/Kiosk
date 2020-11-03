@@ -12,18 +12,22 @@
                   <b>체크인을 해주세요</b>
                 </h1>
                 <p style="float:right;">
-                  <b-button v-b-modal.modalPopover>회원가입 QR코드</b-button>
+                  <b-button style="width:100px; height: 30px; background-color: pink; border:0" v-b-modal.modalPopover>회원가입 QR코드</b-button>
 
-                  <b-modal id="modalPopover" title="QR코드" ok-only>
-                    <a
-                      rel="nofollow"
-                      href="https://ko.qr-code-generator.com/"
-                      border="0"
-                      style="cursor:default"
-                      ><img
-                        src="https://chart.googleapis.com/chart?cht=qr&chl=http%3A%2F%2Fk3b107.p.ssafy.io%2F&chs=180x180&choe=UTF-8&chld=L|2"
-                        alt=""
-                    /></a>
+                  <b-modal id="modalPopover" ok-only size="sm">
+                    <div
+                      class="w-100 d-flex justify-content-center align-items-center"
+                    >
+                      <a
+                        rel="nofollow"
+                        href="https://ko.qr-code-generator.com/"
+                        border="0"
+                        style="cursor:default"
+                        ><img
+                          src="https://chart.googleapis.com/chart?cht=qr&chl=http%3A%2F%2Fk3b107.p.ssafy.io%2F&chs=180x180&choe=UTF-8&chld=L|2"
+                          alt=""
+                      /></a>
+                    </div>
                   </b-modal>
                 </p>
               </div>
@@ -89,10 +93,6 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  /* margin-top: 13%;
-    margin-bottom: 100px */
-}
 
 .texts {
   font-size: 30px;
@@ -128,7 +128,7 @@ export default {
   margin-top: 10%;
   height: 70vh;
   padding-bottom: 20px;
-  box-shadow: 2px 2px 6px 0px lightpink;
+  box-shadow: 2px 2px 6px 0px lightgray;
 }
 
 .radio {
@@ -178,4 +178,5 @@ export default {
   outline: none !important;
   box-shadow: none !important;
 }
+
 </style>
