@@ -105,7 +105,7 @@
 
               <b-tab title="음료">
                 <div>
-                  <b-tabs content-class="mt-5" pills style="font-size: 20px">
+                  <b-tabs content-class="mt-3" pills style="font-size: 20px">
                     <b-tab title="콜드 브루" @click="y = 1"></b-tab>
                     <b-tab title="리저브" @click="y = 2"></b-tab>
                     <b-tab title="에스프레소" @click="y = 3"></b-tab>
@@ -312,6 +312,4 @@ export default {
   background-color: #eee;
   cursor: pointer;
 }
-
-
 </style>
