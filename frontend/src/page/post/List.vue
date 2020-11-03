@@ -117,11 +117,11 @@
                       <div
                         v-for="(menu, i) in menusCate2"
                         :key="i"
-                        style="width: 32%; float: left"
+                        style="width: 31%; float: left"
                       >
                         <div v-if="menu.category2 == y">
                           <div
-                            class="m-3 hover"
+                            class="m-2 hover"
                             @click="GetMenuId(menu)"
                             v-b-toggle.sidebar-right
                           >
