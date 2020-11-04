@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header :isHeader="isHeader" />
+    <Header :isHeader="isHeader" class="header" />
     <router-view />
   </div>
 </template>
@@ -32,6 +32,7 @@ export default {
         constants.URL_TYPE.POST.KIOSKMAIN,
         constants.URL_TYPE.ADMIN.DASHBOARD,
         constants.URL_TYPE.ADMIN.VISITHISTORY,
+        constants.URL_TYPE.POST.LIST,
       ];
 
       let isHeader = true;
@@ -50,4 +51,6 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+
+</style>

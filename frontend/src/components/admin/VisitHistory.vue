@@ -28,6 +28,7 @@
       :fields="fields"
       head-variant=dark
       hover
+      text-center
       small
     ></b-table>
     <b-pagination
