@@ -18,6 +18,7 @@
                 }}
               </tr>
               <tr style="font-size: 20px">
+                <b-icon icon="x-circle" scale="2" variant="danger"></b-icon>
                 {{
                   menu.price
                 }}원

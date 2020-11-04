@@ -48,36 +48,48 @@
           <div class="card-body">
             <h5 class="card-title">Card title</h5>
             <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-            <p class="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
+
             <a href="#" class="card-link">Card link</a>
             <a href="#" class="card-link">Another link</a>
           </div>
         </div>
       </div>
     </div>
-
+<canvas id="planet-chart"></canvas>
   </div>
 </template>
 <script>
 import axios from 'axios'
 import constants from '@/lib/constants'
-
+import Chart from 'chart.js'
+import planetChartData from '../../chart-data';
 const baseURL = constants.baseUrl;
+
+// const ctx = document.getElementById('planet-chart')
 
 export default {
   name: "DashBoard",
   data(){
     return{
+      planetChartData: planetChartData,
       todayCount:0,
     }
   },
   created(){
     this.getTodayVisitor()
   },
+  mounted(){
+    this.createChart('planet-chart', this.planetChartData);
+  },
   methods:{
+    createChart(chartId, chartData) {
+    const ctx = document.getElementById(chartId);
+    const myChart = new Chart(ctx, {
+      type: chartData.type,
+      data: chartData.data,
+      options: chartData.options,
+    });
+  },
     getTodayVisitor(){
       axios
       .get(`${baseURL}/admin/getvisitorcount`)
@@ -94,6 +106,9 @@ export default {
   },
 
 };
+
+
+	
 </script>
 <style scoped>
 .container {
