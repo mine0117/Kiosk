@@ -23,7 +23,7 @@
               Some quick example text to build on the card title and make up the
               bulk of the card's content.
             </p>
-            <b-btn href="#" class="card-link" router-link :to="{name: 'updatemenu'}">메뉴 관리</b-btn>
+            <b-btn href="#" class="card-link" router-link :to="{name: 'menulist'}">메뉴 관리</b-btn>
           </div>
         </div>
       </div>
