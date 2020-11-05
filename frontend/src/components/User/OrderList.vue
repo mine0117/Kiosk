@@ -85,8 +85,10 @@ export default {
           this.Mymenu = res.data.object;
 
           for (let i = 0; i < this.Mymenu.length; i++) {
+            // var a = this.Mymenu.length-1-i;
             const day = this.MymenuDate[i].orderdate;
             this.Mymenu[i].orderdate = day;
+          
           }
           console.log(this.Mymenu);
         })
