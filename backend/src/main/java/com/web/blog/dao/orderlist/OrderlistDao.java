@@ -15,5 +15,5 @@ public interface OrderlistDao extends JpaRepository<Orderlist, String> {
 
 	// Orderlist[] findOrderlistByUidAndSidOrderByOrderdateDesc(int uid, int sid);
 	ArrayList<Orderlist> findOrderlistByUidAndSidOrderByOrderdateDesc(int uid, int sid);
-
-}
+	ArrayList<Orderlist> findOrderlistByUidAndSidOrderByOrderdateAsc(int uid, int sid);
+}	
