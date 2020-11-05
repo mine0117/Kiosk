@@ -18,6 +18,7 @@
                 }}
               </tr>
               <tr style="font-size: 20px">
+                <b-icon icon="x-circle" scale="2" variant="danger"></b-icon>
                 {{
                   menu.price
                 }}원
@@ -43,7 +44,7 @@
       </b-sidebar>
     </div>
 
-    <div class="container mt-1 p-0">
+    <div class="mt-1 p-0">
       <div id="body">
         <div id="content">
           <b-card no-body>
@@ -56,18 +57,6 @@
               <b-tab title="최근먹은메뉴">
                 <div>
                   <b-tabs content-class="mt-3" pills style="font-size: 20px">
-                    <!-- <b-tab title="콜드 브루" @click="y = 1"></b-tab>
-                    <b-tab title="리저브" @click="y = 2"></b-tab>
-                    <b-tab title="에스프레소" @click="y = 3"></b-tab>
-                    <b-tab title="블론드" @click="y = 5"></b-tab>
-                    <b-tab title="프라푸치노" @click="y = 6"></b-tab>
-                    <b-tab title="블렌디드" @click="y = 7"></b-tab>
-                    <b-tab title="피지오" @click="y = 8"></b-tab>
-                    <b-tab title="티바나" @click="y = 9"></b-tab>
-                    <b-tab title="브루드 커피" @click="y = 10"></b-tab>
-                    <b-tab title="기타" @click="y = 11"></b-tab>
-                    <b-tab title="병음료" @click="y = 12"></b-tab> -->
-
                     <br /><br />
 
                     <div v-if="basketRecent.length > 0">
@@ -103,34 +92,33 @@
                 </div>
               </b-tab>
 
-              <b-tab title="음료">
+              <b-tab @click="seperateCate(1, 1)" title="음료">
                 <div>
-                  <b-tabs content-class="mt-3" pills style="font-size: 20px">
-                    <b-tab title="콜드 브루" @click="y = 1"></b-tab>
-                    <b-tab title="리저브" @click="y = 2"></b-tab>
-                    <b-tab title="에스프레소" @click="y = 3"></b-tab>
-                    <b-tab title="블론드" @click="y = 5"></b-tab>
-                    <b-tab title="프라푸치노" @click="y = 6"></b-tab>
-                    <b-tab title="블렌디드" @click="y = 7"></b-tab>
-                    <b-tab title="피지오" @click="y = 8"></b-tab>
-                    <b-tab title="티바나" @click="y = 9"></b-tab>
-                    <b-tab title="브루드 커피" @click="y = 10"></b-tab>
-                    <b-tab title="기타" @click="y = 11"></b-tab>
-                    <b-tab title="병음료" @click="y = 12"></b-tab>
+                  <b-tabs content-class="mt-5" align="center" pills style="font-size: 20px;">
+                    <b-tab title="콜드 브루" @click="seperateCate(1, 1)"></b-tab>
+                    <b-tab title="리저브" @click="seperateCate(1, 2)"></b-tab>
+                    <b-tab title="에스프레소" @click="seperateCate(1, 3)"></b-tab>
+                    <b-tab title="블론드" @click="seperateCate(1, 5)"></b-tab>
+                    <b-tab title="프라푸치노" @click="seperateCate(1, 6)"></b-tab>
+                    <b-tab title="블렌디드" @click="seperateCate(1, 7)"></b-tab>
+                    <b-tab title="피지오" @click="seperateCate(1, 8)"></b-tab>
+                    <b-tab title="티바나" @click="seperateCate(1, 9)"></b-tab>
+                    <b-tab title="브루드 커피" @click="seperateCate(1, 10)"></b-tab>
+                    <b-tab title="기타" @click="seperateCate(1, 11)"></b-tab>
+                    <b-tab title="병음료" @click="seperateCate(1, 12)"></b-tab>
 
                     <br /><br />
 
-                    <div>
+                    <div class="row">
                       <div
-                        v-for="(menu, i) in menusCate1"
+                        v-for="(menu, i) in menusCate"
                         :key="i"
-                        style="width: 32%; float: left"
+                        class="col-4"
                       >
-                        <div v-if="menu.category2 == y">
                           <div
                             class="m-3 hover"
-                            @click="GetMenuId(menu)"
                             v-b-toggle.sidebar-right
+                            @click="GetMenuId(menu)"
                           >
                             <div>
                               <img
@@ -146,49 +134,45 @@
                               {{ menu.price }}원
                             </div>
                           </div>
-                        </div>
                       </div>
                     </div>
                   </b-tabs>
                 </div>
               </b-tab>
-              <b-tab title="푸드">
+              <b-tab @click="seperateCate(2, 1)" title="푸드">
                 <div>
-                  <b-tabs content-class="mt-3" pills style="font-size: 20px">
-                    <b-tab title="브레드" @click="y = 1"></b-tab>
-                    <b-tab title="케이크" @click="y = 2"></b-tab>
-                    <b-tab title="샌드위치&샐러드" @click="y = 3"></b-tab>
-                    <b-tab title="따뜻한 푸드" @click="y = 4"></b-tab>
-                    <b-tab title="과일&요거트" @click="y = 5"></b-tab>
-                    <b-tab title="스낵&미니디저트" @click="y = 6"></b-tab>
-                    <b-tab title="아이스크림" @click="y = 7"></b-tab>
+                  <b-tabs content-class="mt-3" align="center" pills style="font-size: 20px">
+                    <b-tab title="브레드" @click="seperateCate(2, 1)"></b-tab>
+                    <b-tab title="케이크" @click="seperateCate(2, 2)"></b-tab>
+                    <b-tab title="샌드위치&샐러드" @click="seperateCate(2, 3)"></b-tab>
+                    <b-tab title="따뜻한 푸드" @click="seperateCate(2, 4)"></b-tab>
+                    <b-tab title="과일&요거트" @click="seperateCate(2, 5)"></b-tab>
+                    <b-tab title="스낵&미니디저트" @click="seperateCate(2, 6)"></b-tab>
+                    <b-tab title="아이스크림" @click="seperateCate(2, 7)"></b-tab>
 
-                    <br /><br />
-                    <div>
+                    <div class="row">
                       <div
-                        v-for="(menu, i) in menusCate2"
-                        :key="i"
-                        style="width: 32%; float: left"
+                        v-for="menu in menusCate"
+                        :key="menu.id"
+                        class="col-4"
                       >
-                        <div v-if="menu.category2 == y">
-                          <div
-                            class="m-3 hover"
-                            @click="GetMenuId(menu)"
-                            v-b-toggle.sidebar-right
-                          >
-                            <div>
-                              <img
-                                style="width: 100%"
-                                :src="menu.image"
-                                class="rounded-circle image"
-                              />
-                            </div>
-                            <div style="text-align: center; font-size: 20px">
-                              {{ menu.name }}
-                            </div>
-                            <div style="text-align: center; font-size: 20px">
-                              {{ menu.price }}원
-                            </div>
+                        <div
+                          class="m-2 hover"
+                          v-b-toggle.sidebar-right
+                          @click="GetMenuId(menu)"
+                        >
+                          <div>
+                            <img
+                              style="width: 100%"
+                              :src="menu.image"
+                              class="rounded-circle image"
+                            />
+                          </div>
+                          <div style="text-align: center; font-size: 17px">
+                            {{ menu.name }}
+                          </div>
+                          <div style="text-align: center; font-size: 17px">
+                            {{ menu.price }}원
                           </div>
                         </div>
                       </div>
@@ -227,8 +211,7 @@ export default {
   data() {
     return {
       test: true,
-      menusCate1: {},
-      menusCate2: {},
+      menusCate: {},
       menuAll: {},
       y: 1,
       basket: [],
@@ -320,11 +303,7 @@ export default {
       axios
         .get(baseURL + "/branch/menu", { params: { sid: 1 } })
         .then((res) => {
-          const menu = res.data.object;
           this.menuAll = res.data.object;
-          this.menusCate1 = menu.filter((cate) => cate.category1 == 1);
-          this.menusCate2 = menu.filter((cate) => cate.category1 == 2);
-          console.log(this.menusCate1);
         })
         .catch((err) => console.log(err.response));
     },
@@ -350,6 +329,10 @@ export default {
         })
         .catch((err) => console.log(err.response));
     },
+    seperateCate(a, b) {
+      var tmpCate = this.menuAll.filter((cate) => cate.category1 == a);
+      this.menusCate = tmpCate.filter((cate) => cate.category2 == b);
+    }
   },
 };
 </script>
@@ -359,10 +342,6 @@ export default {
 * {
   font-family: "Jua", sans-serif;
   font-size: 13px;
-}
-.display {
-  font-family: "Jua", sans-serif;
-  font-size: 25px;
 }
 .hover:hover {
   background-color: #eee;
