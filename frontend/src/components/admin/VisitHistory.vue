@@ -82,11 +82,11 @@ export default {
   },
   methods: {
     getVisitors() {
-      console.log("logger - getVisitors");
+      // console.log("logger - getVisitors");
       axios
         .get(`${baseURL}/admin/getvisitors`)
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           this.items = res.data;
         })
         .catch((err) => {

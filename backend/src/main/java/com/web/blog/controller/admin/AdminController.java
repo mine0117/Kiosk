@@ -78,8 +78,7 @@ public class AdminController {
     @GetMapping("/admin/getvisitors")
     @ApiOperation(value = "방문기록")
     public ResponseEntity<List<Visit>> getVisitors() throws SQLException, IOException {
-        
-        System.out.println("logger - getVisitors: ");
+        // System.out.println("logger - getVisitors: ");
         List<Visit> list = null;
 
         try {
@@ -97,7 +96,7 @@ public class AdminController {
         @PostMapping("/admin/addmenu")
         @ApiOperation(value = "메뉴추가")
         public ResponseEntity<Boolean> addMenu(@RequestBody Branch branch) throws SQLException, IOException {
-            System.out.println("logger - AddMenu: ");
+            // System.out.println("logger - AddMenu: ");
         
             try {
                 branchDao.save(branch);    
@@ -111,7 +110,7 @@ public class AdminController {
         @GetMapping("/admin/menuinfo")
         @ApiOperation(value = "메뉴정보")
         public ResponseEntity<Branch> menuInfo(@RequestParam int menuid) throws SQLException, IOException {
-            System.out.println("logger - : menuInfo: ");
+            // System.out.println("logger - : menuInfo: ");
             Branch branch = null;
             try {
                 branch = branchDao.findByMenuid(menuid);
@@ -125,7 +124,7 @@ public class AdminController {
         @PutMapping("/admin/updatemenu")
         @ApiOperation(value = "메뉴 수정")
         public ResponseEntity<Boolean> updateMenu(@RequestBody Branch branch) throws SQLException, IOException {
-            System.out.println("logger - : updateMenu: ");
+            // System.out.println("logger - : updateMenu: ");
             try {
                 branchDao.save(branch);
                 return new ResponseEntity<Boolean>(true, HttpStatus.OK);
@@ -165,10 +164,10 @@ public class AdminController {
         @GetMapping("/admin/getmonthvisitors")
         @ApiOperation(value = "월별 방문자")
         public ResponseEntity<List<?>> getMonthVisitors() throws SQLException, IOException {
-            System.out.println("logger - getMonthVisitors method: ");
+            // System.out.println("logger - getMonthVisitors method: ");
             List<?> op = null;
             try {
-                op = orderlistDao.findMonthIncome();                
+                op = adminDao.findMonthVisitors();                
                 return new ResponseEntity<List<?>>(op, HttpStatus.OK);
             } catch (Exception e) {
                 e.printStackTrace();
