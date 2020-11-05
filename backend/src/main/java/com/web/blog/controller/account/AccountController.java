@@ -166,9 +166,9 @@ public class AccountController {
     public ResponseEntity<?> takePictoJoin() {
         ResponseEntity<?> response = null;
         String[] command = new String[8];
-
+        System.out.println(".............................................................");
         command[0] = "python";
-        command[1] = "C:\\Users\\multicampus\\Desktop\\project3\\s03p31b107\\face_classifier\\face_classifier.py";
+        command[1] = "/var/lib/jenkins/workspace/sucheol's/face_classifier/face_classifier.py";
         command[2] = "0";
         command[3] = "-d";
         command[4] = "-S";
@@ -188,7 +188,7 @@ public class AccountController {
 
             command = new String[2];
             command[0] = "python";
-            command[1] = "C:\\Users\\multicampus\\Desktop\\project3\\s03p31b107\\face_classifier\\only_train.py";
+            command[1] = "/var/lib/jenkins/workspace/sucheol's/face_classifier/only_train.py";
             try {
                 out = execPython(command);
             } catch (Exception e) {
@@ -198,9 +198,9 @@ public class AccountController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        System.out.println("=================================================================================");
         response = new ResponseEntity<>(null, HttpStatus.OK);
-
+       
         return response;
 
     }
@@ -211,9 +211,9 @@ public class AccountController {
         BasicResponse result = new BasicResponse();
         String[] command = new String[8];
         StringBuffer res = new StringBuffer();
-
+        System.out.println("121212121212");
         command[0] = "python";
-        command[1] = "C:\\Users\\multicampus\\Desktop\\project3\\s03p31b107\\face_classifier\\take_pic.py";
+        command[1] = "/var/lib/jenkins/workspace/sucheol's/face_classifier/take_pic.py";
         command[2] = "0";
         command[3] = "-d";
         command[4] = "-S";
@@ -237,7 +237,7 @@ public class AccountController {
             command[0] = "python";
             // command[1] =
             // "C:\\Users\\multicampus\\Desktop\\project3\\s03p31b107\\face_classifier\\face_recognition_mlp.py";
-            command[1] = "C:\\Users\\multicampus\\Desktop\\project3\\s03p31b107\\face_classifier\\face_recognition_knn.py";
+            command[1] = "/var/lib/jenkins/workspace/sucheol's/face_classifier/face_recognition_knn.py";
             // res = new StringBuffer();
             try {
                 out = execPython(command);

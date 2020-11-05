@@ -95,9 +95,16 @@ export default {
                     // });
                     console.log("logger - test222");
                   } else {
-                    x.kakaoInfoUpdate(res.id);
-                    console.log(res.id);
-                    x.$router.push({ name: "join" });
+                    axios
+                      .get(`${baseURL}/account/takepic`)
+                      .then((response) => {
+                        console.log(response.data)
+                        x.kakaoInfoUpdate(res.id);
+                        console.log(res.id);
+                        x.$router.push({ name: "join" });
+                      })
+                      .catch((err) => console.log(err.response));
+                      console.log("12");
                   }
                 })
                 .catch((err) => console.log(err.response));
