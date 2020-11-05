@@ -11,12 +11,14 @@ import UserUpdate from '../page/user/UserUpdate.vue'
 import UserInfo from '../components/User/UserInfo.vue'
 import OrderList from '../components/User/OrderList.vue'
 
+
 // 어드민
 import Admin from '../page/user/Admin.vue'
 import DashBoard from '@/components/admin/DashBoard.vue'
-import UpdateMenu from '@/components/admin/UpdateMenu.vue'
+import MenuList from '@/components/admin/MenuList.vue'
 import VisitHistory from '@/components/admin/VisitHistory.vue'
 import AddMenu from '@/components/admin/AddMenu.vue'
+import UpdateMenu from '@/components/admin/UpdateMenu.vue'
 
 // 포스트
 import List from '../page/post/List.vue'
@@ -91,12 +93,17 @@ export default new Router({
       name: constants.URL_TYPE.USER.ADMIN,
       component: Admin
     },
-    { // 어드민
+    { // 어드민 대시보드
       path: '/admin/dashboard',
       name: constants.URL_TYPE.ADMIN.DASHBOARD,
       component: DashBoard
     },
-    { // 어드민 메뉴
+    { // 어드민 메뉴리스트
+      path: '/admin/menulist',
+      name: constants.URL_TYPE.ADMIN.MENULIST,
+      component: MenuList
+    },
+    { // 어드민 메뉴리스트
       path: '/admin/updatemenu',
       name: constants.URL_TYPE.ADMIN.UPDATEMENU,
       component: UpdateMenu
@@ -107,7 +114,7 @@ export default new Router({
       component: VisitHistory
     },
     { // 어드민 메뉴 추가
-      path: '/admin/visithistory',
+      path: '/admin/addMenu',
       name: constants.URL_TYPE.ADMIN.ADDMENU,
       component: AddMenu
     },

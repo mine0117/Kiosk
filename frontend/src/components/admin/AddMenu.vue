@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <b-button id="show-btn" @click="showModal">메뉴 추가</b-button>
+  <div class="container2">
+    <b-button id="show-btn" block variant="success" @click="showModal"><h1>메뉴 추가</h1></b-button>
 
     <b-modal ref="my-modal" hide-footer title="새로운 메뉴 추가">
       <div>
@@ -179,4 +179,14 @@ export default {
 };
 </script>
 <style scoped>
+.container2{
+  width: 100%;
+  height: 100px;
+  margin: 20px auto;
+  padding: 0;
+  
+}
+#show-btn{
+  height:100px;
+}
 </style>

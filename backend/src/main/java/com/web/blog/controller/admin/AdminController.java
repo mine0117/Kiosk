@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,6 +29,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime; // Import the LocalDateTime class
 import java.time.LocalTime;
 import java.util.List;
+
+import javax.transaction.Transactional;
 
 @ApiResponses(value = { @ApiResponse(code = 401, message = "Unauthorized", response = BasicResponse.class),
         @ApiResponse(code = 403, message = "Forbidden", response = BasicResponse.class),
@@ -105,12 +109,38 @@ public class AdminController {
             System.out.println("logger - : menuInfo: ");
             Branch branch = null;
             try {
-                // branch = branchDao.findById(menuid);
+                branch = branchDao.findByMenuid(menuid);
                 
                 return new ResponseEntity<Branch>(branch, HttpStatus.OK);
             } catch (Exception e) {
                 e.printStackTrace();
                 return new ResponseEntity<Branch>(branch, HttpStatus.NOT_FOUND);
+            }
+        }
+        @PutMapping("/admin/updatemenu")
+        @ApiOperation(value = "메뉴 수정")
+        public ResponseEntity<Boolean> updateMenu(@RequestBody Branch branch) throws SQLException, IOException {
+            System.out.println("logger - : updateMenu: ");
+            try {
+                branchDao.save(branch);
+                return new ResponseEntity<Boolean>(true, HttpStatus.OK);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return new ResponseEntity<Boolean>(false, HttpStatus.NOT_FOUND);
+            }
+        } 
+        @Transactional
+        @DeleteMapping("/admin/deletemenu")
+        @ApiOperation(value = "메뉴 삭제")
+        public ResponseEntity<Boolean> deleteMenu(@RequestParam int menuid) throws SQLException, IOException {
+            
+            try {
+                branchDao.deleteByMenuid(menuid);
+                
+                return new ResponseEntity<Boolean>(true, HttpStatus.OK);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return new ResponseEntity<Boolean>(false, HttpStatus.NOT_FOUND);
             }
         }
 
