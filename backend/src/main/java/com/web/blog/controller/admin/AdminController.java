@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.web.blog.dao.admin.AdminDao;
 import com.web.blog.dao.branch.BranchDao;
+import com.web.blog.dao.orderlist.OrderlistDao;
 import com.web.blog.model.BasicResponse;
 import com.web.blog.model.branch.Branch;
+import com.web.blog.model.orderlist.Orderlist;
 import com.web.blog.model.visit.Visit;
 
 import io.swagger.annotations.ApiOperation;
@@ -46,6 +48,9 @@ public class AdminController {
 
     @Autowired
     private BranchDao branchDao;
+
+    @Autowired
+    private OrderlistDao orderlistDao;
 
     @GetMapping("/admin/getvisitorcount")
     @ApiOperation(value = "오늘 방문자 수")
@@ -129,14 +134,13 @@ public class AdminController {
                 return new ResponseEntity<Boolean>(false, HttpStatus.NOT_FOUND);
             }
         } 
+
         @Transactional
         @DeleteMapping("/admin/deletemenu")
         @ApiOperation(value = "메뉴 삭제")
         public ResponseEntity<Boolean> deleteMenu(@RequestParam int menuid) throws SQLException, IOException {
-            
             try {
                 branchDao.deleteByMenuid(menuid);
-                
                 return new ResponseEntity<Boolean>(true, HttpStatus.OK);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -144,4 +148,31 @@ public class AdminController {
             }
         }
 
+        @GetMapping("/admin/getmonthincome")
+        @ApiOperation(value = "월별 수익")
+        public ResponseEntity<List<?>> getMonthIncome() throws SQLException, IOException {
+            // System.out.println("logger - getMonthIncome method: ");
+            List<?> op = null;
+            try {
+                op = orderlistDao.findMonthIncome();                
+                return new ResponseEntity<List<?>>(op, HttpStatus.OK);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return new ResponseEntity<List<?>>(op, HttpStatus.NOT_FOUND);
+            }
+        }
+
+        @GetMapping("/admin/getmonthvisitors")
+        @ApiOperation(value = "월별 방문자")
+        public ResponseEntity<List<?>> getMonthVisitors() throws SQLException, IOException {
+            System.out.println("logger - getMonthVisitors method: ");
+            List<?> op = null;
+            try {
+                op = orderlistDao.findMonthIncome();                
+                return new ResponseEntity<List<?>>(op, HttpStatus.OK);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return new ResponseEntity<List<?>>(op, HttpStatus.NOT_FOUND);
+            }
+        }
 }
