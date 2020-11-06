@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.web.blog.dao.user.UserDao;
+import com.web.blog.faceage.faceageService;
 import com.web.blog.jwt.JwtService;
 import com.web.blog.model.BasicResponse;
 import com.web.blog.model.user.SignupRequest;
@@ -46,6 +47,8 @@ public class AccountController {
     @Autowired
     JwtService jwtService;
 
+    @Autowired
+    faceageService faceageService;
     // @GetMapping("/account/login")
     // @ApiOperation(value = "로그인")
     // public Object login(@RequestParam(required = true) final String email,
@@ -72,6 +75,7 @@ public class AccountController {
     public Object viewInfo(@RequestBody User request) throws SQLException, IOException {
         String token = null;
         System.out.println(request.getUid());
+        faceageService.test();
         try {
             Optional<User> userOpt = userDao.findUserByUid(request.getUid());
             if (userOpt.isPresent()) {
@@ -166,9 +170,9 @@ public class AccountController {
     public ResponseEntity<?> takePictoJoin() {
         ResponseEntity<?> response = null;
         String[] command = new String[8];
-        System.out.println(".............................................................");
+        System.out.println("=============================================================");
         command[0] = "python";
-        command[1] = "/var/lib/jenkins/workspace/sucheol's/face_classifier/face_classifier.py";
+        command[1] = "C:\\do\\face_classifier\\face_classifier.py";
         command[2] = "0";
         command[3] = "-d";
         command[4] = "-S";
@@ -188,7 +192,7 @@ public class AccountController {
 
             command = new String[2];
             command[0] = "python";
-            command[1] = "/var/lib/jenkins/workspace/sucheol's/face_classifier/only_train.py";
+            command[1] = "C:/do/face_classifier/only_train.py";
             try {
                 out = execPython(command);
             } catch (Exception e) {
@@ -198,9 +202,9 @@ public class AccountController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("=================================================================================");
+        System.out.println(".........................................................................");
         response = new ResponseEntity<>(null, HttpStatus.OK);
-       
+
         return response;
 
     }
@@ -211,9 +215,9 @@ public class AccountController {
         BasicResponse result = new BasicResponse();
         String[] command = new String[8];
         StringBuffer res = new StringBuffer();
-        System.out.println("121212121212");
+       
         command[0] = "python";
-        command[1] = "/var/lib/jenkins/workspace/sucheol's/face_classifier/take_pic.py";
+        command[1] = "C:\\do\\face_classifier\\take_pic.py";
         command[2] = "0";
         command[3] = "-d";
         command[4] = "-S";
@@ -237,7 +241,7 @@ public class AccountController {
             command[0] = "python";
             // command[1] =
             // "C:\\Users\\multicampus\\Desktop\\project3\\s03p31b107\\face_classifier\\face_recognition_mlp.py";
-            command[1] = "/var/lib/jenkins/workspace/sucheol's/face_classifier/face_recognition_knn.py";
+            command[1] = "C:\\do\\face_classifier\\face_recognition_knn.py";
             // res = new StringBuffer();
             try {
                 out = execPython(command);
