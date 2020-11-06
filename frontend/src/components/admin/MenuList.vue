@@ -101,7 +101,7 @@ export default {
     };
   },
   created() {
-    console.log("logger - Create DashBoard");
+    // console.log("logger - Create DashBoard");
     this.getMenuList(); //로딩시 메뉴 가져오기
   },
   computed: {
@@ -118,7 +118,7 @@ export default {
       axios
         .get(`${baseURL}/branch/menu`, { params: { sid: 1 } })
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           this.items = res.data.object;
         })
         .catch((err) => console.log(err.response));
@@ -127,7 +127,7 @@ export default {
       axios
         .get(`${baseURL}/admin/menuinfo`, { params: { menuid: mid } })
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           this.menuinfo = res.data;
         })
         .catch((err) => console.log(err.response));
@@ -138,7 +138,7 @@ export default {
       axios
         .delete(`${baseURL}/admin/deletemenu`, { params: { menuid: mid  } })
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           alert('삭제되었습니다.')
         })
         .catch((err) => {
