@@ -49,15 +49,10 @@
 <script>
 import axios from "axios";
 import constants from "../../lib/constants";
-import KakaoVue from "../../page/user/Kakao.vue";
 
 const baseURL = constants.baseUrl;
 export default {
-  name: "Kakao",
   name: "Header",
-  components: {
-    KakaoVue,
-  },
   props: ["isHeader"],
   computed: {},
   watch: {},
