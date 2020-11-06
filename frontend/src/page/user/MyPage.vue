@@ -1,14 +1,14 @@
 <template>
   <b-container>
-
-    <div >
+<order-list />
+    <!-- <div >
       <b-card no-body borderless>
         <b-tabs pills align="right">
           <b-tab title="회원 정보" active><b-card-text><user-info /></b-card-text></b-tab>
-          <b-tab title="구매 내역"><b-card-text><order-list /></b-card-text></b-tab>
+          <b-tab title="구매 내역" active ><b-card-text><order-list /></b-card-text></b-tab>
         </b-tabs>
       </b-card>
-    </div>
+    </div> -->
 
     <!-- <b-container>
       <b-row>
@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import OrderList from '../../components/User/OrderList.vue'
+import OrderList from './OrderList'
 import UserInfo from '../../components/User/UserInfo.vue'
 
 export default {
