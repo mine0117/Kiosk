@@ -1,5 +1,5 @@
 package com.web.blog.controller.orderlist;
-
+import java.util.*;
 import com.web.blog.dao.branch.BranchDao;
 import com.web.blog.dao.orderlist.OrderlistDao;
 import com.web.blog.dao.user.UserDao;
@@ -51,16 +51,14 @@ public class OrderlistController {
     public Object getorderlist(@RequestParam(required = true) int uid, int sid) {
 
         ArrayList<Orderlist> orderlistlist = OrderlistDao.findOrderlistByUidAndSidOrderByOrderdateDesc(uid, sid);
-        System.out.println("///////////////////////////");
-        List<Branch> menulist = BranchDao.findBranchBySid(sid);
+
         ArrayList<Object> ret = new ArrayList<>();
-        for (int i = 0; i < menulist.size(); i++) {
-            for (int j = 0; j < orderlistlist.size(); j++) {
-                if(menulist.get(i).getMenuid() == orderlistlist.get(j).getMenuid()){
-                    ret.add(menulist.get(i));
-                }
-            }
+        for (int i = 0; i < orderlistlist.size(); i++) {
+            int menuid = orderlistlist.get(i).getMenuid();
+            List<Branch> menulist = BranchDao.findBranchByMenuid(menuid);
+            ret.add(menulist.get(0));
         }
+        
 
         ResponseEntity<Object> response = null;
         BasicResponse result = new BasicResponse();
@@ -79,6 +77,7 @@ public class OrderlistController {
         BasicResponse result = new BasicResponse();
         result.status = true;
         result.data = "주문 메뉴 전체 목록 조회 완료";
+        System.out.println(result.data);
         result.object = orderlistlist;
         response = new ResponseEntity<>(result, HttpStatus.OK);
         return response;
@@ -112,17 +111,16 @@ public class OrderlistController {
     @PostMapping("/create/order")
     @ApiOperation(value = "주문 메뉴")
     public Object orderMenu(@Valid @RequestBody final OrderlistRequest[] orderlistRequest) {
-
+        System.out.println("logger - 주문메뉴: ");
         ResponseEntity<Object> response = null;
-        // Optional<User> user = userDao.findUserByUid(orderlistRequest.getUid());
+        System.out.println(Arrays.toString(orderlistRequest));
 
-        System.out.println("orderlistRequest" + orderlistRequest[0]);
-        System.out.println("orderlistRequest" + orderlistRequest[1]);
-
+        // Optional<User> user = userDao.findUserByUid(orderlistRequest);
+        int orderuid = orderlistRequest[0].getUid(); 
         for (int i = 0; i < orderlistRequest.length; i++) {
             final Orderlist orderlist = new Orderlist();
             // orderlist.setUid(user.get().getUid());
-            orderlist.setUid(11);
+            orderlist.setUid(orderuid);
             orderlist.setMenuid(orderlistRequest[i].getMenuid());
             orderlist.setSid(orderlistRequest[i].getSid());
             final Orderlist saveOrderlist = this.OrderlistDao.save(orderlist);
@@ -143,7 +141,7 @@ public class OrderlistController {
 
         List<Orderlist> orderlistlist = OrderlistDao.findOrderlistByUidAndSidOrderByOrderdateDesc(uid, sid);
         List<Branch> menulist = BranchDao.findBranchBySid(sid);
-         
+        System.out.println(orderlistlist);
         HashSet<Object> ret = new HashSet<>();
         for (int i = 0; i < menulist.size(); i++) {
             for (int j = 0; j < orderlistlist.size(); j++) {
@@ -155,4 +153,6 @@ public class OrderlistController {
         System.out.println(ret);
         return ret;
     }
+
+    
 }
