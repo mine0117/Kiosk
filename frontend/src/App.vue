@@ -33,6 +33,7 @@ export default {
         constants.URL_TYPE.ADMIN.DASHBOARD,
         constants.URL_TYPE.ADMIN.VISITHISTORY,
         constants.URL_TYPE.POST.LIST,
+        constants.URL_TYPE.POST.MAIN,
       ];
 
       let isHeader = true;

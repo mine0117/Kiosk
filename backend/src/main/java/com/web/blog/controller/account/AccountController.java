@@ -25,7 +25,6 @@ import com.web.blog.dao.user.UserDao;
 import com.web.blog.faceage.faceageService;
 import com.web.blog.jwt.JwtService;
 import com.web.blog.model.BasicResponse;
-import com.web.blog.model.user.SignupRequest;
 import com.web.blog.model.user.User;
 
 import io.swagger.annotations.ApiOperation;
