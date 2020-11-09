@@ -74,7 +74,7 @@ export default {
             success: function(res) {
               x.kakao.uid = res.id;
               x.kakao.name = res.properties.nickname;
-
+              
               axios
                 .post(`${baseURL}/account/kakaologin`, x.kakao)
                 .then((response) => {
