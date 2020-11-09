@@ -88,27 +88,27 @@ export default {
       todayCount: 0,
     };
   },
-  beforeCreate() {
-    const axiosConfig = {
-      headers: {
-        jwtToken: `${this.$cookies.get("Auth-Token")}`,
-      },
-    };
-    axios
-      .post(`${baseURL}/admin/isAdmin`, "", axiosConfig)
-      .then((res) => {
-        // console.log(res);
-        if (res.data == false) {
-          // this.$router.push({ name: "dashboard" });
-          this.$router.push({ name: "forbidden" });
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  },
+  // beforeCreate() {
+  //   const axiosConfig = {
+  //     headers: {
+  //       jwtToken: `${this.$cookies.get("Auth-Token")}`,
+  //     },
+  //   };
+  //   axios
+  //     .post(`${baseURL}/admin/isAdmin`, "", axiosConfig)
+  //     .then((res) => {
+  //       // console.log(res);
+  //       if (res.data == false) {
+  //         // this.$router.push({ name: "dashboard" });
+  //         this.$router.push({ name: "forbidden" });
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // },
   created() {
-    // this.isAdmin();
+    this.isAdmin();
     this.getTodayVisitor();
   },
   mounted() {},

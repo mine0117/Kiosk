@@ -101,6 +101,7 @@ export default {
     };
   },
   created() {
+    this.isAdmin()
     // console.log("logger - Create DashBoard");
     this.getMenuList(); //로딩시 메뉴 가져오기
   },
@@ -110,6 +111,25 @@ export default {
     },
   },
   methods: {
+        isAdmin() {
+      const axiosConfig = {
+        headers: {
+          jwtToken: `${this.$cookies.get("Auth-Token")}`,
+        },
+      };
+      axios
+        .post(`${baseURL}/admin/isAdmin`, "", axiosConfig)
+        .then((res) => {
+          console.log(res);
+          if (res.data == false) {
+            // this.$router.push({ name: "dashboard" });
+            this.$router.push({ name: "forbidden" });
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
     showModal(mid) {
       this.getMenuInfo(mid);
       this.$refs.updateMenu.$refs["my-modal"].show();
