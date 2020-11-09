@@ -278,7 +278,7 @@ export default {
         }
       );
     },
-
+  
     authUser() {
       console.log("method - authUser");
       const axiosConfig = {
