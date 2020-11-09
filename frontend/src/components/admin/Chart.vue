@@ -66,10 +66,12 @@ export default {
   },
   created() {
     this.getMonthIncome();
-    
+    this.getmonthvisitors();
   },
   mounted() {
-    // this.createChart('planet-chart');
+    setTimeout(() => {
+      this.createChart('planet-chart');
+    }, 500);
   },
   methods: {
     createChart(chartId) {
@@ -89,7 +91,6 @@ export default {
             this.data.datasets[0].data[res.data[i][0] - 1] =
               res.data[i][1] * 0.001;
           }
-          this.getmonthvisitors();
         })
         .catch((err) => {
           console.log(err);
@@ -102,7 +103,7 @@ export default {
           for (let i = 0; i < res.data.length; i++) {
             this.data.datasets[1].data[res.data[i][0] - 1] = res.data[i][1];
           }
-          this.createChart("planet-chart");
+          // this.createChart("planet-chart");
         })
         .catch((err) => {
           console.log(err);

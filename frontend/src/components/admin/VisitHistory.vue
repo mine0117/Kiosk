@@ -26,7 +26,7 @@
       :per-page="perPage"
       :current-page="currentPage"
       :fields="fields"
-      head-variant=dark
+      head-variant="dark"
       hover
       text-center
       small
@@ -37,7 +37,7 @@
       :per-page="perPage"
       aria-controls="my-table"
       align="center"
-      pills 
+      pills
       size="lg"
     ></b-pagination>
 
@@ -54,22 +54,22 @@ export default {
   name: "VisitHistory",
   data() {
     return {
-      fields:[
+      fields: [
         {
-          key:'vid',
-          label: '방문 번호'
+          key: "vid",
+          label: "방문 번호",
         },
         {
-          key:'uid',
-          label: '회원 번호'
+          key: "uid",
+          label: "회원 번호",
         },
         {
-          key:'tel',
-          label: '전화번호'
+          key: "tel",
+          label: "전화번호",
         },
         {
-          key:'currenttime',
-          label: '방문 시각'
+          key: "currenttime",
+          label: "방문 시각",
         },
       ],
       perPage: 3,
@@ -78,11 +78,11 @@ export default {
     };
   },
   created() {
-    this.isAdmin()
+    this.isAdmin();
     this.getVisitors();
   },
   methods: {
-        isAdmin() {
+    isAdmin() {
       const axiosConfig = {
         headers: {
           jwtToken: `${this.$cookies.get("Auth-Token")}`,
