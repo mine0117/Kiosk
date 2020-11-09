@@ -14,16 +14,13 @@
             </tr>
           </thead>
           <tbody>
-              <tr v-for="(menu, i) in Mymenu" :key="i">
-                <th scope="row" style="padding-top:50px;">{{ i +1}}</th>
-                <td><b-img
-                  :src="menu.image"
-                  width="100%"
-                ></b-img></td>
-                <td style="padding-top:50px;">{{menu.name}}</td>
-                <td style="padding-top:50px;">{{menu.price}}원</td>
-                <td style="padding-top:50px;">{{menu.orderdate}}</td>
-              </tr>
+            <tr v-for="(menu, i) in Mymenu" :key="i">
+              <th scope="row" style="padding-top:50px;">{{ i + 1 }}</th>
+              <td><b-img :src="menu.image" width="100%"></b-img></td>
+              <td style="padding-top:50px;">{{ menu.name }}</td>
+              <td style="padding-top:50px;">{{ menu.price }}원</td>
+              <td style="padding-top:50px;">{{ menu.orderdate }}</td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -51,7 +48,7 @@ export default {
         learningfile: "",
       },
       Mymenu: [],
-      MymenuDate:[],
+      MymenuDate: [],
     };
   },
   created() {
@@ -88,7 +85,6 @@ export default {
             // var a = this.Mymenu.length-1-i;
             const day = this.MymenuDate[i].orderdate;
             this.Mymenu[i].orderdate = day;
-          
           }
           console.log(this.Mymenu);
         })
@@ -102,7 +98,6 @@ export default {
         .then((res) => {
           this.MymenuDate = res.data.object;
           this.getUserOrderList();
-          
         })
         .catch((err) => console.log(err.response));
     },
@@ -110,7 +105,8 @@ export default {
 };
 </script>
 <style scoped>
-td,th{
+td,
+th {
   text-align: center;
 }
 </style>
