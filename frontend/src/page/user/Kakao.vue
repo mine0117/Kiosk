@@ -1,10 +1,11 @@
 <template>
-  <div
-    id="kakao-login-btn"
-    @click="kakaojoin"
-    v-if="!this.$cookies.isKey('Auth-Token')"
-  >
-    Login
+  <div>
+    <div v-if="isToken">
+      <div class="btn" @click="logout">Logout</div>
+    </div>
+    <div v-if="!isToken">
+      <div class="btn" @click="kakaojoin">Login</div>
+    </div>
   </div>
 </template>
 
@@ -13,39 +14,46 @@ import axios from "axios";
 import constants from "../../lib/constants";
 
 const baseURL = constants.baseUrl;
-
 export default {
   name: "Kakao",
-  components: {},
+  data() {
+    return {
+      isToken: false,
+    };
+  },
   computed: {},
   watch: {},
-  created() {},
+  created() {
+    this.islogin();
+  },
   methods: {
-    kakaoInfoUpdate: function(id) {
+    islogin() {
+      this.isToken = this.$cookies.isKey("Auth-Token");
+    },
+    kakaoInfoUpdate: function (id) {
       this.$store.commit("kakaoIdUpdate", id);
     },
     kakaojoin() {
+      console.log(this.isToken);
       let x = this;
-      // var kakaotempToken = "";
       var a = 0;
       var kakaoToken = "";
       Kakao.Auth.login({
-        success: function(authObj) {
+        success: function (authObj) {
           Kakao.API.request({
             url: "/v2/user/me",
 
-            success: function(res) {
+            success: function (res) {
               x.kakao.uid = res.id;
               x.kakao.name = res.properties.nickname;
 
               axios
                 .post(`${baseURL}/account/kakaologin`, x.kakao)
                 .then((response) => {
-                  console.log(response.data);
                   if (response.data != "") {
                     kakaoToken = response.data;
                     x.$cookies.set("Auth-Token", kakaoToken);
-                    x.$router.go("/main");
+                    x.$router.go("/");
                   } else {
                     x.kakaoInfoUpdate(res.id);
                     x.$router.push({ name: "join" });
@@ -56,23 +64,38 @@ export default {
           });
         },
 
-        fail: function(error) {
+        fail: function (error) {
           alert(JSON.stringify(error));
         },
       });
+    },
+
+    logout: function () {
+      this.$cookies.remove("Auth-Token");
       setTimeout(() => {
-        console.log(a);
-      }, 5);
+        this.$router.push("/").catch((err) => {
+          console.log(err);
+        });
+        this.$router.go();
+      }, 1000);
     },
   },
-  data: () => {
+
+  data: function () {
     return {
       kakao: {
         uid: "",
         name: "",
       },
+      constants,
+      keyword: "",
     };
   },
 };
 </script>
-
+<style scoped>
+.btn {
+  font-size: 30px;
+  color: white;
+}
+</style>
