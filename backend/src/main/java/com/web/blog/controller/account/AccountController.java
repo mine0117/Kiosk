@@ -74,6 +74,7 @@ public class AccountController {
     public Object viewInfo(@RequestBody User request) throws SQLException, IOException {
         String token = null;
         System.out.println(request.getUid());
+        System.out.println("1111111111111111111111111");
         faceageService.test();
         try {
             Optional<User> userOpt = userDao.findUserByUid(request.getUid());

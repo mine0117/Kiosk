@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 public class faceageService {
 
     StringBuffer reqStr = new StringBuffer();
-    String clientId = "UVE9VUZ23LuJr7zytUdo";// 애플리케이션 클라이언트 아이디값";
-    String clientSecret = "NH_blc75gz"; // 애플리케이션 클라이언트 시크릿값";
+    String clientId = "tbmpgUAxQy9b0z3eokXR";// 애플리케이션 클라이언트 아이디값";
+    String clientSecret = "1Xfk5IvSzZ"; // 애플리케이션 클라이언트 시크릿값";
 
     public void test() {
 
@@ -21,7 +21,7 @@ public class faceageService {
             // String imgFile = "../src/assets/img/t.jpg";
             // String tempImgPath =".\\..\\..\\..\\..\\..\\..\\..\\..\\";
             // System.out.println(System.);
-            String imgFile = "C:\\do\\frontend\\src\\assets\\img\\toolbar\\t9.jpg";
+            String imgFile = "C:\\do\\frontend\\src\\assets\\img\\toolbar\\t3.jpg";
 
             File uploadFile = new File(imgFile);
             // String apiURL = "https://openapi.naver.com/v1/vision/celebrity"; // 유명인 얼굴 인식
@@ -73,7 +73,8 @@ public class faceageService {
                     response.append(inputLine);
                 }
                 br.close();
-                System.out.println(response.toString());
+                // System.out.println(response);
+            
             } else {
                 System.out.println("error !!!");
             }
