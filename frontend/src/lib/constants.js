@@ -31,6 +31,9 @@ export default {
             LIST: "list",
             KIOSKMAIN: "kisokmain",
         },
+        ERROR:{
+            FORBIDDEN: 'forbidden',
+        }
     }
 }
 

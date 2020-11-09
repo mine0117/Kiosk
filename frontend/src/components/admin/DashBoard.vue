@@ -1,5 +1,8 @@
 <template>
   <div class="container">
+    <div class="h1 lsize text-center" @click="logout">
+      Logout
+    </div>
     <div class="row">
       <div class="col-lg">
         <div class="card text-center" style="width: 100%; height: 100%">
@@ -66,7 +69,6 @@
         </div>
       </div>
     </div>
-
   </div>
 </template>
 <script>
@@ -75,7 +77,6 @@ import constants from "@/lib/constants";
 import Chart from "@/components/admin/Chart.vue";
 
 const baseURL = constants.baseUrl;
-
 
 export default {
   name: "DashBoard",
@@ -87,11 +88,50 @@ export default {
       todayCount: 0,
     };
   },
+  beforeCreate() {
+    const axiosConfig = {
+      headers: {
+        jwtToken: `${this.$cookies.get("Auth-Token")}`,
+      },
+    };
+    axios
+      .post(`${baseURL}/admin/isAdmin`, "", axiosConfig)
+      .then((res) => {
+        // console.log(res);
+        if (res.data == false) {
+          // this.$router.push({ name: "dashboard" });
+          this.$router.push({ name: "forbidden" });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },
   created() {
+    // this.isAdmin();
     this.getTodayVisitor();
   },
   mounted() {},
   methods: {
+    isAdmin() {
+      const axiosConfig = {
+        headers: {
+          jwtToken: `${this.$cookies.get("Auth-Token")}`,
+        },
+      };
+      axios
+        .post(`${baseURL}/admin/isAdmin`, "", axiosConfig)
+        .then((res) => {
+          console.log(res);
+          if (res.data == false) {
+            // this.$router.push({ name: "dashboard" });
+            this.$router.push({ name: "forbidden" });
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
     getTodayVisitor() {
       axios
         .get(`${baseURL}/admin/getvisitorcount`)
@@ -102,8 +142,12 @@ export default {
           console.log(err);
         });
     },
+    logout() {
+      this.$cookies.remove("Auth-Token");
+      this.$router.push({name:"admin"})
   },
-};
+  }
+}
 </script>
 <style scoped>
 .container {
@@ -114,5 +158,12 @@ export default {
 }
 .row {
   margin-bottom: 50px;
+}
+.lsize{
+  width:100px;
+  margin: 20px auto;
+  border: solid 0.5px black;
+  background-color:green;
+  color: white;
 }
 </style>

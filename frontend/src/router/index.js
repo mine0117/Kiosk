@@ -20,6 +20,9 @@ import VisitHistory from '@/components/admin/VisitHistory.vue'
 import AddMenu from '@/components/admin/AddMenu.vue'
 import UpdateMenu from '@/components/admin/UpdateMenu.vue'
 
+//error
+import Forbidden from '@/page/error/Forbidden.vue'
+
 // 포스트
 import List from '../page/post/List.vue'
 import Main from '../page/post/Main.vue'
@@ -117,6 +120,11 @@ export default new Router({
       path: '/admin/addMenu',
       name: constants.URL_TYPE.ADMIN.ADDMENU,
       component: AddMenu
+    },
+    { 
+      path: '/admin/forbidden',
+      name: constants.URL_TYPE.ERROR.FORBIDDEN,
+      component: Forbidden
     },
 
   ]
