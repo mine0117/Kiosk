@@ -5,7 +5,7 @@
     </div>
     <div class="row">
       <div class="col-lg">
-        <div class="card text-center" style="width: 100%; height: 100%">
+        <div class="card text-center c-hover" style="width: 100%; height: 100%">
           <div class="card-body">
             <h1 class="card-title">오늘의 방문자 수</h1>
             <p class="card-text" style="font-size: 3em">
@@ -22,27 +22,15 @@
           </div>
         </div>
       </div>
-      <div class="col-lg">
-        <div class="card text-center" style="width: 100%; height: 100%">
-          <div class="card-body text-secondary">
+      <div class="col-lg" @click="goMenulist">
+        <div class="card text-center c-hover" style="width: 100%; height: 100%">
+          <div class="card-body">
             <h1 class="card-title">메뉴 관리</h1>
-            <!-- <h6 class="card-subtitle mb-2 text-muted"></h6> -->
-            <p class="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
-            <b-btn
-              href="#"
-              class="card-link"
-              router-link
-              :to="{ name: 'menulist' }"
-              >메뉴 관리</b-btn
-            >
           </div>
         </div>
       </div>
       <div class="col-lg">
-        <div class="card text-center" style="width: 100%; height: 100%">
+        <div class="card text-center c-hover" style="width: 100%; height: 100%">
           <div class="card-body">
             <h1 class="card-title">Card title</h1>
             <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
@@ -60,8 +48,8 @@
       <div class="col-lg">
         <div class="card" style="width: 100%; height: 100%">
           <div class="card-body">
-            <h5 class="card-title">매출액</h5>
-            <h6 class="card-subtitle mb-2 text-muted">월별 매출액</h6>
+            <h1 class="card-title text-center">월별 매출액 & 방문자 수</h1>
+
             <chart></chart>
             <!-- <a href="#" class="card-link">Card link</a>
             <a href="#" class="card-link">Another link</a> -->
@@ -88,25 +76,6 @@ export default {
       todayCount: 0,
     };
   },
-  // beforeCreate() {
-  //   const axiosConfig = {
-  //     headers: {
-  //       jwtToken: `${this.$cookies.get("Auth-Token")}`,
-  //     },
-  //   };
-  //   axios
-  //     .post(`${baseURL}/admin/isAdmin`, "", axiosConfig)
-  //     .then((res) => {
-  //       // console.log(res);
-  //       if (res.data == false) {
-  //         // this.$router.push({ name: "dashboard" });
-  //         this.$router.push({ name: "forbidden" });
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // },
   created() {
     this.isAdmin();
     this.getTodayVisitor();
@@ -146,13 +115,17 @@ export default {
       this.$cookies.remove("Auth-Token");
       this.$router.push({name:"admin"})
   },
+  goMenulist(){
+    this.$router.push('menulist')
+  },
+
   }
 }
 </script>
 <style scoped>
 .container {
   background-color: white;
-  width: 1000;
+  width: 1000px;
   margin: 60px auto;
   padding: 50px;
 }
@@ -165,5 +138,8 @@ export default {
   border: solid 0.5px black;
   background-color:green;
   color: white;
+}
+.c-hover:hover{
+  background-color:gray;
 }
 </style>
