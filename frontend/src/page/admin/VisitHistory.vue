@@ -91,7 +91,7 @@ export default {
       axios
         .post(`${baseURL}/admin/isAdmin`, "", axiosConfig)
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           if (res.data == false) {
             // this.$router.push({ name: "dashboard" });
             this.$router.push({ name: "forbidden" });

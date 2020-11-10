@@ -21,9 +21,9 @@ export default {
         ADMIN: {
             DASHBOARD: 'dashboard',
             MENULIST: 'menulist',
-            UPDATEMENU: 'updatemenu',
             VISITHISTORY: 'visithistory',
-            ADDMENU: 'addmenu',
+            // UPDATEMENU: 'updatemenu',
+            // ADDMENU: 'addmenu',
         },
 
         POST: {
