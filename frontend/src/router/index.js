@@ -28,7 +28,7 @@ import Forbidden from '@/page/error/Forbidden.vue'
 import List from '../page/post/List.vue'
 import Main from '../page/post/Main.vue'
 import KioskMain from '../page/post/KioskMain.vue'
-
+import KioskStart from '../page/post/KioskStart.vue'
 
 Vue.use(Router) 
  
@@ -71,6 +71,11 @@ export default new Router({
       path: '/kiosk/main',
       name: constants.URL_TYPE.POST.KIOSKMAIN,
       component: KioskMain,
+    },
+    { 
+      path: '/kiosk/kioskstart',
+      name: constants.URL_TYPE.POST.KIOSKSTART,
+      component: KioskStart,
     },
     { // 마이페이지
       path: '/user/mypage',
