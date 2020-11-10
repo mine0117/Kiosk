@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.web.blog.dao.user.UserDao;
-import com.web.blog.faceage.faceageService;
+// import com.web.blog.faceage.faceageService;
 import com.web.blog.jwt.JwtService;
 import com.web.blog.model.BasicResponse;
 import com.web.blog.model.user.User;
@@ -46,8 +46,8 @@ public class AccountController {
     @Autowired
     JwtService jwtService;
 
-    @Autowired
-    faceageService faceageService;
+    // @Autowired
+    // faceageService faceageService;
     // @GetMapping("/account/login")
     // @ApiOperation(value = "로그인")
     // public Object login(@RequestParam(required = true) final String email,
@@ -75,7 +75,7 @@ public class AccountController {
         String token = null;
         System.out.println(request.getUid());
         System.out.println("1111111111111111111111111");
-        faceageService.test();
+        // faceageService.test();
         try {
             Optional<User> userOpt = userDao.findUserByUid(request.getUid());
             if (userOpt.isPresent()) {
