@@ -63,27 +63,27 @@ export default {
     };
   },
   created() {
-    // this.isAdmin();
+    this.isAdmin();
     this.getPayment();
   },
   methods: {
-    // isAdmin() {
-    //   const axiosConfig = {
-    //     headers: {
-    //       jwtToken: `${this.$cookies.get("Auth-Token")}`,
-    //     },
-    //   };
-    //   axios
-    //     .post(`${baseURL}/admin/isAdmin`, "", axiosConfig)
-    //     .then((res) => {
-    //       if (res.data == false) {
-    //         this.$router.push({ name: "forbidden" });
-    //       }
-    //     })
-    //     .catch((err) => {
-    //       console.log(err);
-    //     });
-    // },
+    isAdmin() {
+      const axiosConfig = {
+        headers: {
+          jwtToken: `${this.$cookies.get("Auth-Token")}`,
+        },
+      };
+      axios
+        .post(`${baseURL}/admin/isAdmin`, "", axiosConfig)
+        .then((res) => {
+          if (res.data == false) {
+            this.$router.push({ name: "forbidden" });
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
     getPayment() {
       axios
         .get(`${baseURL}/admin/getpayment`)
