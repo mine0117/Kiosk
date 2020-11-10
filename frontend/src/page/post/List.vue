@@ -1,12 +1,14 @@
 <template>
-  <div class = "bbd">
+  <div>
     <div>
       <b-sidebar id="sidebar-right" backdrop title="장바구니" right shadow width=400px>
         <div class="px-2 py-2">
-
-
           <div class="d-flex mb-4" v-for="(menu, k) in basket" :key="k">
+<<<<<<< HEAD
              <th>
+=======
+            <th>
+>>>>>>> admin
               <b-img
                 :src="menu.image"
                 class="rounded-circle image"
@@ -35,7 +37,6 @@
                 ></b-icon>
                 </td>
               </tr>
-
             </th>
             <br /><br />
           </div>
@@ -244,9 +245,6 @@
                       title="아이스크림"
                       @click="seperateCate(2, 7)"
                     ></b-tab>
-
-
-
                     <div class="row overflow container-fluid">
                       <div
                         v-for="menu in menusCate"
@@ -379,7 +377,7 @@ export default {
         }
       );
     },
-  
+
     authUser() {
       console.log("method - authUser");
       const axiosConfig = {
@@ -461,4 +459,8 @@ export default {
 }
 footer{width:100%;height:90px;background:#ddd;margin-top:auto}
 .wrap{text-align:center;display:flex;flex-direction:column;height:100%}
+<<<<<<< HEAD
 </style> 
+=======
+</style>
+>>>>>>> admin

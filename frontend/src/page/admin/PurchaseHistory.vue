@@ -1,25 +1,8 @@
 <template>
-  <!-- <div class="container"> -->
-  <!-- <table class="table" id="my-table">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">이름</th>
-          <th scope="col">번호</th>
-          <th scope="col">방문시각</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(visitor, idx) in visitors" v-bind:key="idx">
-          <th scope="row">{{ visitor.vid }}</th>
-          <td>{{ visitor.uid }}</td>
-          <td>{{ visitor.tel }}</td>
-          <td>{{ visitor.currenttime }}</td>
-        </tr>
-      </tbody>
-    </table> -->
-  <!-- pagination -->
   <div class="container">
+    <div>
+        <popular-menu></popular-menu>    
+    </div> 
     <b-table
       id="my-table"
       :items="items"
@@ -40,46 +23,48 @@
       pills
       size="lg"
     ></b-pagination>
-
-    <!-- <p class="mt-3">Current Page: {{ currentPage }}</p> -->
   </div>
-  <!-- </div> -->
 </template>
 <script>
 import axios from "axios";
 import constants from "@/lib/constants";
+import PopularMenu from "@/components/admin/PopularMenu.vue"
 const baseURL = constants.baseUrl;
 
 export default {
-  name: "VisitHistory",
+  name: "PurchaseHistory",
+  components:{
+      PopularMenu,
+  },
   data() {
     return {
       fields: [
         {
-          key: "vid",
-          label: "방문 번호",
-        },
-        {
-          key: "uid",
+          key: "1",
           label: "회원 번호",
         },
         {
-          key: "tel",
-          label: "전화번호",
+          key: "2",
+          label: "메뉴 이름",
         },
         {
-          key: "currenttime",
-          label: "방문 시각",
+          key: "3",
+          label: "메뉴 가격",
+        },
+        {
+          key: "4",
+          label: "주문 시각",
+          sortable: true    
         },
       ],
-      perPage: 3,
+      perPage: 10,
       currentPage: 1,
       items: [],
     };
   },
   created() {
     this.isAdmin();
-    this.getVisitors();
+    this.getPayment();
   },
   methods: {
     isAdmin() {
@@ -91,9 +76,7 @@ export default {
       axios
         .post(`${baseURL}/admin/isAdmin`, "", axiosConfig)
         .then((res) => {
-          console.log(res);
           if (res.data == false) {
-            // this.$router.push({ name: "dashboard" });
             this.$router.push({ name: "forbidden" });
           }
         })
@@ -101,17 +84,16 @@ export default {
           console.log(err);
         });
     },
-    getVisitors() {
-      // console.log("logger - getVisitors");
+    getPayment() {
       axios
-        .get(`${baseURL}/admin/getvisitors`)
+        .get(`${baseURL}/admin/getpayment`)
         .then((res) => {
-          // console.log(res);
+            // console.log(res)
           this.items = res.data;
         })
         .catch((err) => {
-          console.log(err);
-        });
+          console.log(err)
+        })
     },
   },
   computed: {
