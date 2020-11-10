@@ -75,7 +75,7 @@ class FaceClassifier():
             aligned_image = face_alignment_dlib.get_aligned_face(self.predictor, face_image)
 
             filename = now.strftime('%Y%m%d_%H%M%S.%f')[:-3] + '.png'
-            pathname = os.path.join("s03p31b107/face_classifier/train/" + args.capture, filename)
+            pathname = os.path.join( base_path+"train/" + args.capture, filename)
 
             tmp += 1
             cv2.imwrite(pathname, aligned_image)
@@ -107,7 +107,7 @@ if __name__ == '__main__':
                     help="resize the frame to process (less time, less accuracy)")
     args = ap.parse_args()
 
-    base_path = "s03p31b107/face_classifier/"
+    base_path = "/home/ubuntu/s03p31b107/face_classifier/"
 
     src_file = args.inputfile
     if src_file == "0":
@@ -130,8 +130,8 @@ if __name__ == '__main__':
 
     num_capture = 0
     if args.capture:
-        if not os.path.isdir("s03p31b107/face_classifier/train/" + args.capture):
-            os.mkdir("s03p31b107/face_classifier/train/" + args.capture)
+        if not os.path.isdir(base_path +"train/" + args.capture):
+            os.mkdir(base_path+"train/" + args.capture)
 
 
 
