@@ -459,8 +459,4 @@ export default {
 }
 footer{width:100%;height:90px;background:#ddd;margin-top:auto}
 .wrap{text-align:center;display:flex;flex-direction:column;height:100%}
-<<<<<<< HEAD
 </style> 
-=======
-</style>
->>>>>>> admin
