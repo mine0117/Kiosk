@@ -49,10 +49,15 @@
 <script>
 import axios from "axios";
 import constants from "../../lib/constants";
+import KakaoVue from "../../page/user/Kakao.vue";
 
 const baseURL = constants.baseUrl;
 export default {
+  name: "Kakao",
   name: "Header",
+  components: {
+    KakaoVue,
+  },
   props: ["isHeader"],
   computed: {},
   watch: {},
@@ -74,7 +79,7 @@ export default {
             success: function(res) {
               x.kakao.uid = res.id;
               x.kakao.name = res.properties.nickname;
-              
+
               axios
                 .post(`${baseURL}/account/kakaologin`, x.kakao)
                 .then((response) => {
@@ -88,22 +93,18 @@ export default {
                     // x.$router.push({name: "main"}).catch((err) => {
                     //   console.log(err);
                     // });
-                   
+                    console.log("logger - test222");
                   } else {
-                     console.log("logger - test222");
                     axios
                       .get(`${baseURL}/account/takepic`)
                       .then((response) => {
-                        console.log(response)
-                        console.log('logger - baseURL/accout/takepic axios result')
-                        console.log(response.data);
-
+                        console.log(response.data)
                         x.kakaoInfoUpdate(res.id);
                         console.log(res.id);
                         x.$router.push({ name: "join" });
                       })
                       .catch((err) => console.log(err.response));
-                   
+                      console.log("12");
                   }
                 })
                 .catch((err) => console.log(err.response));

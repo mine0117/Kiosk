@@ -6,7 +6,7 @@
 
 
           <div class="d-flex mb-4" v-for="(menu, k) in basket" :key="k">
-            <!-- <th>
+             <th>
               <b-img
                 :src="menu.image"
                 class="rounded-circle image"
@@ -461,4 +461,4 @@ export default {
 }
 footer{width:100%;height:90px;background:#ddd;margin-top:auto}
 .wrap{text-align:center;display:flex;flex-direction:column;height:100%}
-</style>
+</style> 
