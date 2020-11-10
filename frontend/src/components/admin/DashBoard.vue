@@ -1,45 +1,46 @@
 <template>
   <div class="container">
-    <div class="h1 lsize text-center" @click="logout">
+        <div class="row">
+      <div class="col"></div>
+      <div class="h1 col-6 text-center" style="font-weight:bold; border-bottom:solid 2px black;">
+        관리자 페이지
+      </div>
+      <div class="col">
+        <div class="h1 lsize text-center" @click="logout">
       Logout
     </div>
+      </div>
+    </div>
+    
     <div class="row">
-      <div class="col-lg">
+      <div class="col-lg" @click="goVisitHistory">
         <div class="card text-center c-hover" style="width: 100%; height: 100%">
           <div class="card-body">
             <h1 class="card-title">오늘의 방문자 수</h1>
             <p class="card-text" style="font-size: 3em">
               {{ todayCount }}
             </p>
-            <b-btn
+            <!-- <b-btn
               href="#"
               class="card-link"
               router-link
               :to="{ name: 'visithistory' }"
               >방문기록 확인</b-btn
-            >
-            <!-- <b-btn href="#" class="card-link">방문기록 확인</b-btn> -->
+            > -->
           </div>
         </div>
       </div>
       <div class="col-lg" @click="goMenulist">
         <div class="card text-center c-hover" style="width: 100%; height: 100%">
           <div class="card-body">
-            <h1 class="card-title">메뉴 관리</h1>
+            <h1>메뉴 관리</h1>
           </div>
         </div>
       </div>
       <div class="col-lg">
         <div class="card text-center c-hover" style="width: 100%; height: 100%">
           <div class="card-body">
-            <h1 class="card-title">Card title</h1>
-            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-            <p class="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
-            <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a>
+            <h1 class="card-title">오늘의 매출액</h1>
           </div>
         </div>
       </div>
@@ -115,6 +116,9 @@ export default {
       this.$cookies.remove("Auth-Token");
       this.$router.push({name:"admin"})
   },
+  goVisitHistory(){
+    this.$router.push('visithistory')
+  },
   goMenulist(){
     this.$router.push('menulist')
   },
@@ -133,11 +137,18 @@ export default {
   margin-bottom: 50px;
 }
 .lsize{
-  width:100px;
-  margin: 20px auto;
-  border: solid 0.5px black;
-  background-color:green;
+  background-color: #f4511e;
+  border: none;
   color: white;
+  padding: 16px 32px;
+  text-align: center;
+  font-size: 16px;
+  margin: 4px 2px;
+  opacity: 0.6;
+  transition: 0.3s;
+}
+.lsize:hover {
+  opacity: 1;
 }
 .c-hover:hover{
   background-color:gray;
