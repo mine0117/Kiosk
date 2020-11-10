@@ -1,7 +1,7 @@
 <template>
   <div class = "bbd">
     <div>
-      <b-sidebar id="sidebar-right" backdrop title="장바구니" right shadow>
+      <b-sidebar id="sidebar-right" backdrop title="장바구니" right shadow width=400px>
         <div class="px-2 py-2">
 
 
@@ -12,8 +12,8 @@
                 class="rounded-circle image"
                 width="140%"
               ></b-img>
-            </th> -->
-            <th class="px-3 py-3">
+            </th>
+            <th class="px-3 py-3 container">
               <tr style="font-size: 25px">
                 {{
                   menu.name
@@ -22,7 +22,7 @@
               <tr>
                 <td style="font-size: 25px">
                 {{
-                  menu.price
+                  numberWithCommas(menu.price)
                 }}원
                 </td>
                 <td>
@@ -37,35 +37,73 @@
               </tr>
 
             </th>
-
             <br /><br />
           </div>
 
-
         </div>
         <div class="px-2">
-          <p style="font-size: 35px">총 금액 : {{ basketPrice }}원</p>
+          <p style="font-size: 40px">총 금액 : {{ numberWithCommas(basketPrice) }}원</p> 
           <div>
-            <b-button v-b-modal.modal-1 variant="outline-success" size="lg"
-              >결제하기</b-button
-            >
-            <b-modal id="modal-1" title="결제 하기" @ok="GetMenuList()">
-              <p class="my-4">Hello from modal!</p>
+            <th>
+            <td>
+            <b-button variant ="success" style="width: 190px; height:60px; font-size:20px;" v-b-modal.modal-1>결제하기</b-button>
+            </td>
+            <td>
+            <b-button  variant ="danger" style="width: 190px; height:60px; font-size:20px;" v-b-modal.modal-2>취소하기</b-button>
+            </td>
+            </th>
+            
+            <b-modal id="modal-1" centered size = "lg" style="font-size: 50px">
+              <div>
+                    <p class = "my-4" style="font-size:50px; text-align:center;">선택해 주세요</p>
+                <th>
+                  <div class="col-6">
+                  <td style="text-align:center;">
+                    <img src="@/assets/img/takeout.png" style="height: 40vh;" @click="purchase()" class = "hover">
+                    <p class = "my-4" style="font-size:35px;">포장 주문</p>
+                  </td>
+
+                  <td style="text-align:center;">
+                    <img src="@/assets/img/coffee.png" style="height: 40vh;" @click="purchase()" class = "hover">
+                    <p class = "my-4" style="font-size:35px;">매장 식사</p>
+                  </td>
+                  </div>
+                </th> 
+              </div>
+              <template #modal-footer="{cancel}">
+                <b-button style="width:70px; height:50px; font-size:15px;" variant="danger" @click="cancel()">
+                  Cancel
+                </b-button>
+                </template>
+            </b-modal>
+
+            <b-modal id="modal-2" centered button-size="lg" @ok="purchase()" style="font-size:50px;">
+              <p class = "my-4" style="font-size:50px; text-align:center;">정말 취소 하시겠습니까?</p>
+                <template #modal-footer="{ okcancel, cancel }">
+                <b-button style="width:70px; height:50px; font-size:15px;" variant="success" @click="okcancel()">
+                  OK
+                </b-button>
+                <b-button style="width:70px; height:50px; font-size:15px;" variant="danger" @click="cancel()">
+                  Cancel
+                </b-button>
+                </template>
             </b-modal>
           </div>
         </div>
+
       </b-sidebar>
     </div>
 
     <div class="mt-1 p-0">
-      <div id="body">
+      <div id="body" >
         <div id="content">
           <b-card no-body>
             <b-tabs
               align="center"
               active-nav-item-class="font-weight-bold text-uppercase"
               active-tab-class="font-weight-bold text-success"
-              style="font-size: 40px">
+              style="font-size: 40px"
+              >
               <b-tab title="최근먹은메뉴">
                 <div>
                   <b-tabs content-class="mt-3" pills style="font-size: 20px">
@@ -94,7 +132,7 @@
                               {{ slide.name }}
                             </div>
                             <div style="text-align: center; font-size: 40px">
-                              {{ slide.price }}원
+                              {{ numberWithCommas(slide.price) }}원
                             </div>
                           </div>
                         </div>
@@ -165,7 +203,7 @@
                               {{ menu.name }}
                             </div>
                             <div style="text-align: center; font-size: 40px">
-                              {{ menu.price }}원
+                              {{ numberWithCommas(menu.price) }}원
                             </div>
                           </div>
                         </div>
@@ -231,7 +269,7 @@
                             {{ menu.name }}
                           </div>
                           <div style="text-align: center; font-size: 40px">
-                            {{ menu.price }}원
+                            {{ numberWithCommas(menu.price) }}원
                           </div>
                         </div>
                       </div>
@@ -248,7 +286,9 @@
         </div>
       </div>
     </div>
+  <footer>푸터</footer>
   </div>
+  
 </template>
 
 <script>
@@ -294,7 +334,7 @@ export default {
       var IMP = window.IMP;
       var msg;
       var b = this.basket;
-      
+
       b[0].uid = this.uid;
       console.log(b);
       // var tempUid = this.uid;
@@ -313,7 +353,7 @@ export default {
           buyer_addr: "서울특별시 강남구 삼성동",
           buyer_postcode: "123-456",
         },
-        function(rsp) {
+        function (rsp) {
           if (rsp.success) {
             var msg = "결제가 완료되었습니다.";
             alert(msg);
@@ -327,7 +367,6 @@ export default {
               .post(baseURL + "/create/order", b)
               .then((response) => {
                 x.$router.push("/");
-              
               })
               .catch((err) => {
                 console.log(err);
@@ -368,12 +407,6 @@ export default {
       this.basketPrice += res.price;
       this.basket.push(res);
     },
-    GetMenuList() {
-      axios
-        .post(baseURL + "/create/order", this.basket)
-        .then(() => {})
-        .catch((err) => console.log(err.response));
-    },
     GetMenuListRecent() {
       axios
         .get(`${baseURL}/order/mymenu`, { params: { uid: this.uid, sid: 1 } })
@@ -396,8 +429,15 @@ export default {
       this.basketPrice -= Menu.price;
       tmpBasket = tmpBasket.splice(i, 1);
     },
-  },
-};
+    okcancel() {
+      this.$router.push("/");
+    },
+    numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    },
+  }
+}
+
 </script>
 
 <style scoped>
@@ -415,12 +455,10 @@ export default {
   cursor: pointer;
 }
 .overflow {
-  height: 100vh;
-  overflow-x:hidden;
-  overflow-y:auto;
+  height: 80vh;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
-.bbd{
-  overflow-x:hidden;
-  overflow-y:hidden;
-}
+footer{width:100%;height:90px;background:#ddd;margin-top:auto}
+.wrap{text-align:center;display:flex;flex-direction:column;height:100%}
 </style>
