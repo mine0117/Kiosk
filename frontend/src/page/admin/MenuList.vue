@@ -7,6 +7,8 @@
       :per-page="perPage"
       :current-page="currentPage"
       :fields="fields"
+      head-variant="dark"
+      text-center
       small
       hover
       outlined

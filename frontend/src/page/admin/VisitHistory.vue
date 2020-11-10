@@ -1,24 +1,4 @@
 <template>
-  <!-- <div class="container"> -->
-  <!-- <table class="table" id="my-table">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">이름</th>
-          <th scope="col">번호</th>
-          <th scope="col">방문시각</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(visitor, idx) in visitors" v-bind:key="idx">
-          <th scope="row">{{ visitor.vid }}</th>
-          <td>{{ visitor.uid }}</td>
-          <td>{{ visitor.tel }}</td>
-          <td>{{ visitor.currenttime }}</td>
-        </tr>
-      </tbody>
-    </table> -->
-  <!-- pagination -->
   <div class="container">
     <b-table
       id="my-table"
@@ -40,10 +20,7 @@
       pills
       size="lg"
     ></b-pagination>
-
-    <!-- <p class="mt-3">Current Page: {{ currentPage }}</p> -->
   </div>
-  <!-- </div> -->
 </template>
 <script>
 import axios from "axios";
@@ -91,9 +68,7 @@ export default {
       axios
         .post(`${baseURL}/admin/isAdmin`, "", axiosConfig)
         .then((res) => {
-          // console.log(res);
           if (res.data == false) {
-            // this.$router.push({ name: "dashboard" });
             this.$router.push({ name: "forbidden" });
           }
         })
@@ -102,11 +77,9 @@ export default {
         });
     },
     getVisitors() {
-      // console.log("logger - getVisitors");
       axios
         .get(`${baseURL}/admin/getvisitors`)
         .then((res) => {
-          // console.log(res);
           this.items = res.data;
         })
         .catch((err) => {

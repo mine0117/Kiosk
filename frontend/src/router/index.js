@@ -17,7 +17,7 @@ import Admin from '../page/user/Admin.vue'
 import DashBoard from '@/page/admin/DashBoard.vue'
 import VisitHistory from '@/page/admin/VisitHistory.vue'
 import MenuList from '@/page/admin/MenuList.vue'
-
+import PurchaseHistory from '@/page/admin/PurchaseHistory.vue'
 // import UpdateMenu from '@/components/admin/UpdateMenu.vue'
 // import AddMenu from '@/components/admin/AddMenu.vue'
 
@@ -107,21 +107,16 @@ export default new Router({
       name: constants.URL_TYPE.ADMIN.MENULIST,
       component: MenuList
     },
-    // { // 어드민 메뉴관리
-    //   path: '/admin/updatemenu',
-    //   name: constants.URL_TYPE.ADMIN.UPDATEMENU,
-    //   component: UpdateMenu
-    // },
     { // 어드민 방문기록
       path: '/admin/visithistory',
       name: constants.URL_TYPE.ADMIN.VISITHISTORY,
       component: VisitHistory
     },
-    // { // 어드민 메뉴 추가
-    //   path: '/admin/addMenu',
-    //   name: constants.URL_TYPE.ADMIN.ADDMENU,
-    //   component: AddMenu
-    // },
+    { // 어드민 방문기록
+      path: '/admin/purchasehistory',
+      name: constants.URL_TYPE.ADMIN.PURCHASEHISTORY,
+      component: PurchaseHistory
+    },
     { 
       path: '/admin/forbidden',
       name: constants.URL_TYPE.ERROR.FORBIDDEN,

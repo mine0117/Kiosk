@@ -22,6 +22,7 @@ export default {
             DASHBOARD: 'dashboard',
             MENULIST: 'menulist',
             VISITHISTORY: 'visithistory',
+            PURCHASEHISTORY:'purchasehistory'
             // UPDATEMENU: 'updatemenu',
             // ADDMENU: 'addmenu',
         },
