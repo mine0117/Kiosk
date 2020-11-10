@@ -75,8 +75,8 @@ def train(train_dir, model_save_path="trained_knn_model.csv", n_neighbors=1, knn
     """
     # X = []
     # y = []
-    X = loadtxt('C:/Users/multicampus/Desktop/project3/s03p31b107/face_classifier/output2.csv', delimiter=',').tolist()
-    y = loadtxt('C:/Users/multicampus/Desktop/project3/s03p31b107/face_classifier/output3.csv', dtype=str).tolist()
+    X = loadtxt("/var/lib/jenkins/workspace/sucheol's/face_classifier/output2.csv", delimiter=',').tolist()
+    y = loadtxt("/var/lib/jenkins/workspace/sucheol's/face_classifier/output3.csv", dtype=str).tolist()
 
     # Loop through each person in the training set
     for class_dir in os.listdir(train_dir):
@@ -94,8 +94,8 @@ def train(train_dir, model_save_path="trained_knn_model.csv", n_neighbors=1, knn
                 # Add face encoding for current image to the training set
                 X.append(face_recognition.face_encodings(image, known_face_locations=face_bounding_boxes)[0])
                 y.append(class_dir)
-    shutil.rmtree("C:/Users/multicampus/Desktop/project3/s03p31b107/face_classifier/train")
-    os.mkdir("C:/Users/multicampus/Desktop/project3/s03p31b107/face_classifier/train")
+    shutil.rmtree("/var/lib/jenkins/workspace/sucheol's/face_classifier/train")
+    os.mkdir("/var/lib/jenkins/workspace/sucheol's/face_classifier/train")
 
     
     # Determine how many neighbors to use for weighting in the KNN classifier
@@ -163,16 +163,16 @@ def predict(X_img_path, knn_clf=None, model_path=None, distance_threshold=0.4):
 
 
 if __name__ == "__main__":
-    base_path = "C:/Users/multicampus/Desktop/project3/s03p31b107/face_classifier/"
+    base_path = "/var/lib/jenkins/workspace/sucheol's/face_classifier/"
     flag = False
     # STEP 1: Train the KNN classifier and save it to disk
     # Once the model is trained and saved, you can skip this step next time.
-    classifier = train("C:/Users/multicampus/Desktop/project3/s03p31b107/face_classifier/train", model_save_path="trained_knn_model.csv", n_neighbors=1)
+    classifier = train("/var/lib/jenkins/workspace/sucheol's/face_classifier/", model_save_path="trained_knn_model.csv", n_neighbors=1)
 
     # STEP 2: Using the trained classifier, make predictions for unknown images
     cnt = 0
-    for image_file in os.listdir("C:/Users/multicampus/Desktop/project3/s03p31b107/face_classifier/test"):
-        full_file_path = os.path.join("C:/Users/multicampus/Desktop/project3/s03p31b107/face_classifier/test/", image_file)
+    for image_file in os.listdir("/var/lib/jenkins/workspace/sucheol's/face_classifier/test"):
+        full_file_path = os.path.join("/var/lib/jenkins/workspace/sucheol's/face_classifier/test/", image_file)
 
 
         # Find all people in the image using a trained classifier model
