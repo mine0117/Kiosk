@@ -1,10 +1,12 @@
 <template>
-  <div>
+  <div class = "bbd">
     <div>
       <b-sidebar id="sidebar-right" backdrop title="장바구니" right shadow width=400px>
         <div class="px-2 py-2">
+
+
           <div class="d-flex mb-4" v-for="(menu, k) in basket" :key="k">
-            <th>
+            <!-- <th>
               <b-img
                 :src="menu.image"
                 class="rounded-circle image"
@@ -33,6 +35,7 @@
                 ></b-icon>
                 </td>
               </tr>
+
             </th>
             <br /><br />
           </div>
@@ -376,7 +379,7 @@ export default {
         }
       );
     },
-
+  
     authUser() {
       console.log("method - authUser");
       const axiosConfig = {
