@@ -1,8 +1,6 @@
 
 <template>
-  <!-- Default form login -->
   <div class="container">
-    <!-- <form> -->
     <p class="h1 text-center mb-4">관리자 로그인</p>
     <label for="defaultFormLoginEmailEx" class="grey-text"
       ><h3>관리자 아이디 :</h3></label
@@ -35,9 +33,7 @@
         Login
       </button>
     </div>
-    <!-- </form> -->
   </div>
-  <!-- Default form login -->
 </template>
 
 
@@ -69,7 +65,7 @@ export default {
           .then((res) => {
             if (res.data != "") {
               let jwtToken = res.data;
-              this.$cookies.set("Auth-Token", jwtToken);
+              this.$cookies.set("Admin-Auth-Token", jwtToken);
               // console.log(jwtToken)
               this.$router.push({ name: "dashboard" });
             } else {
