@@ -172,7 +172,7 @@ public class AccountController {
         String[] command = new String[8];
         System.out.println("=============================================================");
         command[0] = "python";
-        command[1] = "/home/ubuntu/s03p31b107/face_classifier/face_classifier.py";
+        command[1] = "C:/s03p31b107/face_classifier/face_classifier.py";
         command[2] = "0";
         command[3] = "-d";
         command[4] = "-S";
@@ -192,7 +192,7 @@ public class AccountController {
 
             command = new String[2];
             command[0] = "python";
-            command[1] = "/home/ubuntu/s03p31b107/face_classifier/only_train.py";
+            command[1] = "C:/s03p31b107/face_classifier/only_train.py";
             try {
                 out = execPython(command);
             } catch (Exception e) {
