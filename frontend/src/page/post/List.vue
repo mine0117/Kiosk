@@ -111,7 +111,7 @@
               <div v-if = "basketRecent.length > 0">
               <b-tab 
               title-link-class="text-dark"
-              title="최근먹은메뉴">
+              title="추천">
                 <div>
                   <b-tabs content-class="mt-3" pills style="font-size: 20px">
                     <br /><br />
@@ -457,6 +457,7 @@ export default {
         .get(baseURL + "/branch/menu", { params: { sid: 1 } })
         .then((res) => {
           this.menuAll = res.data.object;
+          this.seperateCate(1, 1); this.rightTmp();
         })
         .catch((err) => console.log(err.response));
     },
