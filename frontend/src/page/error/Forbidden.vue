@@ -23,7 +23,7 @@ export default {
         width:100%;
     }
     .hsize{
-        width: 160px;
+        width: 200px;
         height: 40px;
         margin: 20px auto;
         
