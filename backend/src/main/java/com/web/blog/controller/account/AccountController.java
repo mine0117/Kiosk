@@ -103,7 +103,7 @@ public class AccountController {
         String token = null;
         System.out.println("logger - signup method");
         // 이메일, 닉네임 중복처리 필수
-
+ 
         System.out.println(request.getEmail());
         User user = userDao.getUserByEmail(request.getEmail());
 
