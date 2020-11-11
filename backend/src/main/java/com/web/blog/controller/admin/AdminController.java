@@ -22,6 +22,7 @@ import com.web.blog.dao.orderlist.OrderlistDao;
 import com.web.blog.jwt.JwtService;
 import com.web.blog.model.BasicResponse;
 import com.web.blog.model.branch.Branch;
+import com.web.blog.model.orderlist.Orderlist;
 import com.web.blog.model.user.Useradmin;
 import com.web.blog.model.visit.Visit;
 
@@ -100,6 +101,22 @@ public class AdminController {
 
     }
 
+    @GetMapping("/admin/getpayment")
+    @ApiOperation(value = "결제내역")
+    public ResponseEntity<List<?>> getPayment() throws SQLException, IOException {
+        // System.out.println("logger - getPayment: ");
+        List<?> list = null;
+
+        try {
+            list = orderlistDao.findPurchaseHistory();
+            return new ResponseEntity<List<?>>(list, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<List<?>>(list, HttpStatus.NOT_FOUND);
+        }
+
+    }
+
     @PostMapping("/admin/addmenu")
     @ApiOperation(value = "메뉴추가")
     public ResponseEntity<Boolean> addMenu(@RequestBody Branch branch) throws SQLException, IOException {
@@ -126,6 +143,21 @@ public class AdminController {
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity<Branch>(branch, HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/admin/popularmenu")
+    @ApiOperation(value = "인기메뉴 5가지")
+    public ResponseEntity<List<?>> popularMenu() throws SQLException, IOException {
+        // System.out.println("logger - : popularmenu: ");
+        List<?> list = null;
+        try {
+            list = orderlistDao.findPopularMenu();
+
+            return new ResponseEntity<List<?>>(list, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<List<?>>(list, HttpStatus.NOT_FOUND);
         }
     }
 
@@ -186,7 +218,7 @@ public class AdminController {
     @PostMapping("/admin/login")
     @ApiOperation(value = "관리자 로그인")
     public ResponseEntity<String> adminLogin(@RequestBody Useradmin useradmin) throws SQLException, IOException {
-        System.out.println("logger - adminLogin method");
+        // System.out.println("logger - adminLogin method");
         String token = null;
         try {
             Useradmin dbAdmin = AdminRepository.findByAid(useradmin.getAid());
@@ -204,7 +236,7 @@ public class AdminController {
     @PostMapping("/admin/isAdmin")
         @ApiOperation(value = "관리자 확인")
         public ResponseEntity<Boolean> isAdmin(HttpServletRequest request) throws SQLException, IOException {
-            System.out.println("logger - isAdmin method");
+            // System.out.println("logger - isAdmin method");
             Boolean flag = false;
             try {
                 String token = request.getHeader("jwtToken");
