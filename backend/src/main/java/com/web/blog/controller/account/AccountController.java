@@ -164,7 +164,7 @@ public class AccountController {
             }
 
             command = new String[2];
-            command[0] = "python3";
+            command[0] = "python";
             command[1] = "/home/ubuntu/s03p31b107/face_classifier/only_train.py";
             try {
                 out = execPython(command);
@@ -202,6 +202,7 @@ public class AccountController {
         try {
             ByteArrayOutputStream out = execPython(command);
             String extact_result = out.toString();
+            System.out.println(extact_result);
             for (int i = 0; i < extact_result.length(); i++) {
                 char c = extact_result.charAt(i);
                 if (c == '\n' || c == '\r') {
@@ -219,7 +220,7 @@ public class AccountController {
             try {
                 out = execPython(command);
                 extact_result = out.toString();
-
+                
                 for (int i = 0; i < extact_result.length(); i++) {
                     char c = extact_result.charAt(i);
                     if (c == '\n' || c == '\r') {
