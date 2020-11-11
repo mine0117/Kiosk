@@ -192,7 +192,7 @@ public class AccountController {
             }
 
             command = new String[2];
-            command[0] = "python";
+            command[0] = "python3";
             command[1] = "/home/ubuntu/s03p31b107/face_classifier/only_train.py";
             try {
                 out = execPython(command);

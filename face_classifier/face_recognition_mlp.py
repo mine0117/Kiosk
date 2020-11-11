@@ -75,10 +75,10 @@ def train(train_dir, verbose=False):
     """
     # X = []
     # y = []
-    X = loadtxt("s03p31b107/face_classifier/output2.csv",
+    X = loadtxt("/home/ubuntu/s03p31b107/face_classifier/output2.csv",
                 delimiter=',').tolist()
     y = loadtxt(
-        "s03p31b107/face_classifier/output3.csv", dtype=str).tolist()
+        "/home/ubuntu/s03p31b107/face_classifier/output3.csv", dtype=str).tolist()
 
     # Loop through each person in the training set
     for class_dir in os.listdir(train_dir):
