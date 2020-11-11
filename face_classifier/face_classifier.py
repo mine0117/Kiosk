@@ -127,7 +127,7 @@ if __name__ == '__main__':
     if ratio != 1.0:
         s = "RESIZE_RATIO: " + args.resize_ratio
         s += " -> %dx%d" % (int(src.get(3) * ratio), int(src.get(4) * ratio))
-
+ 
     num_capture = 0
     if args.capture:
         if not os.path.isdir(base_path +"/train/" + args.capture):
