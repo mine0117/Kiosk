@@ -86,7 +86,7 @@ export default {
     isAdmin() {
       const axiosConfig = {
         headers: {
-          jwtToken: `${this.$cookies.get("Auth-Token")}`,
+          jwtToken: `${this.$cookies.get("Admin-Auth-Token")}`,
         },
       };
       axios
@@ -113,7 +113,7 @@ export default {
         });
     },
     logout() {
-      this.$cookies.remove("Auth-Token");
+      this.$cookies.remove("Admin-Auth-Token");
       this.$router.push({name:"admin"})
   },
   goVisitHistory(){
