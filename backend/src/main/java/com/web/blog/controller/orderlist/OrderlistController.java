@@ -111,8 +111,7 @@ public class OrderlistController {
     public Object orderMenu(@Valid @RequestBody final OrderlistRequest[] orderlistRequest) {
         System.out.println("logger - 주문메뉴: ");
         ResponseEntity<Object> response = null;
-        System.out.println(Arrays.toString(orderlistRequest)); //[OrderlistRequest(oid=0, uid=0, sid=1, menuid=498, orderlist=null)]
-
+        System.out.println(Arrays.toString(orderlistRequest));
 
         // Optional<User> user = userDao.findUserByUid(orderlistRequest);
         int orderuid = orderlistRequest[0].getUid(); 
