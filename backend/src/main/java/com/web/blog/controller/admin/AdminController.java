@@ -84,7 +84,6 @@ public class AdminController {
 
     }
 
-    // TODO: Uid => 이름으로, 방문기록 자세히
     @GetMapping("/admin/getvisitors")
     @ApiOperation(value = "방문기록")
     public ResponseEntity<List<Visit>> getVisitors() throws SQLException, IOException {
