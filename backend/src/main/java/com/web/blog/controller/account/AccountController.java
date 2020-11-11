@@ -164,7 +164,7 @@ public class AccountController {
             e.printStackTrace();
             // return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-    }
+    }  
 
     @GetMapping("/account/takepic")
     public ResponseEntity<?> takePictoJoin() {
