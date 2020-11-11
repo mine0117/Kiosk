@@ -171,7 +171,7 @@ public class AccountController {
         ResponseEntity<?> response = null;
         String[] command = new String[8];
         System.out.println("=============================================================");
-        command[0] = "python";
+        command[0] = "python3";
         command[1] = "/home/ubuntu/s03p31b107/face_classifier/face_classifier.py";
         command[2] = "0";
         command[3] = "-d";
@@ -183,6 +183,7 @@ public class AccountController {
         try {
             ByteArrayOutputStream out = execPython(command);
             String extact_result = out.toString();
+            System.out.println(extact_result);
             for (int i = 0; i < extact_result.length(); i++) {
                 char c = extact_result.charAt(i);
                 if (c == '\n' || c == '\r') {
@@ -195,6 +196,8 @@ public class AccountController {
             command[1] = "/home/ubuntu/s03p31b107/face_classifier/only_train.py";
             try {
                 out = execPython(command);
+                String extact_result = out.toString();
+                System.out.println(extact_result);
             } catch (Exception e) {
                 e.printStackTrace();
             }
