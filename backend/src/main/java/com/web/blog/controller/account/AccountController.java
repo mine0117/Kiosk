@@ -78,7 +78,6 @@ public class AccountController {
 
     @PostMapping("/account/signup")
     @ApiOperation(value = "가입하기")
-
     public Object signup(@Valid @RequestBody User request) {
         String token = null;
 
@@ -131,6 +130,7 @@ public class AccountController {
     }  
 
     @GetMapping("/account/takepic")
+    @ApiOperation(value = "회원가입 시 사진 촬영")
     public ResponseEntity<?> takePictoJoin() {
         ResponseEntity<?> response = null;
         String[] command = new String[8];
@@ -174,6 +174,7 @@ public class AccountController {
     }
 
     @GetMapping("/kiosk/recog")
+    @ApiOperation(value = "회원일 때 얼굴 인식")
     public ResponseEntity<?> recog() {
         ResponseEntity<?> response = null;
         BasicResponse result = new BasicResponse();
