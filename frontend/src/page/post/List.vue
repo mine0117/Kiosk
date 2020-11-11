@@ -103,8 +103,12 @@
               align="center"
               active-nav-item-class="font-weight-bold text-uppercase text-danger"
               active-tab-class="font-weight-bold"
+              
               style="font-size: 40px"
               >
+
+
+              <div v-if = "basketRecent.length > 0">
               <b-tab 
               title-link-class="text-dark"
               title="최근먹은메뉴">
@@ -116,7 +120,7 @@
                       <div
                         v-for="(slide, index) in basketRecent"
                         :key="index"
-                        style="width: 32%; float: left"
+                        class="col-4"
                       >
                         <div>
                           <div
@@ -144,6 +148,9 @@
                   </b-tabs>
                 </div>
               </b-tab>
+              </div>
+
+
               <b-tab 
                 title-link-class="text-dark"      
                 @click="seperateCate(1, 1); rightTmp();" 
@@ -154,6 +161,7 @@
                       content-class="mt-5"
                       align="center"
                       style="font-size: 30px"
+                      active-nav-item-class="font-weight-bold text-uppercase text-danger"
                     >
                       <b-tab
                         title-link-class="text-success"
@@ -255,6 +263,7 @@
                     content-class="mt-3"
                     align="center"
                     style="font-size: 30px"
+                    active-nav-item-class="font-weight-bold text-uppercase text-danger"
                   >
                     <b-tab
                       title-link-class="text-success"
@@ -325,7 +334,6 @@
                           </div>
                       </div>
                     </div>
-
                   </b-tabs>
                 </div>
               </b-tab>
@@ -362,7 +370,7 @@ export default {
     return {
       test: true,
       menusCate: {},
-      menusCateTmp:{},
+      menusCateTmp: {},
       menuAll: {},
       y: 1,
       aa: 0,
@@ -375,7 +383,6 @@ export default {
   },
   created() {
     this.authUser();
-
     this.GetMenuInfo();
   },
   methods: {
@@ -430,19 +437,20 @@ export default {
       );
     },
     authUser() {
-      console.log("method - authUser");
       const axiosConfig = {
         headers: {
           jwtToken: `${this.$cookies.get("Auth-Token")}`,
         },
       };
-      axios
-        .post(`${constants.baseUrl}/authuser`, "", axiosConfig)
-        .then((res) => {
-          this.uid = res.data.uid;
-          this.GetMenuListRecent();
-        })
-        .catch((err) => console.log(err));
+      if (axiosConfig.headers.jwtToken != "null") {
+        axios
+          .post(`${constants.baseUrl}/authuser`, "", axiosConfig)
+          .then((res) => {
+            this.uid = res.data.uid;
+            this.GetMenuListRecent();
+          })
+          .catch((err) => console.log(err));
+      }
     },
     GetMenuInfo() {
       axios
@@ -485,18 +493,17 @@ export default {
     numberWithCommas(x) {
       return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     },
-    rightTmp(){
-      this.menusCateTmp = this.menusCate.slice(this.aa,this.aa+9);
-      console.log(this.menusCateTmp);
+    rightTmp() {
+      this.menusCateTmp = this.menusCate.slice(this.aa, this.aa + 9);
     },
-    right(){
+    right() {
       this.aa += 9;
       this.rightTmp();
     },
-    left(){
-      this.aa -=9;
+    left() {
+      this.aa -= 9;
       this.rightTmp();
-    }
+    },
   },
 };
 </script>
@@ -506,7 +513,7 @@ export default {
 * {
   font-family: "Jua", sans-serif;
   font-size: 13px;
-  line-height : 35px;
+  line-height: 35px;
 }
 .hover:hover {
   background-color: #eee;
@@ -516,7 +523,7 @@ export default {
   /* background-color: #ff0040; */
   cursor: pointer;
 }
-.cursor{
+.cursor {
   cursor: pointer;
 }
 .overflow {
@@ -524,12 +531,7 @@ export default {
   overflow-x: hidden;
   overflow-y: auto;
 }
-footer {
-  width: 100%;
-  height: 90px;
-  background: #ddd;
-  margin-top: auto;
-}
+
 .wrap {
   text-align: center;
   display: flex;
@@ -537,26 +539,23 @@ footer {
   height: 100%;
 }
 
-.tab-pills > .active > a,
-.tab-pills > .active > a:hover {
-  background-color: red;
-}
 .tmp {
   position: fixed;
   bottom: 0;
 }
-.right{
+.right {
   position: fixed;
   z-index: 160;
   bottom: 630px;
   right: 8px;
 }
-.left{
+.left {
   position: fixed;
   z-index: 160;
   bottom: 630px;
   left: 5px;
 }
-p.test {word-break: break-all;}
-
+p.test {
+  word-break: break-all;
+}
 </style>
