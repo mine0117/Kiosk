@@ -130,8 +130,8 @@ if __name__ == '__main__':
  
     num_capture = 0
     if args.capture:
-        if not os.path.isdir(base_path +"/train/" + args.capture):
-            os.mkdir(base_path+"/train/" + args.capture)
+        if not os.path.isdir(base_path +"train/" + args.capture):
+            os.mkdir(base_path+"train/" + args.capture)
 
 
 
