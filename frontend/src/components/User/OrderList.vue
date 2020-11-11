@@ -100,7 +100,7 @@ export default {
           //   // var a = this.Mymenu.length-1-i;
           //   const day = this.MymenuDate[i].orderdate;
           //   this.Mymenu[i].orderdate = day;
-          // }
+          }
           var tmp = {};
           for (let j = 0; j < this.Mymenu.length; j++) {
             const aa = this.Mymenu[j][0];
