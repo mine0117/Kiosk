@@ -103,7 +103,7 @@ public class AccountController {
         String token = null;
         System.out.println("logger - signup method");
         // 이메일, 닉네임 중복처리 필수
-
+ 
         System.out.println(request.getEmail());
         User user = userDao.getUserByEmail(request.getEmail());
 
@@ -164,7 +164,7 @@ public class AccountController {
             e.printStackTrace();
             // return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-    }
+    }  
 
     @GetMapping("/account/takepic")
     public ResponseEntity<?> takePictoJoin() {
@@ -172,7 +172,7 @@ public class AccountController {
         String[] command = new String[8];
         System.out.println("=============================================================");
         command[0] = "python";
-        command[1] = "C:/s03p31b107/face_classifier/face_classifier.py";
+        command[1] = "/home/ubuntu/s03p31b107/face_classifier/face_classifier.py";
         command[2] = "0";
         command[3] = "-d";
         command[4] = "-S";
@@ -192,7 +192,7 @@ public class AccountController {
 
             command = new String[2];
             command[0] = "python";
-            command[1] = "C:/s03p31b107/face_classifier/only_train.py";
+            command[1] = "/home/ubuntu/s03p31b107/face_classifier/only_train.py";
             try {
                 out = execPython(command);
             } catch (Exception e) {
