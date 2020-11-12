@@ -176,16 +176,16 @@ public class OrderlistController {
 
     @GetMapping("/order/hotcurrentmenu")
     @ApiOperation(value = "시간대 별 인기 메뉴")
-    public ResponseEntity<List<?>> hotmenu() {
+    public ResponseEntity<ArrayList<Orderlist>> hotmenu() {
 
-        List<?> list = null;
+        ArrayList<Orderlist> list = null;
         try {
-            list = OrderlistDao.findCurrentmenu();
+            list = OrderlistDao.menutimes();
             System.out.println(list);
-            return new ResponseEntity<List<?>>(list, HttpStatus.OK);
+            return new ResponseEntity<ArrayList<Orderlist>>(list, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResponseEntity<List<?>>(list, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<ArrayList<Orderlist>>(list, HttpStatus.NOT_FOUND);
         }
     }
 

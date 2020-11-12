@@ -17,11 +17,11 @@ public interface OrderlistDao extends JpaRepository<Orderlist, String> {
 	// Orderlist[] findOrderlistByUidAndSidOrderByOrderdateDesc(int uid, int sid);
 	ArrayList<Orderlist> findOrderlistByUidAndSidOrderByOrderdateDesc(int uid, int sid);
 	ArrayList<Orderlist> findOrderlistByUidAndSidOrderByOrderdateAsc(int uid, int sid);
+	ArrayList<Orderlist> findOrderlistByMenuid(int menuid);
 
 
-
-	@Query(nativeQuery = true, value = "SELECT b.name, b.category1, b.image, b.price, count(o.menuid) AS c FROM orderlist o left JOIN branch b ON o.menuid = b.menuid WHERE DATE_FORMAT(o.orderdate,'%h') = DATE_FORMAT(now(),'%h') GROUP BY o.menuid ORDER BY c DESC LIMIT 3")
-	List<?> findCurrentmenu();
+	@Query(nativeQuery = true, value = "SELECT *,count(menuid) as c FROM orderlist WHERE DATE_FORMAT(orderdate,'%h') = DATE_FORMAT(NOW(),'%h') GROUP BY menuid ORDER BY c desc LIMIT 3")
+	ArrayList<Orderlist> hotmenutimes();
 
 	@Query(nativeQuery = true,value="SELECT DATE_FORMAT(o.orderdate,'%m'), SUM(b.price) FROM orderlist o join branch b on o.menuid = b.menuid GROUP BY DATE_FORMAT(o.orderdate,'%Y%m')")
 	List<?> findMonthIncome();
