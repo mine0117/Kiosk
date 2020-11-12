@@ -54,7 +54,9 @@ import java.util.*;
 @CrossOrigin(origins = { "*" })
 @RestController
 public class AccountController {
-    static String Paths ="C:/Users/multicampus/Desktop/pjt3//s03p31b107/";
+    // static String Paths ="C:/Users/multicampus/Desktop/pjt3//s03p31b107/";
+    static String awsPath ="/home/ubuntu/s03p31b107/face_classifier";
+
     @Autowired
     UserDao userDao;
 
@@ -148,7 +150,7 @@ public class AccountController {
 
         String[] command = new String[2];
         command[0] = "python3";
-        command[1] = "/home/ubuntu/Jenkins/workspace/alonso/face_classifier/only_train.py";
+        command[1] = awsPath+"/only_train.py";
         try {
             ByteArrayOutputStream out = execPython(command);
             String extact_result = out.toString();
@@ -169,7 +171,7 @@ public class AccountController {
                 FileOutputStream fos;
                 try {
 
-                    String target_path = "/home/ubuntu/learningFile/train/"
+                    String target_path = awsPath+"/train/"
                             + images[0].getFileBase64() + "/";
 
                     File Folder = new File(target_path);
@@ -213,7 +215,7 @@ public class AccountController {
             try {
 
                 // String target_path = Paths+"face_classifier/test/";
-                String target_path = "/home/ubuntu/learningFile/test/";
+                String target_path = awsPath+"/test/";
 
                 File Folder = new File(target_path);
 
@@ -253,7 +255,7 @@ public class AccountController {
         command[0] = "python";
         // command[1] =
         // "C:\\Users\\multicampus\\Desktop\\project3\\s03p31b107\\face_classifier\\face_recognition_mlp.py";
-        command[1] = "/home/ubuntu/Jenkins/workspace/alonso/face_classifier/face_recognition_knn.py";
+        command[1] = awsPath+"/face_recognition_knn.py";
         try {
             ByteArrayOutputStream out = execPython(command);
             String extact_result = out.toString();
