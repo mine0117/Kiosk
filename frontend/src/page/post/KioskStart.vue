@@ -55,7 +55,10 @@ export default {
     goKiosk() {
       this.$router.push("/list");
     },
-  },
+    goKiosk(){
+      this.$router.push("/list");
+    },
+  }
 };
 </script>
 
