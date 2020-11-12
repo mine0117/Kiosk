@@ -201,88 +201,54 @@ public class AccountController {
     };
 
 
-    @GetMapping("/kiosk/recog")
+     @GetMapping("/kiosk/recog")
     @ApiOperation(value = "회원일 때 얼굴 인식")
-    public ResponseEntity<?> recog() {
+    public ResponseEntity<?> recog(@Valid @RequestBody Images[] images) {
         ResponseEntity<?> response = null;
         BasicResponse result = new BasicResponse();
-        String[] command = new String[8];
         StringBuffer res = new StringBuffer();
-       
-        command[0] = "python";
-        command[1] = "/home/ubuntu/Jenkins/workspace/alonso/face_classifier/take_pic.py";
-        command[2] = "0";
-        command[3] = "-d";
-        command[4] = "-S";
-        command[5] = "0.1";
-        command[6] = "-c";
-        command[7] = "a";
 
+        String[] command = new String[2];
+        command[0] = "python";
+        // command[1] =
+        // "C:\\Users\\multicampus\\Desktop\\project3\\s03p31b107\\face_classifier\\face_recognition_mlp.py";
+        command[1] = "/home/ubuntu/Jenkins/workspace/alonso/face_classifier/face_recognition_knn.py";
         try {
             ByteArrayOutputStream out = execPython(command);
             String extact_result = out.toString();
-            System.out.println(extact_result);
+
             for (int i = 0; i < extact_result.length(); i++) {
                 char c = extact_result.charAt(i);
                 if (c == '\n' || c == '\r') {
                     break;
                 } else if (c != ' ') {
-                    // res.append(c);
+                    res.append(c);
                 }
             }
 
-            command = new String[2];
-            command[0] = "python";
-            // command[1] =
-            // "C:\\Users\\multicampus\\Desktop\\project3\\s03p31b107\\face_classifier\\face_recognition_mlp.py";
-            command[1] = "/home/ubuntu/Jenkins/workspace/alonso/face_classifier/face_recognition_knn.py";
-            try {
-                out = execPython(command);
-                extact_result = out.toString();
-                
-                for (int i = 0; i < extact_result.length(); i++) {
-                    char c = extact_result.charAt(i);
-                    if (c == '\n' || c == '\r') {
-                        break;
-                    } else if (c != ' ') {
-                        res.append(c);
-                    }
-                }
+            if (res.toString().split(":")[0].equals("CORRECT ")) {
+                result.data = "가입된 유저입니다.";
+                result.object = res.toString().split(":")[1];
+                Visit v = new Visit();
+                Date date = Calendar.getInstance().getTime();
+                DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+                String strDate = dateFormat.format(date);
+                v.setCurrenttime(strDate);
+                v.setTel(userDao.findUserByUid(Integer.parseInt(res.toString().split(":")[1])).get().getTel());
+                visitDao.save(v);
 
-                if (res.toString().split(":")[0].equals("CORRECT ")) {
-                    result.data = "가입된 유저입니다.";
-                    result.object = res.toString().split(":")[1];
-                    Visit v = new Visit();
-                    Date date = Calendar.getInstance().getTime();  
-                    DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");  
-                    String strDate = dateFormat.format(date);  
-                    v.setCurrenttime(strDate);
-                    v.setTel(userDao.findUserByUid(Integer.parseInt(res.toString().split(":")[1])).get().getTel());
-                    visitDao.save(v);
-
-                } else {
-                    result.data = "찾을 수 없는 유저입니다.";
-                    result.object = "Unknown";
-                }
-
-                final Checkvisitor addvisitor = new Checkvisitor();
-                addvisitor.setUid(result.object.toString());
-                checkvisitorDao.save(addvisitor);
-
-            } catch (Exception e) {
-                e.printStackTrace();
+            } else {
+                result.data = "찾을 수 없는 유저입니다.";
+                result.object = "Unknown";
             }
+
+            final Checkvisitor addvisitor = new Checkvisitor();
+            addvisitor.setUid(result.object.toString());
+            checkvisitorDao.save(addvisitor);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
-        System.out.println(result.data);
-        response = new ResponseEntity<>(result, HttpStatus.OK);
-        return response;
-
-    }
     
     @Transactional
     @GetMapping("/tracking/start")
