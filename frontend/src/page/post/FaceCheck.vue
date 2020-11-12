@@ -7,6 +7,7 @@
       height="360"
       style="display: none;"
     ></canvas>
+    <b-btn @click="start">카메라 켜기</b-btn>
     <b-btn @click="snap">촬영</b-btn>
   </div>
 </template>
@@ -24,7 +25,7 @@ export default {
     };
   },
   mounted() {
-    this.start();
+//    this.start();
   },
   methods: {
     start() {
