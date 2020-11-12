@@ -183,7 +183,6 @@ public class AccountController {
                             e.getStackTrace();
                         }
                     }
-
                     File target = new File(target_path + i + ".jpg");
                     target.createNewFile();
                     fos = new FileOutputStream(target);
