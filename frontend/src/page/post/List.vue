@@ -1,5 +1,5 @@
 <template>
-  <div style="height:100vh; overflow: hidden;">
+  <div v-on:click.left="clickEvent()" style="height:100vh; overflow: hidden;">
     <div>
       <b-sidebar id="sidebar-right" backdrop title="장바구니" right shadow width=400px>
         <div class="px-2 py-2">
@@ -72,17 +72,17 @@
                   </td>
                 </th> 
               </div>
-              <template #modal-footer="{cancel}">
+              <template #modal="{cancel}">
                 <b-button style="width:70px; height:50px; font-size:15px;" variant="danger" @click="cancel()">
                   Cancel
                 </b-button>
                 </template>
             </b-modal>
 
-            <b-modal id="modal-2" centered button-size="lg" @ok="purchase()" style="font-size:50px;">
+            <b-modal id="modal-2" centered button-size="lg" @ok="okcancel()" style="font-size:50px;">
               <p class = "my-4" style="font-size:50px; text-align:center;">정말 취소 하시겠습니까?</p>
-                <template #modal-footer="{ okcancel, cancel }">
-                <b-button style="width:70px; height:50px; font-size:15px;" variant="success" @click="okcancel()">
+                <template #modal="{ ok,cancel }">
+                <b-button style="width:70px; height:50px; font-size:15px;" variant="success" @click="ok()">
                   OK
                 </b-button>
                 <b-button style="width:70px; height:50px; font-size:15px;" variant="danger" @click="cancel()">
@@ -110,7 +110,7 @@
               <b-tab 
               title-link-class="text-dark"
               title="추천">
-                <div>
+                <div class="overflow">
                     <br />
                     <!-- 최근 먹은 메뉴-->
 
@@ -223,7 +223,7 @@
 
               <b-tab 
                 title-link-class="text-dark"      
-                @click="seperateCate(1, 1); rightTmp();" 
+                @click="seperateCate(1, 1); rightTmp(); clickEvent();" 
                 title="음료">
                 <div>
                   <div>
@@ -236,52 +236,52 @@
                       <b-tab
                         title-link-class="text-success"
                         title="콜드 브루"
-                        @click="seperateCate(1, 1); rightTmp();"
+                        @click="seperateCate(1, 1); rightTmp(); clickEvent();"
                       ></b-tab>
                       <b-tab 
                         title-link-class="text-success"
                         title="리저브" 
-                        @click="seperateCate(1, 2); rightTmp();"></b-tab>
+                        @click="seperateCate(1, 2); rightTmp(); clickEvent();"></b-tab>
                       <b-tab
                         title-link-class="text-success"
                         title="에스프레소"
-                        @click="seperateCate(1, 3); rightTmp();"
+                        @click="seperateCate(1, 3); rightTmp(); clickEvent();"
                       ></b-tab>
                       <b-tab 
                         title-link-class="text-success"
                         title="블론드" 
-                        @click="seperateCate(1, 5); rightTmp();"></b-tab>
+                        @click="seperateCate(1, 5); rightTmp(); clickEvent();"></b-tab>
                       <b-tab
                         title-link-class="text-success"
                         title="프라푸치노"
-                        @click="seperateCate(1, 6); rightTmp();"
+                        @click="seperateCate(1, 6); rightTmp(); clickEvent();"
                       ></b-tab>
                       <b-tab
                         title-link-class="text-success"
                         title="블렌디드"
-                        @click="seperateCate(1, 7); rightTmp();"
+                        @click="seperateCate(1, 7); rightTmp(); clickEvent();"
                       ></b-tab>
                       <b-tab 
                         title-link-class="text-success"
                         title="피지오" 
-                        @click="seperateCate(1, 8); rightTmp();"></b-tab>
+                        @click="seperateCate(1, 8); rightTmp(); clickEvent();"></b-tab>
                       <b-tab 
                         title-link-class="text-success"
                         title="티바나" 
-                        @click="seperateCate(1, 9); rightTmp();"></b-tab>
+                        @click="seperateCate(1, 9); rightTmp(); clickEvent();"></b-tab>
                       <b-tab
                         title-link-class="text-success"
                         title="브루드 커피"
-                        @click="seperateCate(1, 10); rightTmp();"
+                        @click="seperateCate(1, 10); rightTmp(); clickEvent();"
                       ></b-tab>
                       <b-tab 
                         title-link-class="text-success"
                         title="기타" 
-                        @click="seperateCate(1, 11); rightTmp();"></b-tab>
+                        @click="seperateCate(1, 11); rightTmp(); clickEvent();"></b-tab>
                       <b-tab
                         title-link-class="text-success"
                         title="병음료"
-                        @click="seperateCate(1, 12); rightTmp();"
+                        @click="seperateCate(1, 12); rightTmp(); clickEvent();"
                       ></b-tab>
 
 
@@ -326,7 +326,7 @@
               </b-tab>
               <b-tab 
                 title-link-class="text-dark"
-                @click="seperateCate(2, 1); rightTmp();" 
+                @click="seperateCate(2, 1); rightTmp(); clickEvent();" 
                 title="푸드">
                 <div>
                   <b-tabs
@@ -338,35 +338,35 @@
                     <b-tab
                       title-link-class="text-success"
                       title="브레드" 
-                      @click="seperateCate(2, 1); rightTmp();"></b-tab>
+                      @click="seperateCate(2, 1); rightTmp(); clickEvent();"></b-tab>
                     <b-tab 
                       title-link-class="text-success"
                       title="케이크" 
-                      @click="seperateCate(2, 2); rightTmp();"></b-tab>
+                      @click="seperateCate(2, 2); rightTmp(); clickEvent();"></b-tab>
                     <b-tab
                       title-link-class="text-success"
                       title="샌드위치&샐러드"
-                      @click="seperateCate(2, 3); rightTmp();"
+                      @click="seperateCate(2, 3); rightTmp(); clickEvent();"
                     ></b-tab>
                     <b-tab
                       title-link-class="text-success"
                       title="따뜻한 푸드"
-                      @click="seperateCate(2, 4); rightTmp();"
+                      @click="seperateCate(2, 4); rightTmp(); clickEvent();"
                     ></b-tab>
                     <b-tab
                       title-link-class="text-success"
                       title="과일&요거트"
-                      @click="seperateCate(2, 5); rightTmp();"
+                      @click="seperateCate(2, 5); rightTmp(); clickEvent();"
                     ></b-tab>
                     <b-tab
                       title-link-class="text-success"
                       title="스낵&미니디저트"
-                      @click="seperateCate(2, 6); rightTmp();"
+                      @click="seperateCate(2, 6); rightTmp(); clickEvent();"
                     ></b-tab>
                     <b-tab
                       title-link-class="text-success"
                       title="아이스크림"
-                      @click="seperateCate(2, 7); rightTmp();"
+                      @click="seperateCate(2, 7); rightTmp(); clickEvent();"
                     ></b-tab>
                     <div class="row overflow container-fluid">
                       <div
@@ -450,6 +450,7 @@ export default {
       basketPrice: 0,
       uid: "",
       loginCheck: 0,
+      time:90,
     };
   },
   created() {
@@ -457,6 +458,7 @@ export default {
     this.GetMenuInfo();
     this.GetMenuListPopular();
     this.GetMenuListPopular2();
+    this.checkVisitor();
   },
   methods: {
     purchase() {
@@ -604,6 +606,24 @@ export default {
     recent() {
       this.Recent = this.basketRecent.slice(0, 3);
     },
+    checkVisitor(){
+      tmp();
+      var x = this;
+      function tmp(){
+        setTimeout(function(){
+          if(x.time > 0){
+            x.time -= 2;
+            console.log(x.time);
+            tmp();
+          }else{
+            x.$router.push({name: "kioskstart"});
+          }
+        }, 1000);
+      }
+    },
+    clickEvent(){
+      this.time = 90;
+    }
   },
 };
 </script>
@@ -682,9 +702,6 @@ p.test {
   z-index: 160;
   bottom: 630px;
   left: 5px;
-}
-p.test {
-  word-break: break-all;
 }
 .divclass {
   max-width: 80%;
