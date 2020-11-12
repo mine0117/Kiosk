@@ -168,7 +168,7 @@ public class OrderlistController {
 
         List<Orderlist> orderlistlist = OrderlistDao.findOrderlistByUidAndSidOrderByOrderdateDesc(uid, sid);
         List<Branch> menulist = BranchDao.findBranchBySid(sid);
-        System.out.println(orderlistlist);
+        // System.out.println(orderlistlist);
         HashSet<Object> ret = new HashSet<>();
         for (int i = 0; i < menulist.size(); i++) {
             for (int j = 0; j < orderlistlist.size(); j++) {
@@ -190,7 +190,6 @@ public class OrderlistController {
         list = OrderlistDao.hotmenutimes();
         for (Orderlist orderlist : list) {
             hotmenudrink.add(BranchDao.findBranchByMenuidAndCategory1(orderlist.getMenuid(), 1));
-            
         }
        System.out.println(hotmenudrink);
         return hotmenudrink;
@@ -203,12 +202,11 @@ public class OrderlistController {
         ArrayList<Orderlist> list = null;
         HashSet<Object> hotmenufoods = new HashSet<>();
      
-       
+       System.out.println("//////////////////////// 시간대 별 푸드 메뉴" );
         list = OrderlistDao.hotmenutimes();
         for (Orderlist orderlist : list) {
             hotmenufoods.add(BranchDao.findBranchByMenuidAndCategory1(orderlist.getMenuid(),2));
             System.out.println(hotmenufoods);
-            
         }
       
         return hotmenufoods;
