@@ -145,12 +145,10 @@ public class AccountController {
     @GetMapping("/account/justlearn")
     public void justlearning() {
         ResponseEntity<?> response = null;
-        String[] command = new String[8];
-
-        command = new String[3];
-        command[0]  = "sudo";
-        command[1] = "python3";
-        command[2] = "/var/lib/jenkins/workspace/sucheol\'s/face_classifier/only_train.py";
+        
+        String[] command = new String[2];
+        command[0] = "python3";
+        command[1] = "/var/lib/jenkins/workspace/sucheol\'s/face_classifier/only_train.py";
         try {
             ByteArrayOutputStream out = execPython(command);
             String extact_result = out.toString();
