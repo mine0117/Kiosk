@@ -148,7 +148,7 @@ public class AccountController {
         
         String[] command = new String[2];
         command[0] = "python3";
-        command[1] = "/var/lib/jenkins/workspace/sucheol\'s/face_classifier/only_train.py";
+        command[1] = "/home/ubuntu/Jenkins/workspace/alonso/face_classifier/only_train.py";
         try {
             ByteArrayOutputStream out = execPython(command);
             String extact_result = out.toString();
@@ -169,7 +169,7 @@ public class AccountController {
                 FileOutputStream fos;
                 try {
 
-                    String target_path = "/var/lib/jenkins/workspace/sucheol\'s/face_classifier/train/" + images[0].getFileBase64()
+                    String target_path = "/home/ubuntu/Jenkins/workspace/alonso/face_classifier/train/" + images[0].getFileBase64()
                             + "/";
 
                     File Folder = new File(target_path);
@@ -210,7 +210,7 @@ public class AccountController {
         StringBuffer res = new StringBuffer();
        
         command[0] = "python";
-        command[1] = "/var/lib/jenkins/workspace/sucheol\'s/face_classifier/take_pic.py";
+        command[1] = "/home/ubuntu/Jenkins/workspace/alonso/face_classifier/take_pic.py";
         command[2] = "0";
         command[3] = "-d";
         command[4] = "-S";
@@ -235,7 +235,7 @@ public class AccountController {
             command[0] = "python";
             // command[1] =
             // "C:\\Users\\multicampus\\Desktop\\project3\\s03p31b107\\face_classifier\\face_recognition_mlp.py";
-            command[1] = "/var/lib/jenkins/workspace/sucheol\'s/face_classifier/face_recognition_knn.py";
+            command[1] = "/home/ubuntu/Jenkins/workspace/alonso/face_classifier/face_recognition_knn.py";
             try {
                 out = execPython(command);
                 extact_result = out.toString();
@@ -267,7 +267,7 @@ public class AccountController {
 
                 final Checkvisitor addvisitor = new Checkvisitor();
                 addvisitor.setUid(result.object.toString());
-                final Checkvisitor saveOrderlist = checkvisitorDao.save(addvisitor);
+                checkvisitorDao.save(addvisitor);
 
             } catch (Exception e) {
                 e.printStackTrace();
