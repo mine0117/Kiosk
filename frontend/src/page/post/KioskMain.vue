@@ -85,7 +85,7 @@ export default {
 
   methods: {
     Member() {
-      this.$router.push("faceCheck");
+      this.$router.push("facecheck");
     },
     nonMember(){
       this.$router.push('qrcheck')
