@@ -22,7 +22,6 @@ import com.web.blog.dao.orderlist.OrderlistDao;
 import com.web.blog.jwt.JwtService;
 import com.web.blog.model.BasicResponse;
 import com.web.blog.model.branch.Branch;
-import com.web.blog.model.orderlist.Orderlist;
 import com.web.blog.model.user.Useradmin;
 import com.web.blog.model.visit.Visit;
 
@@ -30,9 +29,6 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime; // Import the LocalDateTime class
-import java.time.LocalTime;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
