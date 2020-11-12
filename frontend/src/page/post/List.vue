@@ -550,24 +550,9 @@ export default {
     },
     GetMenuListPopular() {
       axios
-        .get(baseURL + "/admin/popularmenu")
+        .get(baseURL + "/order/hotcurrentmenu")
         .then((res) => {
-          var temp = {
-            image: "",
-            name: "",
-            price: "",
-            menuid: "",
-            count: "",
-          };
           console.log(res);
-          for (let i = 0; i < res.data.length; i++) {
-            temp.name = res.data[i][0];
-            temp.price = res.data[i][1];
-            temp.image = res.data[i][2];
-            temp.menuid = res.data[i][3];
-            temp.count = res.data[i][4];
-            this.basketPopular.push(temp);
-          }
         })
         .catch((err) => console.log(err.response));
     },
