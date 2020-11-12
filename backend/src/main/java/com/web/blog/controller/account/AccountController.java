@@ -1,6 +1,8 @@
 package com.web.blog.controller.account;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -19,6 +21,7 @@ import org.apache.commons.exec.PumpStreamHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,6 +36,7 @@ import com.web.blog.dao.visit.VisitDao;
 import com.web.blog.jwt.JwtService;
 import com.web.blog.model.BasicResponse;
 import com.web.blog.model.checkvisitor.Checkvisitor;
+import com.web.blog.model.images.Images;
 import com.web.blog.model.user.User;
 import com.web.blog.model.visit.Visit;
 
@@ -138,49 +142,65 @@ public class AccountController {
         }
     }  
 
-    @GetMapping("/account/takepic")
-    @ApiOperation(value = "회원가입 시 사진 촬영")
-    public ResponseEntity<?> takePictoJoin() {
+    @GetMapping("/account/justlearn")
+    public void justlearning() {
         ResponseEntity<?> response = null;
         String[] command = new String[8];
-        command[0] = "python3";
-        command[1] = "/home/ubuntu/s03p31b107/face_classifier/face_classifier.py";
-        command[2] = "0";
-        command[3] = "-d";
-        command[4] = "-S";
-        command[5] = "0.1";
-        command[6] = "-c";
-        command[7] = "a";
 
+        command = new String[2];
+        command[0] = "python3";
+        command[1] = "/var/lib/jenkins/workspace/sucheol\'s/face_classifier/only_train.py";
         try {
             ByteArrayOutputStream out = execPython(command);
             String extact_result = out.toString();
-            System.out.println(extact_result);
-            for (int i = 0; i < extact_result.length(); i++) {
-                char c = extact_result.charAt(i);
-                if (c == '\n' || c == '\r') {
-                    break;
-                }
-            }
-
-            command = new String[2];
-            command[0] = "python";
-            command[1] = "/home/ubuntu/s03p31b107/face_classifier/only_train.py";
-            try {
-                out = execPython(command);
-                extact_result = out.toString();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+    }
+
+    @PostMapping("/imageset")
+    public ResponseEntity<?> sendImage(@Valid @RequestBody Images[] images) {
+        if (!images[0].getFileBase64().equals("")) {
+            for (int i = 1; i < images.length; i++) {
+                String base64Str = new String(images[i].getFileBase64());
+                String data = base64Str.split(",")[1]; // jin
+
+                byte decode[] = Base64.decodeBase64(data);
+                FileOutputStream fos;
+                try {
+
+                    String target_path = "/var/lib/jenkins/workspace/sucheol\'s/face_classifier/train/" + images[0].getFileBase64()
+                            + "/";
+
+                    File Folder = new File(target_path);
+
+                    // 해당 디렉토리가 없을경우 디렉토리를 생성합니다.
+                    if (!Folder.exists()) {
+                        try {
+                            Folder.mkdir(); // 폴더 생성합니다.
+                        } catch (Exception e) {
+                            e.getStackTrace();
+                        }
+                    }
+                    File target = new File(target_path + i + ".jpg");
+                    target.createNewFile();
+                    fos = new FileOutputStream(target);
+                    fos.write(decode);
+                    fos.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        ResponseEntity<?> response = null;
+
         response = new ResponseEntity<>(null, HttpStatus.OK);
 
         return response;
+    };
 
-    }
 
     @GetMapping("/kiosk/recog")
     @ApiOperation(value = "회원일 때 얼굴 인식")
@@ -191,7 +211,7 @@ public class AccountController {
         StringBuffer res = new StringBuffer();
        
         command[0] = "python";
-        command[1] = "/home/ubuntu/s03p31b107/face_classifier/take_pic.py";
+        command[1] = "/var/lib/jenkins/workspace/sucheol\'s/face_classifier/take_pic.py";
         command[2] = "0";
         command[3] = "-d";
         command[4] = "-S";
@@ -216,7 +236,7 @@ public class AccountController {
             command[0] = "python";
             // command[1] =
             // "C:\\Users\\multicampus\\Desktop\\project3\\s03p31b107\\face_classifier\\face_recognition_mlp.py";
-            command[1] = "/home/ubuntu/s03p31b107/face_classifier/face_recognition_knn.py";
+            command[1] = "/var/lib/jenkins/workspace/sucheol\'s/face_classifier/face_recognition_knn.py";
             try {
                 out = execPython(command);
                 extact_result = out.toString();
@@ -275,7 +295,7 @@ public class AccountController {
         // command[1] =
         // "C:\\Users\\multicampus\\Desktop\\project3\\s03p31b107\\face_classifier\\face_recognition_mlp.py";
         // command[1] = "C:\\do\\face_classifier\\face_recognition_knn.py";
-        command[1] = "/home/woong/s03p31b107/darknet/python/darknet_2.py";
+        command[1] = "/var/lib/jenkins/workspace/sucheol\'s/darknet/python/darknet_2.py";
         command[2] = tid;
         
         try {
