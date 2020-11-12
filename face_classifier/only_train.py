@@ -67,7 +67,7 @@ if __name__ == "__main__":
     # STEP 1: Train the KNN classifier and save it to disk
     # Once the model is trained and saved, you can skip this step next time.
     classifier = train("/home/ubuntu/s03p31b107/face_classifier/train", model_save_path="trained_knn_model.csv", n_neighbors=1)
-    shutil.rmtree("/home/ubuntu/s03p31b107/face_classifier/train")
-    os.mkdir("/home/ubuntu/s03p31b107/face_classifier/train")
+    # shutil.rmtree("/home/ubuntu/s03p31b107/face_classifier/train")
+    # os.mkdir("/home/ubuntu/s03p31b107/face_classifier/train")
 
 
