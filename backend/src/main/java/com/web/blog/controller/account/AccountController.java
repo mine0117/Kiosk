@@ -145,9 +145,8 @@ public class AccountController {
     @GetMapping("/account/justlearn")
     public void justlearning() {
         ResponseEntity<?> response = null;
-        String[] command = new String[8];
-
-        command = new String[2];
+        
+        String[] command = new String[2];
         command[0] = "python3";
         command[1] = "/var/lib/jenkins/workspace/sucheol\'s/face_classifier/only_train.py";
         try {
