@@ -1,6 +1,6 @@
 <template>
-  <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-    <div class="bcenter text-center" @click="goKiosk()">
+  <div v-on:click.left="goKiosk()" class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <div class="bcenter text-center">
       <video autoplay="autoplay" loop="loop" width="560" height="315" src="@/assets/example.mp4" type="video/mp4" muted ></video>
       <h1 style="font-weight:bold; color:white;">키오스크 메인 화면입니다.</h1><br/>
       <h2 style="color:white;"> 사용을 위해 클릭해주세요.</h2>
