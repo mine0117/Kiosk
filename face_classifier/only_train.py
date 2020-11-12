@@ -36,8 +36,7 @@ def train(train_dir, model_save_path="trained_knn_model.csv", n_neighbors=1, knn
                 # Add face encoding for current image to the training set
                 X.append(face_recognition.face_encodings(image, known_face_locations=face_bounding_boxes)[0])
                 y.append(class_dir)
-    shutil.rmtree("/home/ubuntu/s03p31b107/face_classifier/train")
-    os.mkdir("/home/ubuntu/s03p31b107/face_classifier/train")
+
 
     
     # Determine how many neighbors to use for weighting in the KNN classifier
@@ -68,6 +67,7 @@ if __name__ == "__main__":
     # STEP 1: Train the KNN classifier and save it to disk
     # Once the model is trained and saved, you can skip this step next time.
     classifier = train("/home/ubuntu/s03p31b107/face_classifier/train", model_save_path="trained_knn_model.csv", n_neighbors=1)
-
+    shutil.rmtree("/home/ubuntu/s03p31b107/face_classifier/train")
+    os.mkdir("/home/ubuntu/s03p31b107/face_classifier/train")
 
 
