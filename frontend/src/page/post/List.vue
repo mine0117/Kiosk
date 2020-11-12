@@ -173,7 +173,7 @@
                               {{ slide.name }}
                             </div>
                             <div style="text-align: center; font-size: 30px" class = "text-danger">
-                              {{ numberWithCommas(slide.price) }}원
+                              <!-- {{ numberWithCommas(slide.price) }}원 -->
                             </div>
                           </div>
                         </div>
@@ -207,7 +207,7 @@
                               {{ slide.name }}
                             </div>
                             <div style="text-align: center; font-size: 30px" class = "text-danger">
-                              {{ numberWithCommas(slide.price) }}원
+                              <!-- {{ numberWithCommas(slide.price) }}원 -->
                             </div>
                           </div>
                         </div>
@@ -544,15 +544,20 @@ export default {
         .get(`${baseURL}/order/mymenu`, { params: { uid: this.uid, sid: 1 } })
         .then((res) => {
           this.basketRecent = res.data;
+          const Tmp = res.data;
+
           this.recent();
         })
         .catch((err) => console.log(err.response));
     },
     GetMenuListPopular() {
       axios
-        .get(baseURL + "/order/hotcurrentmenu")
+        .get(baseURL + "/order/hotcurrentdrink")
         .then((res) => {
           console.log(res);
+          this.basketPopular.push(res.data);
+          console.log("/////////////////////");
+          console.log(this.basketPopular);
         })
         .catch((err) => console.log(err.response));
     },

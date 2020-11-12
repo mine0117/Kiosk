@@ -1,6 +1,6 @@
 <template>
-  <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-    <div class="bcenter text-center">
+  <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column" @click="goKiosk()">
+    <div class="bcenter text-center" @click="goKiosk()">
       <h1 style="font-weight:bold; color:white;">키오스크 메인 화면입니다.</h1><br/>
       <h2 style="color:white;"> 사용을 위해 클릭해주세요.</h2>
     </div>
@@ -42,6 +42,9 @@ export default {
         }, 1000);
         }
     },
+    goKiosk(){
+      this.$router.push("/list");
+    },
   }
 };
 </script>
@@ -55,7 +58,6 @@ export default {
 }
 span {
   margin: 0 auto;
-
 }
 
 .bcenter{
