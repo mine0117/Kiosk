@@ -173,7 +173,7 @@
                               {{ slide.name }}
                             </div>
                             <div style="text-align: center; font-size: 30px" class = "text-danger">
-                              <!-- {{ numberWithCommas(slide.price) }}원 -->
+                              {{ numberWithCommas(slide.price) }}원
                             </div>
                           </div>
                         </div>
@@ -181,12 +181,12 @@
                     </div>
                     <br/>
                     <!-- 인기 푸드 메뉴-->
-                    <div  v-if="basketPopular.length > 0" class="row container-fluid">
+                    <div  v-if="basketFoodPopular.length > 0" class="row container-fluid">
                       <div class = "col-11">
                       <p style = "margin-left:5px; font-size:45px; color:#65ca00">인기 푸드 메뉴</p>
                     </div> 
                       <div
-                        v-for="(slide, kndex) in basketPopular"
+                        v-for="(slide, kndex) in basketFoodPopular"
                         :key="kndex"
                         class="col-4"
                       >
@@ -207,7 +207,7 @@
                               {{ slide.name }}
                             </div>
                             <div style="text-align: center; font-size: 30px" class = "text-danger">
-                              <!-- {{ numberWithCommas(slide.price) }}원 -->
+                              {{ numberWithCommas(slide.price) }}원
                             </div>
                           </div>
                         </div>
@@ -443,7 +443,8 @@ export default {
       basket: [],
       basketRecent: {},
       Recent: {},
-      basketPopular: [],
+      basketPopular: {},
+      basketFoodPopular:{},
       modalShow: false,
       basketPrice: 0,
       uid: "",
@@ -454,6 +455,7 @@ export default {
     this.authUser();
     this.GetMenuInfo();
     this.GetMenuListPopular();
+    this.GetMenuListPopular2();
   },
   methods: {
     purchase() {
@@ -545,7 +547,6 @@ export default {
         .then((res) => {
           this.basketRecent = res.data;
           const Tmp = res.data;
-
           this.recent();
         })
         .catch((err) => console.log(err.response));
@@ -554,10 +555,15 @@ export default {
       axios
         .get(baseURL + "/order/hotcurrentdrink")
         .then((res) => {
-          console.log(res);
-          this.basketPopular.push(res.data);
-          console.log("/////////////////////");
-          console.log(this.basketPopular);
+          this.basketPopular = res.data.object;
+        })
+        .catch((err) => console.log(err.response));
+    },
+    GetMenuListPopular2() {
+      axios
+        .get(baseURL + "/order/hotcurrentfood")
+        .then((res) => {
+          this.basketFoodPopular = res.data.object;
         })
         .catch((err) => console.log(err.response));
     },

@@ -6,6 +6,7 @@ import com.web.blog.dao.store.StoreDao;
 import com.web.blog.dao.user.UserDao;
 import com.web.blog.model.BasicResponse;
 import com.web.blog.model.branch.Branch;
+import com.web.blog.model.branch.BranchRequest;
 import com.web.blog.model.orderlist.Orderlist;
 import com.web.blog.model.orderlist.OrderlistRequest;
 
@@ -89,7 +90,6 @@ public class OrderlistController {
     @GetMapping("/get/orderlist/recent")
     @ApiOperation(value = "최신 주문 메뉴")
     public Object getorderlistrecent(@RequestParam(required = true) int uid, int sid) {
-        System.out.println("logger - 최신 주문 메뉴");
         Orderlist orderlistrecent = new Orderlist();
         ResponseEntity<Object> response = null;
 
@@ -104,7 +104,6 @@ public class OrderlistController {
         result.status = true;
         result.data = "최신 주문 메뉴 조회 완료";
         result.object = asdf;
-        System.out.println(result.object);
         response = new ResponseEntity<>(result, HttpStatus.OK);
 
         return response;
@@ -113,12 +112,9 @@ public class OrderlistController {
     @PostMapping("/create/order")
     @ApiOperation(value = "주문 메뉴")
     public Object orderMenu(@Valid @RequestBody final OrderlistRequest[] orderlistRequest) {
-        System.out.println("logger - 주문메뉴: ");
         ResponseEntity<Object> response = null;
-        System.out.println(Arrays.toString(orderlistRequest));
-
         // Optional<User> user = userDao.findUserByUid(orderlistRequest);
-        int orderuid = orderlistRequest[0].getUid(); 
+        int orderuid = orderlistRequest[0].getUid();
         for (int i = 0; i < orderlistRequest.length; i++) {
             final Orderlist orderlist = new Orderlist();
             // orderlist.setUid(user.get().getUid());
@@ -184,7 +180,7 @@ public class OrderlistController {
 
     @GetMapping("/order/hotcurrentdrink")
     @ApiOperation(value = "시간대 별 음료 추천 메뉴")
-    public ArrayList<Branch> hotmenudrink() {
+    public Object hotmenudrink() {
         ArrayList<Orderlist> list = null;
         ArrayList<Branch> hotmenudrink = new ArrayList<>();
         Date date_now = new Date(System.currentTimeMillis());
@@ -195,7 +191,6 @@ public class OrderlistController {
         for (int j = 0; j < list.size(); j++) {
             if (ha < 12 && Integer.parseInt(list.get(j).getOrderdate().substring(11, 13)) < 12) {
                 ArrayList<Branch> ls = BranchDao.findBranchByMenuidAndCategory1(list.get(j).getMenuid(), 1);
-
                 for (int i = 0; i < ls.size(); i++) {
                     if (ls.get(i) != null) {
                         if (cnt == 3)
@@ -205,7 +200,6 @@ public class OrderlistController {
                     }
                 }
             } else {
-
                 ArrayList<Branch> ls = BranchDao.findBranchByMenuidAndCategory1(list.get(j).getMenuid(), 1);
                 for (int i = 0; i < ls.size(); i++) {
                     if (ls.get(i) != null) {
@@ -219,13 +213,21 @@ public class OrderlistController {
 
         }
 
-        return hotmenudrink;
+        ResponseEntity<Object> response = null;
+        BasicResponse result = new BasicResponse();
+
+        result.status = true;
+        result.data = "시간대별 음료 추천 완료";
+        result.object = hotmenudrink;
+        response = new ResponseEntity<>(result, HttpStatus.OK);
+
+        return response;
 
     }
 
     @GetMapping("/order/hotcurrentfood")
     @ApiOperation(value = "시간대 별 푸드 메뉴")
-    public ArrayList<Branch> hotmenufood() {
+    public Object hotmenufood() {
         ArrayList<Orderlist> list = null;
         ArrayList<Branch> hotmenufoods = new ArrayList<>();
         Date date_now = new Date(System.currentTimeMillis());
@@ -259,7 +261,15 @@ public class OrderlistController {
 
         }
 
-        return hotmenufoods;
+        ResponseEntity<Object> response = null;
+        BasicResponse result = new BasicResponse();
+
+        result.status = true;
+        result.data = "시간대별 푸드 추천 완료";
+        result.object = hotmenufoods;
+        response = new ResponseEntity<>(result, HttpStatus.OK);
+
+        return response;
 
     }
 
