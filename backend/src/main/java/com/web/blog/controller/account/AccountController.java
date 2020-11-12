@@ -325,6 +325,9 @@ public class AccountController {
     @ApiOperation(value = "트래킹")
     public Object tracking(@RequestParam(required = true) String tid) {
         String token = null;
+        if (tid.equals("Unknown")) {
+            return new ResponseEntity<>("Unknown", HttpStatus.ACCEPTED);
+        }
         try {
             Optional<User> userOpt = userDao.findUserByUid(Integer.parseInt(tid));
             if (userOpt.isPresent()) {
