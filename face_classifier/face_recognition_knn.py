@@ -171,14 +171,14 @@ if __name__ == "__main__":
 
     # STEP 2: Using the trained classifier, make predictions for unknown images
     cnt = 0
-    for image_file in os.listdir(base_path + "test/"):
-        full_file_path = os.path.join(base_path+"test/", image_file)
+    for image_file in os.listdir("/home/ubuntu/learningFile/test/"):
+        full_file_path = os.path.join("/home/ubuntu/learningFile/test/", image_file)
 
 
         # Find all people in the image using a trained classifier model
         # Note: You can pass in either a classifier file name or a classifier model instance
     
-        predictions = predict(full_file_path, model_path=base_path + "trained_knn_model.csv")
+        predictions = predict(full_file_path, model_path="/home/ubuntu/learningFile/trained_knn_model.csv")
         
         # Print results on the console
         for name, (top, right, bottom, left) in predictions:
@@ -191,8 +191,8 @@ if __name__ == "__main__":
         print("INCORRECT")
     else:
         print("CORRECT :" , name)
-    shutil.rmtree(base_path + "/test")
-    os.mkdir(base_path + "/test")
+    shutil.rmtree("/home/ubuntu/learningFile/test")
+    os.mkdir("/home/ubuntu/learningFile/test")
         # if flag:
         #     break
 

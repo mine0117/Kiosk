@@ -169,7 +169,7 @@ public class AccountController {
                 FileOutputStream fos;
                 try {
 
-                    String target_path = "/home/ubuntu/Jenkins/workspace/alonso/face_classifier/train/"
+                    String target_path = "/home/ubuntu/learningFile/train/"
                             + images[0].getFileBase64() + "/";
 
                     File Folder = new File(target_path);
@@ -213,7 +213,7 @@ public class AccountController {
             try {
 
                 // String target_path = Paths+"face_classifier/test/";
-                String target_path = "/home/ubuntu/Jenkins/workspace/alonso/face_classifier/test/";
+                String target_path = "/home/ubuntu/learningFile/test/";
 
                 File Folder = new File(target_path);
 

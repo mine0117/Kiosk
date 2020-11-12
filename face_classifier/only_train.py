@@ -17,8 +17,8 @@ ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
 def train(train_dir, model_save_path="trained_knn_model.csv", n_neighbors=1, knn_algo='ball_tree', verbose=False):
 
-    X = loadtxt(base_path+"output2.csv", delimiter=',').tolist()
-    y = loadtxt(base_path+"output3.csv", dtype=str).tolist()
+    X = loadtxt("/home/ubuntu/learningFile/output2.csv", delimiter=',').tolist()
+    y = loadtxt("/home/ubuntu/learningFile/output3.csv", dtype=str).tolist()
 
     # Loop through each person in the training set
     for class_dir in os.listdir(train_dir):
@@ -36,8 +36,8 @@ def train(train_dir, model_save_path="trained_knn_model.csv", n_neighbors=1, knn
                 # Add face encoding for current image to the training set
                 X.append(face_recognition.face_encodings(image, known_face_locations=face_bounding_boxes)[0])
                 y.append(class_dir)
-    shutil.rmtree(base_path+"train")
-    os.mkdir(base_path+"train")
+    shutil.rmtree("/home/ubuntu/learningFile/train")
+    os.mkdir("/home/ubuntu/learningFile/train")
 
     
     # Determine how many neighbors to use for weighting in the KNN classifier
@@ -48,8 +48,8 @@ def train(train_dir, model_save_path="trained_knn_model.csv", n_neighbors=1, knn
     d = np.array(y)
     pointY = d.reshape(d.shape[0], -1)
 
-    savetxt(base_path + "output2.csv", pointX, delimiter=',')
-    savetxt(base_path + "output3.csv", pointY, fmt='%s')
+    savetxt("/home/ubuntu/learningFile/output2.csv", pointX, delimiter=',')
+    savetxt("/home/ubuntu/learningFile/output3.csv", pointY, fmt='%s')
 
     knn_clf = neighbors.KNeighborsClassifier(n_neighbors=n_neighbors, algorithm=knn_algo, weights='distance')
     knn_clf.fit(X, y)
@@ -67,7 +67,7 @@ if __name__ == "__main__":
     flag = False
     # STEP 1: Train the KNN classifier and save it to disk
     # Once the model is trained and saved, you can skip this step next time.
-    classifier = train(base_path+"train", model_save_path="trained_knn_model.csv", n_neighbors=1)
+    classifier = train("/home/ubuntu/learningFile/train", model_save_path="trained_knn_model.csv", n_neighbors=1)
 
 
 
