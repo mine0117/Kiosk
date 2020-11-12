@@ -201,7 +201,7 @@ public class AccountController {
     };
 
 
-     @GetMapping("/kiosk/recog")
+    @PostMapping("/kiosk/recog")
     @ApiOperation(value = "회원일 때 얼굴 인식")
     public ResponseEntity<?> recog(@Valid @RequestBody Images[] images) {
         ResponseEntity<?> response = null;
