@@ -11,19 +11,18 @@
                 width="140%"
               ></b-img>
             </th>
-            <th class="px-3 py-3 container">
-              <tr style="font-size: 25px">
+            <div class="px-3 py-3 container col-8">
+              <div style="font-size: 25px">
                 {{
                   menu.name
                 }}
-              </tr>
-              <tr>
-                <td style="font-size: 25px;" class = "text-danger">
+              </div>
+                <div style="font-size: 25px;" class = "text-danger">
                 {{
                   numberWithCommas(menu.price)
                 }}원
-                </td>
-                <td>
+                </div>
+                <div style ="text-align:right;" class="col-12">
                   <b-icon
                   icon="x-circle"
                   scale="2"
@@ -31,9 +30,11 @@
                   @click="DeleteBasket(menu)"
                   class="click"
                 ></b-icon>
-                </td>
-              </tr>
-            </th>
+                <p>             </p>
+
+                </div>
+            </div>
+ 
             <br /><br />
           </div>
 
@@ -444,11 +445,11 @@ export default {
       basketRecent: {},
       Recent: {},
       basketPopular: {},
-      basketFoodPopular:{},
+      basketFoodPopular: {},
       modalShow: false,
       basketPrice: 0,
       uid: "",
-      loginCheck : 0,
+      loginCheck: 0,
     };
   },
   created() {
@@ -523,7 +524,7 @@ export default {
             this.GetMenuListRecent();
           })
           .catch((err) => console.log(err));
-      }else{
+      } else {
         this.loginCheck = 0;
       }
     },
