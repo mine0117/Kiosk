@@ -103,26 +103,26 @@
               align="center"
               active-nav-item-class="font-weight-bold text-uppercase text-danger"
               active-tab-class="font-weight-bold"
-              
               style="font-size: 40px"
               >
-
-
-              <div v-if = "basketRecent.length > 0">
+              <div v-if="loginCheck == 1">
               <b-tab 
               title-link-class="text-dark"
               title="추천">
                 <div>
-                  <b-tabs content-class="mt-3" pills style="font-size: 20px">
-                    <br /><br />
+                    <br />
+                    <!-- 최근 먹은 메뉴-->
 
-                    <div  v-if="basketRecent.length > 0" class="row overflow container-fluid">
+                    <div  v-if="basketRecent.length > 0" class="row container-fluid">
+                    <div class = "col-10" >
+                      <p style = "font-size:45px; color:#65ca00">최근 먹은 메뉴</p>
+                    </div>
                       <div
-                        v-for="(slide, index) in basketRecent"
+                        v-for="(slide, index) in Recent"
                         :key="index"
                         class="col-4"
                       >
-                        <div>
+                        <div v-if="index<3" class ="divclass">
                           <div
                             class="m-3 hover"
                             @click="GetMenuId(slide)"
@@ -145,7 +145,76 @@
                         </div>
                       </div>
                     </div>
-                  </b-tabs>
+                    <br/>
+                    <!-- 인기 음료 메뉴-->
+                    <div  v-if="basketPopular.length > 0" class="row container-fluid">
+                      <div class = "col-11">
+                      <p style = "margin-left:5px; font-size:45px; color:#65ca00">인기 음료 메뉴</p>
+                    </div> 
+                      <div
+                        v-for="(slide, jndex) in basketPopular"
+                        :key="jndex"
+                        class="col-4"
+                      >
+                        <div v-if="jndex<3" class ="divclass">
+                          <div
+                            class="m-3 hover"
+                            @click="GetMenuId(slide)"
+                            v-b-toggle.sidebar-right
+                          >
+                            <div style="text-align: center;">
+                              <img
+                                style="width: 70%"
+                                :src="slide.image"
+                                class="rounded image mb-2"
+                              />
+                            </div>
+                            <div style="text-align: center; font-size: 30px" class = "text-dark">
+                              {{ slide.name }}
+                            </div>
+                            <div style="text-align: center; font-size: 30px" class = "text-danger">
+                              {{ numberWithCommas(slide.price) }}원
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <br/>
+                    <!-- 인기 푸드 메뉴-->
+                    <div  v-if="basketPopular.length > 0" class="row container-fluid">
+                      <div class = "col-11">
+                      <p style = "margin-left:5px; font-size:45px; color:#65ca00">인기 푸드 메뉴</p>
+                    </div> 
+                      <div
+                        v-for="(slide, kndex) in basketPopular"
+                        :key="kndex"
+                        class="col-4"
+                      >
+                        <div v-if="kndex<3" class ="divclass">
+                          <div
+                            class="m-3 hover"
+                            @click="GetMenuId(slide)"
+                            v-b-toggle.sidebar-right
+                          >
+                            <div style="text-align: center;">
+                              <img
+                                style="width: 70%"
+                                :src="slide.image"
+                                class="rounded image mb-2"
+                              />
+                            </div>
+                            <div style="text-align: center; font-size: 30px" class = "text-dark">
+                              {{ slide.name }}
+                            </div>
+                            <div style="text-align: center; font-size: 30px" class = "text-danger">
+                              {{ numberWithCommas(slide.price) }}원
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
                 </div>
               </b-tab>
               </div>
@@ -340,7 +409,6 @@
         </div>
       </div>
     </div>
-  <footer>푸터</footer>
   </div>
   
 </template>
@@ -374,14 +442,18 @@ export default {
       aa: 0,
       basket: [],
       basketRecent: {},
+      Recent: {},
+      basketPopular: [],
       modalShow: false,
       basketPrice: 0,
       uid: "",
+      loginCheck : 0,
     };
   },
   created() {
     this.authUser();
     this.GetMenuInfo();
+    this.GetMenuListPopular();
   },
   methods: {
     purchase() {
@@ -441,6 +513,7 @@ export default {
         },
       };
       if (axiosConfig.headers.jwtToken != "null") {
+        this.loginCheck = 1;
         axios
           .post(`${constants.baseUrl}/authuser`, "", axiosConfig)
           .then((res) => {
@@ -448,6 +521,8 @@ export default {
             this.GetMenuListRecent();
           })
           .catch((err) => console.log(err));
+      }else{
+        this.loginCheck = 0;
       }
     },
     GetMenuInfo() {
@@ -455,7 +530,8 @@ export default {
         .get(baseURL + "/branch/menu", { params: { sid: 1 } })
         .then((res) => {
           this.menuAll = res.data.object;
-          this.seperateCate(1, 1); this.rightTmp();
+          this.seperateCate(1, 1);
+          this.rightTmp();
         })
         .catch((err) => console.log(err.response));
     },
@@ -468,6 +544,30 @@ export default {
         .get(`${baseURL}/order/mymenu`, { params: { uid: this.uid, sid: 1 } })
         .then((res) => {
           this.basketRecent = res.data;
+          this.recent();
+        })
+        .catch((err) => console.log(err.response));
+    },
+    GetMenuListPopular() {
+      axios
+        .get(baseURL + "/admin/popularmenu")
+        .then((res) => {
+          var temp = {
+            image: "",
+            name: "",
+            price: "",
+            menuid: "",
+            count: "",
+          };
+          console.log(res);
+          for (let i = 0; i < res.data.length; i++) {
+            temp.name = res.data[i][0];
+            temp.price = res.data[i][1];
+            temp.image = res.data[i][2];
+            temp.menuid = res.data[i][3];
+            temp.count = res.data[i][4];
+            this.basketPopular.push(temp);
+          }
         })
         .catch((err) => console.log(err.response));
     },
@@ -503,6 +603,9 @@ export default {
       this.aa -= 9;
       this.rightTmp();
     },
+    recent() {
+      this.Recent = this.basketRecent.slice(0, 3);
+    },
   },
 };
 </script>
@@ -519,7 +622,6 @@ export default {
   cursor: pointer;
 }
 .click:hover {
-  /* background-color: #ff0040; */
   cursor: pointer;
 }
 .cursor {
@@ -577,12 +679,17 @@ p.test {
 p.test {
   word-break: break-all;
 }
-.left{
+.left {
   position: fixed;
   z-index: 160;
   bottom: 630px;
   left: 5px;
 }
-p.test {word-break: break-all;}
-
+p.test {
+  word-break: break-all;
+}
+.divclass {
+  max-width: 80%;
+  height: auto;
+}
 </style>
