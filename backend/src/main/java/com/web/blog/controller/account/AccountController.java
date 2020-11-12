@@ -356,4 +356,23 @@ public class AccountController {
         int result = executor.execute(commandLine);
         return outputStream;
     }
+
+    @PostMapping("/qr")
+    @ApiOperation(value = "QR 코드 체크인")
+    public ResponseEntity<Boolean> QRCheckIn() throws SQLException, IOException {
+        // System.out.println("logger - AddMenu: ");
+        Visit visit = new Visit();
+        visit.setUid(0);
+        visit.setTel("010-0000-0000");
+        Checkvisitor cv = new Checkvisitor();
+        cv.setUid("Unknown");
+        try {
+            visitDao.save(visit);
+            checkvisitorDao.save(cv);
+            return new ResponseEntity<Boolean>(true, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<Boolean>(false, HttpStatus.NOT_FOUND);
+        }
+    }
 }

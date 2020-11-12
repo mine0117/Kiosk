@@ -6,6 +6,7 @@ import com.web.blog.dao.store.StoreDao;
 import com.web.blog.dao.user.UserDao;
 import com.web.blog.model.BasicResponse;
 import com.web.blog.model.branch.Branch;
+import com.web.blog.model.branch.BranchRequest;
 import com.web.blog.model.orderlist.Orderlist;
 import com.web.blog.model.orderlist.OrderlistRequest;
 
@@ -24,6 +25,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.ApiOperation;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.Locale.Category;
 
@@ -88,7 +90,6 @@ public class OrderlistController {
     @GetMapping("/get/orderlist/recent")
     @ApiOperation(value = "최신 주문 메뉴")
     public Object getorderlistrecent(@RequestParam(required = true) int uid, int sid) {
-        System.out.println("logger - 최신 주문 메뉴");
         Orderlist orderlistrecent = new Orderlist();
         ResponseEntity<Object> response = null;
 
@@ -103,7 +104,6 @@ public class OrderlistController {
         result.status = true;
         result.data = "최신 주문 메뉴 조회 완료";
         result.object = asdf;
-        System.out.println(result.object);
         response = new ResponseEntity<>(result, HttpStatus.OK);
 
         return response;
@@ -112,12 +112,9 @@ public class OrderlistController {
     @PostMapping("/create/order")
     @ApiOperation(value = "주문 메뉴")
     public Object orderMenu(@Valid @RequestBody final OrderlistRequest[] orderlistRequest) {
-        System.out.println("logger - 주문메뉴: ");
         ResponseEntity<Object> response = null;
-        System.out.println(Arrays.toString(orderlistRequest));
-
         // Optional<User> user = userDao.findUserByUid(orderlistRequest);
-        int orderuid = orderlistRequest[0].getUid(); 
+        int orderuid = orderlistRequest[0].getUid();
         for (int i = 0; i < orderlistRequest.length; i++) {
             final Orderlist orderlist = new Orderlist();
             // orderlist.setUid(user.get().getUid());
@@ -183,33 +180,96 @@ public class OrderlistController {
 
     @GetMapping("/order/hotcurrentdrink")
     @ApiOperation(value = "시간대 별 음료 추천 메뉴")
-    public HashSet<Object> hotmenudrink() {
+    public Object hotmenudrink() {
         ArrayList<Orderlist> list = null;
-        HashSet<Object> hotmenudrink = new HashSet<>();
-        
+        ArrayList<Branch> hotmenudrink = new ArrayList<>();
+        Date date_now = new Date(System.currentTimeMillis());
         list = OrderlistDao.hotmenutimes();
-        for (Orderlist orderlist : list) {
-            hotmenudrink.add(BranchDao.findBranchByMenuidAndCategory1(orderlist.getMenuid(), 1));
+        SimpleDateFormat fourteen_format = new SimpleDateFormat("yyyyMMddHHmmss");
+        int ha = Integer.parseInt(fourteen_format.format(date_now).substring(8, 10));
+        int cnt = 0;
+        for (int j = 0; j < list.size(); j++) {
+            if (ha < 12 && Integer.parseInt(list.get(j).getOrderdate().substring(11, 13)) < 12) {
+                ArrayList<Branch> ls = BranchDao.findBranchByMenuidAndCategory1(list.get(j).getMenuid(), 1);
+                for (int i = 0; i < ls.size(); i++) {
+                    if (ls.get(i) != null) {
+                        if (cnt == 3)
+                            break;
+                        hotmenudrink.add(ls.get(i));
+                        cnt++;
+                    }
+                }
+            } else {
+                ArrayList<Branch> ls = BranchDao.findBranchByMenuidAndCategory1(list.get(j).getMenuid(), 1);
+                for (int i = 0; i < ls.size(); i++) {
+                    if (ls.get(i) != null) {
+                        if (cnt == 3)
+                            break;
+                        hotmenudrink.add(ls.get(i));
+                        cnt++;
+                    }
+                }
+            }
+
         }
-       System.out.println(hotmenudrink);
-        return hotmenudrink;
+
+        ResponseEntity<Object> response = null;
+        BasicResponse result = new BasicResponse();
+
+        result.status = true;
+        result.data = "시간대별 음료 추천 완료";
+        result.object = hotmenudrink;
+        response = new ResponseEntity<>(result, HttpStatus.OK);
+
+        return response;
 
     }
 
     @GetMapping("/order/hotcurrentfood")
     @ApiOperation(value = "시간대 별 푸드 메뉴")
-    public HashSet<Object> hotmenufood() {
+    public Object hotmenufood() {
         ArrayList<Orderlist> list = null;
-        HashSet<Object> hotmenufoods = new HashSet<>();
-     
-       System.out.println("//////////////////////// 시간대 별 푸드 메뉴" );
+        ArrayList<Branch> hotmenufoods = new ArrayList<>();
+        Date date_now = new Date(System.currentTimeMillis());
         list = OrderlistDao.hotmenutimes();
-        for (Orderlist orderlist : list) {
-            hotmenufoods.add(BranchDao.findBranchByMenuidAndCategory1(orderlist.getMenuid(),2));
-            System.out.println(hotmenufoods);
+        SimpleDateFormat fourteen_format = new SimpleDateFormat("yyyyMMddHHmmss");
+        int ha = Integer.parseInt(fourteen_format.format(date_now).substring(8, 10));
+        int cnt = 0;
+        for (int j = 0; j < list.size(); j++) {
+            if (ha < 12 && Integer.parseInt(list.get(j).getOrderdate().substring(11, 13)) < 12) {
+                ArrayList<Branch> ls = BranchDao.findBranchByMenuidAndCategory1(list.get(j).getMenuid(), 2);
+                for (int i = 0; i < ls.size(); i++) {
+                    if (ls.get(i) != null) {
+                        if (cnt == 3)
+                            break;
+                        hotmenufoods.add(ls.get(i));
+                        cnt++;
+                    }
+                }
+            } else {
+
+                ArrayList<Branch> ls = BranchDao.findBranchByMenuidAndCategory1(list.get(j).getMenuid(), 2);
+                for (int i = 0; i < ls.size(); i++) {
+                    if (ls.get(i) != null) {
+                        if (cnt == 3)
+                            break;
+                        hotmenufoods.add(ls.get(i));
+                        cnt++;
+                    }
+                }
+            }
+
         }
-      
-        return hotmenufoods;
+
+        ResponseEntity<Object> response = null;
+        BasicResponse result = new BasicResponse();
+
+        result.status = true;
+        result.data = "시간대별 푸드 추천 완료";
+        result.object = hotmenufoods;
+        response = new ResponseEntity<>(result, HttpStatus.OK);
+
+        return response;
 
     }
 

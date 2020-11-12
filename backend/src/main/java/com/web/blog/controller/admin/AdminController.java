@@ -66,18 +66,19 @@ public class AdminController {
     @ApiOperation(value = "오늘 방문자 수")
     public ResponseEntity<Integer> getVisitorCount() throws SQLException, IOException {
 
-        LocalDateTime startDatetime = LocalDateTime.of(LocalDate.now(), LocalTime.of(0, 0, 0));
-        LocalDateTime endDatetime = LocalDateTime.of(LocalDate.now(), LocalTime.of(23, 59, 59));
-
+        // LocalDateTime startDatetime = LocalDateTime.of(LocalDate.now(), LocalTime.of(0, 0, 0));
+        // LocalDateTime endDatetime = LocalDateTime.of(LocalDate.now(), LocalTime.of(23, 59, 59));
+        // System.out.println(startDatetime+" "+endDatetime);
         int count = 0;
         try {
-            count = adminDao.countByCurrenttimeBetween(startDatetime, endDatetime);
-            System.out.println("logger - count: " + count);
+            // count = adminDao.countByCurrenttimeBetween(startDatetime, endDatetime);
+            count = adminDao.getCountvisitors();
+            // System.out.println("logger - count: " + count);
             return new ResponseEntity<Integer>(count, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("logger- 방문자 수 에러" + count);
             count = -1;
+            System.out.println("logger- 방문자 수 에러" + count);
 
             return new ResponseEntity<Integer>(count, HttpStatus.NOT_FOUND);
         }
