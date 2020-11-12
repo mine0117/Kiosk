@@ -239,7 +239,7 @@ public class AccountController {
                     String strDate = dateFormat.format(date);  
                     v.setCurrenttime(strDate);
                     v.setTel(userDao.findUserByUid(Integer.parseInt(res.toString().split(":")[1])).get().getTel());
-                    visitDao.saveVisit(v);
+                    // visitDao.saveVisit(v);
 
                 } else {
                     result.data = "찾을 수 없는 유저입니다.";
