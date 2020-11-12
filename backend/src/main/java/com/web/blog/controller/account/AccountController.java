@@ -154,6 +154,7 @@ public class AccountController {
         try {
             ByteArrayOutputStream out = execPython(command);
             String extact_result = out.toString();
+            System.out.println(extact_result);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -252,7 +253,7 @@ public class AccountController {
         StringBuffer res = new StringBuffer();
 
         String[] command = new String[2];
-        command[0] = "python";
+        command[0] = "python3";
         // command[1] =
         // "C:\\Users\\multicampus\\Desktop\\project3\\s03p31b107\\face_classifier\\face_recognition_mlp.py";
         command[1] = awsPath+"/face_recognition_knn.py";
