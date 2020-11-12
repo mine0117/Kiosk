@@ -25,7 +25,7 @@ export default {
     };
   },
   mounted() {
-//    this.start();
+    //    this.start();
   },
   methods: {
     start() {
@@ -45,15 +45,24 @@ export default {
       var context = canvas.getContext("2d");
       context.drawImage(video, 0, 0, 480, 360);
       var dataURL = canvas.toDataURL();
+      var x = this;
 
       this.imagebase64.push(dataURL);
       setTimeout(() => {
         if (cnt == this.howmany - 1) {
           console.log(this.imagebase64);
           axios
-            .post(baseURL + "/kiosk/recog", this.imagebase64)
+            .post(baseURL + "/decoding", this.imagebase64)
             .then((response) => {
+              console.log("logger - res");
               this.imagebase64 = [];
+              axios
+                .post(baseURL + "/kiosk/recog")
+                .then((response) => {
+                })
+                .catch((err) => {
+                  console.log(err);
+                });
             })
             .catch((err) => {
               console.log(err);
@@ -86,5 +95,4 @@ span {
   width: 50%;
   margin: 0 auto;
 }
-
 </style>
