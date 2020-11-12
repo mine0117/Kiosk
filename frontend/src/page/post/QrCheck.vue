@@ -65,6 +65,7 @@ export default {
       self.scans.unshift({ date: +Date.now(), content: content });
       console.log("hi");
       self.UnRegistered();
+      self.scanner.stop()
       self.$router.push('main')
     });
     Instascan.Camera.getCameras()
@@ -86,7 +87,7 @@ export default {
       axios
         .post(`${baseURL}/qr`)
         .then((res) => {
-          console.log(res);
+        //   console.log(res);
         })
         .catch((err) => {
           console.log(err);

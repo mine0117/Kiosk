@@ -364,8 +364,11 @@ public class AccountController {
         Visit visit = new Visit();
         visit.setUid(0);
         visit.setTel("010-0000-0000");
+        Checkvisitor cv = new Checkvisitor();
+        cv.setUid("Unknown");
         try {
             visitDao.save(visit);
+            checkvisitorDao.save(cv);
             return new ResponseEntity<Boolean>(true, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
