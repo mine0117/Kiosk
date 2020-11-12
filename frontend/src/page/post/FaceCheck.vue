@@ -59,6 +59,7 @@ export default {
               axios
                 .post(baseURL + "/kiosk/recog")
                 .then((response) => {
+                    console.log(response);
                 })
                 .catch((err) => {
                   console.log(err);
