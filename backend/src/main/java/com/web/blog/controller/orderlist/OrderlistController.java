@@ -25,6 +25,7 @@ import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.ApiOperation;
 
 import java.util.*;
+import java.util.Locale.Category;
 
 import javax.validation.Valid;
 
@@ -180,19 +181,38 @@ public class OrderlistController {
         return ret;
     }
 
-    @GetMapping("/order/hotcurrentmenu")
-    @ApiOperation(value = "시간대 별 인기 메뉴")
-    public ResponseEntity<ArrayList<Orderlist>> hotmenu() {
-
+    @GetMapping("/order/hotcurrentdrink")
+    @ApiOperation(value = "시간대 별 음료 추천 메뉴")
+    public HashSet<Object> hotmenudrink() {
         ArrayList<Orderlist> list = null;
-        try {
-            list = OrderlistDao.menutimes();
-            System.out.println(list);
-            return new ResponseEntity<ArrayList<Orderlist>>(list, HttpStatus.OK);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ResponseEntity<ArrayList<Orderlist>>(list, HttpStatus.NOT_FOUND);
+        HashSet<Object> hotmenudrink = new HashSet<>();
+        
+        list = OrderlistDao.hotmenutimes();
+        for (Orderlist orderlist : list) {
+            hotmenudrink.add(BranchDao.findBranchByMenuidAndCategory1(orderlist.getMenuid(), 1));
+            
         }
+       System.out.println(hotmenudrink);
+        return hotmenudrink;
+
+    }
+
+    @GetMapping("/order/hotcurrentfood")
+    @ApiOperation(value = "시간대 별 푸드 메뉴")
+    public HashSet<Object> hotmenufood() {
+        ArrayList<Orderlist> list = null;
+        HashSet<Object> hotmenufoods = new HashSet<>();
+     
+       
+        list = OrderlistDao.hotmenutimes();
+        for (Orderlist orderlist : list) {
+            hotmenufoods.add(BranchDao.findBranchByMenuidAndCategory1(orderlist.getMenuid(),2));
+            System.out.println(hotmenufoods);
+            
+        }
+      
+        return hotmenufoods;
+
     }
 
 }
