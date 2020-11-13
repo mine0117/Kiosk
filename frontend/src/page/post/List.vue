@@ -1,5 +1,5 @@
 <template>
-  <div v-on:click.left="clickEvent()" style="height:100vh; overflow: hidden;">
+  <div v-on:click.left="clickEvent()" style="height:100vh; overflow: hidden;" class = "test">
     <div>
       <b-sidebar id="sidebar-right" backdrop title="장바구니" right shadow width=400px>
         <div class="px-2 py-2">
@@ -136,7 +136,7 @@
                                 class="rounded image mb-2"
                               />
                             </div>
-                            <div style="text-align: center; font-size: 30px" class = "text-dark">
+                            <div style="text-align: center; font-size: 30px" class = "text-dark test">
                               {{ slide.name }}
                             </div>
                             <div style="text-align: center; font-size: 30px" class = "text-danger">
@@ -170,7 +170,7 @@
                                 class="rounded image mb-2"
                               />
                             </div>
-                            <div style="text-align: center; font-size: 30px" class = "text-dark">
+                            <div style="text-align: center; font-size: 30px" class = "text-dark test">
                               {{ slide.name }}
                             </div>
                             <div style="text-align: center; font-size: 30px" class = "text-danger">
@@ -204,7 +204,7 @@
                                 class="rounded image mb-2"
                               />
                             </div>
-                            <div style="text-align: center; font-size: 30px" class = "text-dark">
+                            <div style="text-align: center; font-size: 30px" class = "text-dark test">
                               {{ slide.name }}
                             </div>
                             <div style="text-align: center; font-size: 30px" class = "text-danger">
@@ -303,7 +303,7 @@
                                 class="rounded image mb-2"
                               />
                             </div>
-                            <div style="text-align: center; font-size: 30px">
+                            <div style="text-align: center; font-size: 30px" class = "test">
                               {{ menu.name }}
                             </div>
                             <div style="text-align: center; font-size: 30px" class = "text-danger">
@@ -386,7 +386,7 @@
                                 class="rounded image mb-2"
                             />
                           </div>
-                          <div style="text-align: center; font-size: 30px">
+                          <div style="text-align: center; font-size: 30px" class = "test">
                             {{ menu.name }}
                           </div>
                           <div style="text-align: center; font-size: 30px" class = "text-danger">
@@ -614,7 +614,6 @@ export default {
         setTimeout(function(){
           if(x.time > 0){
             x.time -= 2;
-            console.log(x.time);
             tmp();
           }else{
             x.$router.push({name: "kioskstart"});
@@ -673,8 +672,8 @@ export default {
   bottom: 630px;
   left: 5px;
 }
-p.test {
-  word-break: break-all;
+.test {
+  word-break: keep-all;
 }
 
 .tmp {
