@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import java.time.LocalDateTime
+import java.time.LocalDateTime;
 @Entity
 @Data
 @NoArgsConstructor
