@@ -275,10 +275,6 @@ public class AccountController {
                 result.data = "가입된 유저입니다.";
                 result.object = res.toString().split(":")[1];
                 Visit v = new Visit();
-                Date date = Calendar.getInstance().getTime();
-                DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
-                String strDate = dateFormat.format(date);
-                v.setCurrenttime(strDate);
                 v.setTel(userDao.findUserByUid(Integer.parseInt(res.toString().split(":")[1])).get().getTel());
                 v.setUid(Integer.parseInt(res.toString().split(":")[1]));
                 visitDao.save(v);
