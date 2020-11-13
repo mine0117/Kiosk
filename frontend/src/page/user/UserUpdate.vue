@@ -196,18 +196,15 @@ export default {
   },
   methods: {
     getUserInfo() {
-      console.log("method - getUserInfo");
 
       const axiosConfig = {
         headers: {
           jwtToken: `${this.$cookies.get("Auth-Token")}`,
         },
       };
-      console.log(axiosConfig);
       axios
         .post(`${constants.baseUrl}/authuser`, "", axiosConfig)
         .then((res) => {
-          console.log(res.data.uid);
           this.form = res.data;
         })
         .catch((err) => console.log(err));
@@ -221,7 +218,7 @@ export default {
           jwtToken: `${this.$cookies.get("Auth-Token")}`,
         },
       };
-      console.log(this.form);
+      // console.log(this.form);
       axios
         .put(`${constants.baseUrl}/updateuser`, this.form, axiosConfig)
         .then((res) => {

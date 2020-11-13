@@ -50,20 +50,18 @@ export default {
       this.imagebase64.push(dataURL);
       setTimeout(() => {
         if (cnt == this.howmany - 1) {
-          console.log(this.imagebase64);
+          // console.log(this.imagebase64);
           axios
             .post(baseURL + "/decoding", this.imagebase64)
             .then((response) => {
-              console.log("logger - res");
               this.imagebase64 = [];
               axios
                 .post(baseURL + "/kiosk/recog")
                 .then((response) => {
-                    console.log(response);
-                    x.$router.push('main')
-
-
-                    
+                    if(response.data.data =="찾을 수 없는 유저입니다."){
+                      alert('얼굴인식 실패!')
+                    }
+                    x.$router.push('main')     
                 })
                 .catch((err) => {
                   console.log(err);

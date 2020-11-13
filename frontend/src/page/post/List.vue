@@ -462,13 +462,13 @@ export default {
   },
   methods: {
     purchase() {
-      console.log("logger - purchase out of method " + this.uid);
+      // console.log("logger - purchase out of method " + this.uid);
       var IMP = window.IMP;
       var msg;
       var b = this.basket;
 
       b[0].uid = this.uid;
-      console.log(b);
+      // console.log(b);
       // var tempUid = this.uid;
       let x = this;
       IMP.init("imp40062977");
@@ -488,13 +488,13 @@ export default {
         function (rsp) {
           if (rsp.success) {
             var msg = "결제가 완료되었습니다.";
-            alert(msg);
+            // alert(msg);
             msg += "\n고유ID : " + rsp.imp_uid;
             msg += "\n상점 거래ID : " + rsp.merchant_uid;
             msg += "\n결제 금액 : " + rsp.paid_amount + "원";
 
-            console.log(b);
-            alert("logger - purchase inner " + b);
+            // console.log(b);
+            // alert("logger - purchase inner " + b);
             axios
               .post(baseURL + "/create/order", b)
               .then((response) => {
@@ -508,7 +508,7 @@ export default {
             var msg = "결제에 실패하였습니다.";
             msg += "에러내용 : " + rsp.error_msg;
           }
-          alert(msg);
+          // alert(msg);
         }
       );
     },
