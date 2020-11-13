@@ -60,6 +60,10 @@ export default {
                 .post(baseURL + "/kiosk/recog")
                 .then((response) => {
                     console.log(response);
+                    self.$router.push('main')
+
+
+                    
                 })
                 .catch((err) => {
                   console.log(err);
@@ -70,6 +74,7 @@ export default {
             });
         }
       }, 500);
+      
     },
 
     snap() {
