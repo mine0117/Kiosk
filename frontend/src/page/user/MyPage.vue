@@ -1,12 +1,12 @@
 ﻿<template>
   <div class="container">
-    <div class="mt-1 p-0" style="margin-left: 450px;">
-      <router-link class="ml-5 nav-link" to="/">
-       HOME
+    <div class="mt-1 p-0" style="margin-left:50px;">
+      <router-link class="mr-1000" to="/">
+      <img src="@/assets/img/logo.png" style="width : 30%;" class=mr-5>
       </router-link>
     </div>
 
-    <div class="mr-10" style="font-size: 20px; margin-left: 750px; margin-top: 30px;">
+    <div class="mr-10" style="font-size: 20px; margin-left: 730px; margin-top: 30px;">
       {{ form.name }} 님 구매 내역
     </div>
 
