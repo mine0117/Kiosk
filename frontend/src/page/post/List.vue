@@ -50,7 +50,7 @@
           </th>
           <div>
             <th>
-            <td>
+            <td v-if ="basket!=''">
             <b-button variant ="success" style="width: 190px; height:60px; font-size:20px;" v-b-modal.modal-1>결제하기</b-button>
             </td>
             <td>

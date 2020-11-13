@@ -62,14 +62,12 @@ public class AdminController {
     @ApiOperation(value = "오늘 방문자 수")
     public ResponseEntity<Integer> getVisitorCount() throws SQLException, IOException {
 
-        // LocalDateTime startDatetime = LocalDateTime.of(LocalDate.now(), LocalTime.of(0, 0, 0));
-        // LocalDateTime endDatetime = LocalDateTime.of(LocalDate.now(), LocalTime.of(23, 59, 59));
-        // System.out.println(startDatetime+" "+endDatetime);
         int count = 0;
+        
         try {
-            // count = adminDao.countByCurrenttimeBetween(startDatetime, endDatetime);
+
             count = adminDao.getCountvisitors();
-            // System.out.println("logger - count: " + count);
+
             return new ResponseEntity<Integer>(count, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
@@ -226,32 +224,32 @@ public class AdminController {
             return new ResponseEntity<String>(token, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResponseEntity<String>(token, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>(token, HttpStatus.UNAUTHORIZED);
         }
     }
 
     @PostMapping("/admin/isAdmin")
-        @ApiOperation(value = "관리자 확인")
-        public ResponseEntity<Boolean> isAdmin(HttpServletRequest request) throws SQLException, IOException {
-            // System.out.println("logger - isAdmin method");
-            Boolean flag = false;
-            try {
-                String token = request.getHeader("jwtToken");
-                if(token.equals("null")){
-                    System.out.println("null");
-                    return new ResponseEntity<Boolean>(flag, HttpStatus.OK);
-                }
-                System.out.println("jwtToken - "+token);
-                Useradmin tokenuser = jwtService.getaUseradmin(token);
-                if(tokenuser.getAid().equals("test")){
-                    flag = true;
-                    return new ResponseEntity<Boolean>(true, HttpStatus.OK);
-                }
-                           
+    @ApiOperation(value = "관리자 확인")
+    public ResponseEntity<Boolean> isAdmin(HttpServletRequest request) throws SQLException, IOException {
+        // System.out.println("logger - isAdmin method");
+        Boolean flag = false;
+        try {
+            String token = request.getHeader("jwtToken");
+            if (token.equals("null")) {
+                System.out.println("null");
                 return new ResponseEntity<Boolean>(flag, HttpStatus.OK);
-            } catch (Exception e) {
-                e.printStackTrace();
-                return new ResponseEntity<Boolean>(flag, HttpStatus.FORBIDDEN);
             }
+            System.out.println("jwtToken - " + token);
+            Useradmin tokenuser = jwtService.getaUseradmin(token);
+            if (tokenuser.getAid().equals("test")) {
+                flag = true;
+                return new ResponseEntity<Boolean>(true, HttpStatus.OK);
+            }
+
+            return new ResponseEntity<Boolean>(flag, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<Boolean>(flag, HttpStatus.FORBIDDEN);
         }
+    }
 }
