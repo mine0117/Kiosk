@@ -630,9 +630,7 @@ export default {
 </script>
 
 <style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Jua&display=swap");
 * {
-  font-family: "Jua", sans-serif;
   font-size: 13px;
   line-height: 35px;
 }
