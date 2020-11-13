@@ -284,7 +284,8 @@ public class AccountController {
         return response;
 
     }
-
+    
+    @Transactional
     @GetMapping("/tracking/start")
     public ResponseEntity<?> trackingst(@RequestParam(required = true) String tid) {
         ResponseEntity<?> response = null;
@@ -295,7 +296,7 @@ public class AccountController {
         // command[1] =
         // "C:\\Users\\multicampus\\Desktop\\project3\\s03p31b107\\face_classifier\\face_recognition_mlp.py";
         // command[1] = "C:\\do\\face_classifier\\face_recognition_knn.py";
-        command[1] = "/var/lib/jenkins/workspace/sucheol\'s/darknet/python/darknet_2.py";
+        command[1] = "/home/team7/s03p31b107/darknet/python/darknet_2.py";
         command[2] = tid;
         
         try {
@@ -310,6 +311,7 @@ public class AccountController {
                 }
             }
             
+            checkvisitorDao.deleteByUid(tid);
             result.data = extact_result.substring(extact_result.indexOf("$start")+6, extact_result.indexOf("$end")-1);
             response = new ResponseEntity<>(result, HttpStatus.OK);
         } catch (Exception e) {
@@ -320,12 +322,13 @@ public class AccountController {
         
     }
     
-    @Transactional
     @GetMapping("/tracking")
     @ApiOperation(value = "트래킹")
     public Object tracking(@RequestParam(required = true) String tid) {
-        checkvisitorDao.deleteByUid(tid);
         String token = null;
+        if (tid.equals("Unknown")) {
+            return new ResponseEntity<>("Unknown", HttpStatus.ACCEPTED);
+        }
         try {
             Optional<User> userOpt = userDao.findUserByUid(Integer.parseInt(tid));
             if (userOpt.isPresent()) {

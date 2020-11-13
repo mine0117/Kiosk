@@ -498,7 +498,8 @@ export default {
             axios
               .post(baseURL + "/create/order", b)
               .then((response) => {
-                x.$router.push("/");
+                this.$cookies.remove("Auth-Token");
+                x.$router.push({name: "kioskstart"});
               })
               .catch((err) => {
                 console.log(err);
@@ -586,6 +587,7 @@ export default {
       tmpBasket = tmpBasket.splice(i, 1);
     },
     okcancel() {
+      this.$cookies.remove("Auth-Token");
       this.$router.push({name: "kioskstart"});
     },
     numberWithCommas(x) {
