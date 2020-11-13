@@ -190,7 +190,7 @@ if __name__ == "__main__":
     if(cnt<3):
         print("INCORRECT")
     else:
-        print("CORRECT :" , name)
+        print("CORRECT:" , name)
     shutil.rmtree(base_path+"/test/")
     os.mkdir(base_path+"/test/")
         # if flag:
