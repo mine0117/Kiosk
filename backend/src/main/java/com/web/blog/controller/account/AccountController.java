@@ -280,6 +280,7 @@ public class AccountController {
                 String strDate = dateFormat.format(date);
                 v.setCurrenttime(strDate);
                 v.setTel(userDao.findUserByUid(Integer.parseInt(res.toString().split(":")[1])).get().getTel());
+                v.setUid(Integer.parseInt(res.toString().split(":")[1]));
                 visitDao.save(v);
 
             } else {
