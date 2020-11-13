@@ -56,6 +56,7 @@ import java.util.*;
 public class AccountController {
     // static String Paths ="C:/Users/multicampus/Desktop/pjt3//s03p31b107/";
     static String awsPath ="/home/ubuntu/s03p31b107/face_classifier";
+    static String execPath = "/home/ubuntu/Jenkins/workspace/alonso/face_classifier";
 
     @Autowired
     UserDao userDao;
@@ -150,7 +151,7 @@ public class AccountController {
 
         String[] command = new String[2];
         command[0] = "python3";
-        command[1] = awsPath+"/only_train.py";
+        command[1] = execPath+"/only_train.py";
         try {
             ByteArrayOutputStream out = execPython(command);
             String extact_result = out.toString();
@@ -256,7 +257,7 @@ public class AccountController {
         command[0] = "python3";
         // command[1] =
         // "C:\\Users\\multicampus\\Desktop\\project3\\s03p31b107\\face_classifier\\face_recognition_mlp.py";
-        command[1] = awsPath+"/face_recognition_knn.py";
+        command[1] = execPath+"/face_recognition_knn.py";
         try {
             ByteArrayOutputStream out = execPython(command);
             String extact_result = out.toString();
@@ -270,7 +271,7 @@ public class AccountController {
                 }
             }
 
-            if (res.toString().split(":")[0].equals("CORRECT ")) {
+            if (res.toString().split(":")[0].equals("CORRECT")) {
                 result.data = "가입된 유저입니다.";
                 result.object = res.toString().split(":")[1];
                 Visit v = new Visit();
