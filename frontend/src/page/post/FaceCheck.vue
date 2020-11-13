@@ -1,14 +1,14 @@
 <template>
-  <div class="p-3 mx-auto">
-    <video id="video" width="480" height="360" autoplay></video>
+  <div style ="text-align: center; " class="p-3 mx-auto">
+    <video  id="video" width="800" height="600" autoplay></video>
     <canvas
       id="canvas"
       width="480"
       height="360"
       style="display: none;"
-    ></canvas>
-    <b-btn @click="start">카메라 켜기</b-btn>
-    <b-btn @click="snap">촬영</b-btn>
+    ></canvas><br>
+    <!-- <b-btn @click="start">카메라 켜기</b-btn> -->
+    <button style =" width: 200px; height: 120px; font-size: 80px; margin-left : 10px" @click="snap">촬영</button>
   </div>
 </template>
 
@@ -25,7 +25,7 @@ export default {
     };
   },
   mounted() {
-    //    this.start();
+       this.start();
   },
   methods: {
     start() {
