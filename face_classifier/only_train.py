@@ -15,7 +15,7 @@ import shutil
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
 
-def train(train_dir, model_save_path="trained_knn_model.csv", n_neighbors=1, knn_algo='ball_tree', verbose=False):
+def train(train_dir, n_neighbors=1, knn_algo='ball_tree', verbose=False):
 
     X = loadtxt("/home/ubuntu/s03p31b107/face_classifier/output2.csv", delimiter=',').tolist()
     y = loadtxt("/home/ubuntu/s03p31b107/face_classifier/output3.csv", dtype=str).tolist()
@@ -54,6 +54,7 @@ def train(train_dir, model_save_path="trained_knn_model.csv", n_neighbors=1, knn
     knn_clf.fit(X, y)
     
     # Save the trained KNN classifier
+    model_save_path="/home/ubuntu/s03p31b107/face_classifier/trained_knn_model.csv"
     if model_save_path is not None:
         with open(model_save_path, 'wb') as f:
             pickle.dump(knn_clf, f)
@@ -66,8 +67,8 @@ if __name__ == "__main__":
     flag = False
     # STEP 1: Train the KNN classifier and save it to disk
     # Once the model is trained and saved, you can skip this step next time.
-    classifier = train("/home/ubuntu/s03p31b107/face_classifier/train", model_save_path="trained_knn_model.csv", n_neighbors=1)
-    # shutil.rmtree("/home/ubuntu/s03p31b107/face_classifier/train")
-    # os.mkdir("/home/ubuntu/s03p31b107/face_classifier/train")
+    classifier = train("/home/ubuntu/s03p31b107/face_classifier/train", n_neighbors=1)
+    shutil.rmtree("/home/ubuntu/s03p31b107/face_classifier/train")
+    os.mkdir("/home/ubuntu/s03p31b107/face_classifier/train")
 
 
