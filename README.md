@@ -1,6 +1,6 @@
-﻿#:computer:[ 키완얼로 바로가기](https://k3b107.p.ssafy.io)
+﻿# :computer: [ 키완얼로 바로가기](https://k3b107.p.ssafy.io)
 
-:scroll: ## 목차
+## 목차 :scroll:
 - [개요](#개요)
 - [팀소개](#팀소개)
 - [기술 스택](#기술-스택)
