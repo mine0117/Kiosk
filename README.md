@@ -15,7 +15,7 @@
 
 ## 개요 :black_nib:
 
-![흐름도](README.img/흐름도.PNG)
+![흐름도](./README.img/흐름도.PNG)
 
 <br>
 
@@ -65,7 +65,7 @@
 
 <br>
 
-![기술스택](README.img/기술스택.PNG)
+![기술스택](./README.img/기술스택.PNG)
 
 * JAVA (jdk 1.8.0)
 * Springboot (2.2.2)
@@ -82,7 +82,7 @@
 
 ## 향후 전망
 
-![기술스택](README.img/기대 효과.PNG)
+![기술스택](./README.img/기대 효과.PNG)
 
 <br>
 
