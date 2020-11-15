@@ -42,7 +42,6 @@
 
 * JAVA (jdk 1.8.0)
 * Springboot (2.2.2)
-* Node.js (12.18.2)
 * JPA
 * Docker
 * MariaDB
@@ -58,8 +57,8 @@
 
 2. ## 팀소개 :runner: :walking: 
 
-   |  Name  |     Role      | Detail                                             |
-   | :----: | :-----------: | -------------------------------------------------- |
+   |  Name  |     Role      |
+   | :----: | :-----------: | 
    | 박재림 | BackEnd, 팀장 |      
    | 김성웅 |   FrontEnd    |  
    | 박수철 |    BackEnd    | 
