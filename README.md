@@ -80,6 +80,6 @@
 
 
 
-#### 추천서비스 :poultry_leg: meat_on_bone:
+#### 추천서비스 :poultry_leg: :meat_on_bone:
 >  고객이 이전에 먹었던 메뉴 혹은 고객이 방문한 시간대의 인기 메뉴 등을 제공하고 더 많은 추천 서비스
 
