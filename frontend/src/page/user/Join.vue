@@ -88,7 +88,9 @@
           type="number"
           required
           placeholder="10"
-          min="10" max="100" step="10"
+          min="10"
+          max="100"
+          step="10"
         ></b-form-input>
       </b-form-group>
 
@@ -113,36 +115,45 @@
       </b-form-group>
 
       <!-- 파일 -->
+
       <b-form-group
         id="input-group-6"
         label="Picture"
         label-size="lg"
         label-for="input-6"
+        style="text-align :center"
       >
-        <video id="video" width="480" height="360" autoplay></video>
-        <canvas
-          id="canvas"
+        <video
+          id="video"
+          class="ml-4"
           width="480"
           height="360"
-          style="display: none;"
-        ></canvas>
-        <b-btn @click="snap">촬영</b-btn>
-        <b-btn @click="start">카메라켜기</b-btn>
+          autoplay
+        ></video>
+        <canvas id="canvas" width="480" height="360" style="display: none;">
+        </canvas>
+        <b-btn class="btn btn-default btn-lg" @click="snap">영상촬영</b-btn>
       </b-form-group>
 
       <b-row>
-        <b-col lg="4" class="pb-2"></b-col>
-        <b-col lg="4" class="pb-2"
-          ><b-button
+        <b-col lg="4" class="pb-2"> </b-col>
+        <b-col lg="4" class="pb-2" >
+          <b-button 
             type="submit"
             variant="success"
             block
+           
             :disabled="!(emailState && nameState)"
-            @click="sendSignupFrom()"
+            @click="home()"
             >가입하기</b-button
+          > 
+          </b-col
+        >
+        <b-col lg="4" class="pb-2">
+          <b-button type="submit" variant="danger" @click="home()"
+            >뒤로가기</b-button
           ></b-col
         >
-        <b-col lg="4" class="pb-2"></b-col>
       </b-row>
     </div>
   </div>
@@ -164,7 +175,7 @@ export default {
       return regExp.test(this.email);
     },
     nameState() {
-      return this.name.length > 2 ? true : false;
+      return this.name.length >= 2 ? true : false;
     },
     invalidName() {
       if (this.name.length > 0) {
@@ -194,7 +205,7 @@ export default {
           // console.log(Response.data);
           this.$cookies.set("Auth-Token", kakaoToken);
           axios
-            .get(baseURL+'/account/justlearn')
+            .get(baseURL + "/account/justlearn")
             .then(() => {
               this.$router.push("/");
             })
@@ -218,7 +229,9 @@ export default {
           });
       }
     },
-
+    home() {
+      this.$router.push("/");
+    },
     tmp(cnt) {
       var canvas = document.getElementById("canvas");
       var context = canvas.getContext("2d");
@@ -248,6 +261,9 @@ export default {
         this.tmp(i);
       }
     },
+  },
+  mounted() {
+    this.start();
   },
   watch: {},
   data: () => {
