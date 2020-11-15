@@ -1,4 +1,4 @@
-﻿# :scroll: #### [ 키완얼로 바로가기](https://k3b107.p.ssafy.io)
+﻿# :scroll: [ 키완얼로 바로가기](https://k3b107.p.ssafy.io)
 
 ## 목차
 - [개요](#개요)
