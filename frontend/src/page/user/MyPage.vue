@@ -2,7 +2,7 @@
   <div class="container">
     <div class="mt-1 p-0" style="margin-left: 50px">
       <router-link class="mr-1000" to="/">
-        <img src="@/assets/img/logo.png" style="width: 30%" class="mr-5" />
+        <img src="@/assets/img/logo.png" style="width: 100px;float:left;"/>
       </router-link>
     </div>
 
