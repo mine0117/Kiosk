@@ -15,7 +15,7 @@
 
 ## 개요 :black_nib:
 
-![흐름도](./README.img/흐름도.PNG)
+![흐름도](README.img/흐름도.png)
 
 <br>
 
@@ -65,7 +65,7 @@
 
 <br>
 
-![기술스택](./README.img/기술스택.PNG)
+![기술스택](README.img/기술스택.png)
 
 * JAVA (jdk 1.8.0)
 * Springboot (2.2.2)
