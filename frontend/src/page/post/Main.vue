@@ -1,6 +1,21 @@
 <template>
   <div>
     <Kakao class="kakao"/>
+    <div v-if="videoshow" class="videomodal">
+      <div>
+        <iframe
+          style="width: 100%"
+          height="300"
+          src="https://www.youtube.com/embed/N2aEAEYtewE?autoplay=1&amp;mute=1"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
+      <div class="mt-3 text-center">
+        <b-button @click="videoshow=false" class="p-3" variant="outline-light" style="font-size: 20px;">그만 보기</b-button>
+      </div>
+    </div>
     <img src="@/assets/img/scrollimg.png" class="scrollimg">
     <img src="@/assets/img/main/logo.png" alt="logo" class="logoimg">
     <div class="sections-menu">
@@ -51,24 +66,15 @@
 
     <section class="fullpage">
       <div class="row text-center text-white" style="padding: 100px; padding-top: 30vh">
-        <div v-for="p in endpage" :key="p" class="col-4">
+        <div v-for="p in endpage" :key="p.content" class="col-4">
           <b-card style="background-color: #002b49; font-size: 30px;">
             <b-card-text>{{p.title}}</b-card-text>
             <b-card-text>{{p.content}}</b-card-text>
           </b-card>
         </div>
       </div>
-      <!-- <div id="animated-number-demo">
-        <input v-model.number="number" type="number" step="20">
-        <p class="text-white">{{ animatedNumber }}</p>
-      </div> -->
       <hr>
-      <div class="text-white m-5">
-        <b-card style="background-color: #002b49; font-size: 15px;">
-          <b-card-text class="text-white">시연 영상 보러 가기 : </b-card-text>
-          <b-card-text class="text-white"></b-card-text>
-        </b-card>
-      </div>
+      <Carousel />
     </section>
   </div>
 </template>
@@ -76,11 +82,13 @@
 <script>
 // import axios from "axios";
 import Kakao from  "../user/Kakao"
+import Carousel from  "./Carousel"
 
 export default {
   // name: "main",
   components: {
-    Kakao
+    Kakao,
+    Carousel
   },
   data() {
     return {
@@ -91,8 +99,7 @@ export default {
       isShow: false,
       isShowtext: false,
       isShowperson: false,
-      number: 0,
-      tweenedNumber: 0,
+      videoshow: true,
       endpage: [
         {
           title : "등록 매장수",
@@ -104,20 +111,10 @@ export default {
         },
         {
           title : "일일 방문자수",
-          content : 124908,
+          content : 12408,
         }
       ]
     };
-  },
-  computed: {
-    animatedNumber: function() {
-      return this.tweenedNumber.toFixed(0);
-    }
-  },
-  watch: {
-    number: function(newValue) {
-      gsap.to(this.$data, { duration: 0.5, tweenedNumber: newValue });
-    }
   },
   created() {
     this.te()
@@ -147,6 +144,7 @@ export default {
         this.isShowtext = !this.isShowtext
       }, 1000);
     },
+
     calculateSectionOffsets() {
       let sections = document.getElementsByTagName('section');
       let length = sections.length;
@@ -338,5 +336,12 @@ export default {
   left: 30px;
   z-index: 1;
   width: 90px;
+}
+.videomodal {
+  position: fixed;
+  top: 30vh;
+  left: 40vh;
+  z-index: 1;
+  width: 50vw;
 }
 </style>
