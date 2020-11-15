@@ -1,5 +1,5 @@
 <template>
-   <div class="container">
+  <div class="container">
     <h1 style="text-align: center">회원 정보 수정</h1>
     <b-form @submit="onSubmit" @reset="onReset" v-if="show">
       <!-- 이름 -->
@@ -175,7 +175,11 @@ export default {
     };
   },
   created() {
-    this.getUserInfo();
+    if (this.$cookies.get("Auth-Token") == null) {
+      this.$router.push("/");
+    } else {
+      this.getUserInfo();
+    }
   },
   computed: {
     emailState() {
@@ -195,7 +199,6 @@ export default {
   },
   methods: {
     getUserInfo() {
-
       const axiosConfig = {
         headers: {
           jwtToken: `${this.$cookies.get("Auth-Token")}`,
@@ -241,7 +244,8 @@ export default {
       this.$nextTick(() => {
         this.show = true;
       });
-    },}
+    },
+  },
 };
 </script>
 
@@ -300,5 +304,4 @@ h1 {
   border: 1px solid gray;
   margin-bottom: 50px;
 }
-
 </style>
