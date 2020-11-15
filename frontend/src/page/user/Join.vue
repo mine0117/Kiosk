@@ -163,6 +163,8 @@
 import axios from "axios";
 import constants from "../../lib/constants";
 import { mapGetters } from "vuex";
+import Swal from "sweetalert2";
+
 const baseURL = constants.baseUrl;
 
 export default {
@@ -241,7 +243,8 @@ export default {
       this.imagebase64.push(dataURL);
       setTimeout(() => {
         if (cnt == this.howmany - 1) {
-          // console.log(this.imagebase64);
+    
+          console.log(this.imagebase64);
           axios
             .post(baseURL + "/imageset", this.imagebase64)
             .then((response) => {
@@ -255,11 +258,32 @@ export default {
     },
 
     snap() {
+            const Toast = Swal.mixin({
+              toast: true,
+              width: 500,
+           
+              position: 'top',
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+              }
+            })
+
+            Toast.fire({
+              icon: 'success',
+              title: '촬영 중입니다'
+            })
       this.imagebase64.push(this.getKakaoId.toString());
 
       for (let i = 0; i < this.howmany; i++) {
         this.tmp(i);
       }
+       setTimeout(() => {
+
+      }, 2000);
     },
   },
   mounted() {
