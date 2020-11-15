@@ -340,7 +340,7 @@ export default {
 .videomodal {
   position: fixed;
   top: 25vh;
-  left: 25vh;
+  left: 25vw;
   z-index: 1;
   width: 50vw;
 }
