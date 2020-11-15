@@ -1,4 +1,4 @@
-#### [ 키완얼로 바로가기](https://k3b107.p.ssafy.io)
+﻿# :scroll: #### [ 키완얼로 바로가기](https://k3b107.p.ssafy.io)
 
 ## 목차
 - [개요](#개요)
@@ -55,7 +55,7 @@
 
 
 
-2. ## 팀소개 :runner: :walking: 
+## 팀소개 :runner: :walking: 
 
    |  Name  |     Role      |
    | :----: | :-----------: | 
@@ -66,7 +66,7 @@
    | 이진용 |   FrontEnd    | 
 
    
-3. ## 기능
+## 기능
 
 
 #### 얼굴인식:trophy:
