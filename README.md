@@ -82,7 +82,7 @@
 
 ## 향후 전망
 
-![기술스택](./README.img/기대 효과.PNG)
+![기술스택](README.img/기대 효과.png)
 
 <br>
 
