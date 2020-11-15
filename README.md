@@ -57,15 +57,11 @@
 <br>
 
 
-## 구조도 
-
-
-
 ## 기술 스택
 
 <br>
 
-![기술스택](README.img/기술스택.png)
+![기술스택](README.img/기술스택2.png)
 
 * JAVA (jdk 1.8.0)
 * Springboot (2.2.2)
@@ -79,6 +75,9 @@
 * openCV
 
 <br>
+
+##소프트아키텍처
+![기술스택](README.img/소프트아키텍처.png)
 
 ## 향후 전망
 
