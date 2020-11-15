@@ -175,7 +175,6 @@ export default {
     };
   },
   created() {
-    console.log("created - MyPage");
     this.getUserInfo();
   },
   computed: {
@@ -209,7 +208,6 @@ export default {
         })
         .catch((err) => console.log(err));
     },
-    // template
     onSubmit(evt) {
       evt.preventDefault();
 
@@ -218,7 +216,6 @@ export default {
           jwtToken: `${this.$cookies.get("Auth-Token")}`,
         },
       };
-      // console.log(this.form);
       axios
         .put(`${constants.baseUrl}/updateuser`, this.form, axiosConfig)
         .then((res) => {
@@ -233,13 +230,13 @@ export default {
     },
     onReset(evt) {
       evt.preventDefault();
-      // Reset our form values
+
       this.form.email = this.form.email;
       this.form.name = this.form.name;
       this.form.gender = this.form.gender;
       this.form.age = this.form.age;
       this.form.tel = this.form.tel;
-      // Trick to reset/clear native browser form validation state
+
       this.show = false;
       this.$nextTick(() => {
         this.show = true;
@@ -304,9 +301,4 @@ h1 {
   margin-bottom: 50px;
 }
 
-/* @media (min-width: 1200px) {
-  .container {
-    width: 700px;
-  }
-} */
 </style>
