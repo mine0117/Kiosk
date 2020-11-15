@@ -5,7 +5,7 @@
       <div>
         <iframe
           style="width: 100%"
-          height="300"
+          height="350"
           src="https://www.youtube.com/embed/N2aEAEYtewE?autoplay=1&amp;mute=1"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -339,8 +339,8 @@ export default {
 }
 .videomodal {
   position: fixed;
-  top: 30vh;
-  left: 40vh;
+  top: 25vh;
+  left: 25vh;
   z-index: 1;
   width: 50vw;
 }
