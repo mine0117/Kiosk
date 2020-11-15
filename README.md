@@ -1,11 +1,11 @@
-﻿# :scroll: [ 키완얼로 바로가기](https://k3b107.p.ssafy.io)
+﻿#:computer:[ 키완얼로 바로가기](https://k3b107.p.ssafy.io)
 
-## 목차
+:scroll: ## 목차
 - [개요](#개요)
 - [팀소개](#팀소개)
+- [기술 스택](#기술-스택)
 - [기능](#기능)
 - [향후 전망](#향후-전망)
-- [기술 스택](#기술-스택)
 - [기술 설명](#기술-설명)
 	- [ERD](#erd)
 	- [디렉토리 구조도](#디렉토리-구조도)
@@ -37,6 +37,18 @@
 ### __:heart: 이제 키완얼을 사용하여 편하게 매장을 이용해 보세요 :heart:__
 
 
+
+## 팀소개 :runner: :walking: 
+
+   |  Name  |     Role      |
+   | :----: | :-----------: | 
+   | 박재림 | BackEnd, 팀장 |      
+   | 김성웅 |   FrontEnd    |  
+   | 박수철 |    BackEnd    | 
+   | 이동현 |    BackEnd    | 
+   | 이진용 |   FrontEnd    | 
+
+
 ## 기술 스택
 ![기술스택](README.img/기술스택.PNG)
 
@@ -52,18 +64,6 @@
 * openCV
 
 <br>
-
-
-
-## 팀소개 :runner: :walking: 
-
-   |  Name  |     Role      |
-   | :----: | :-----------: | 
-   | 박재림 | BackEnd, 팀장 |      
-   | 김성웅 |   FrontEnd    |  
-   | 박수철 |    BackEnd    | 
-   | 이동현 |    BackEnd    | 
-   | 이진용 |   FrontEnd    | 
 
    
 ## 기능
