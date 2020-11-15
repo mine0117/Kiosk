@@ -1,5 +1,5 @@
 <template>
-   <div class="container">
+  <div class="container">
     <h1 style="text-align: center">회원 정보 수정</h1>
     <b-form @submit="onSubmit" @reset="onReset" v-if="show">
       <!-- 이름 -->
@@ -175,8 +175,11 @@ export default {
     };
   },
   created() {
-    console.log("created - MyPage");
-    this.getUserInfo();
+    if (this.$cookies.get("Auth-Token") == null) {
+      this.$router.push("/");
+    } else {
+      this.getUserInfo();
+    }
   },
   computed: {
     emailState() {
@@ -196,7 +199,6 @@ export default {
   },
   methods: {
     getUserInfo() {
-
       const axiosConfig = {
         headers: {
           jwtToken: `${this.$cookies.get("Auth-Token")}`,
@@ -209,7 +211,6 @@ export default {
         })
         .catch((err) => console.log(err));
     },
-    // template
     onSubmit(evt) {
       evt.preventDefault();
 
@@ -218,7 +219,6 @@ export default {
           jwtToken: `${this.$cookies.get("Auth-Token")}`,
         },
       };
-      // console.log(this.form);
       axios
         .put(`${constants.baseUrl}/updateuser`, this.form, axiosConfig)
         .then((res) => {
@@ -233,18 +233,19 @@ export default {
     },
     onReset(evt) {
       evt.preventDefault();
-      // Reset our form values
+
       this.form.email = this.form.email;
       this.form.name = this.form.name;
       this.form.gender = this.form.gender;
       this.form.age = this.form.age;
       this.form.tel = this.form.tel;
-      // Trick to reset/clear native browser form validation state
+
       this.show = false;
       this.$nextTick(() => {
         this.show = true;
       });
-    },}
+    },
+  },
 };
 </script>
 
@@ -303,10 +304,4 @@ h1 {
   border: 1px solid gray;
   margin-bottom: 50px;
 }
-
-/* @media (min-width: 1200px) {
-  .container {
-    width: 700px;
-  }
-} */
 </style>

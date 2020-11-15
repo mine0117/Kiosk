@@ -68,7 +68,11 @@ export default {
     };
   },
   created() {
-    this.getUserInfo();
+    if (this.$cookies.get("Auth-Token") == null) {
+      this.$router.push("/");
+    } else {
+      this.getUserInfo();
+    }
   },
   methods: {
     getUserInfo() {
