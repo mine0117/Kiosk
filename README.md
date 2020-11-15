@@ -69,16 +69,16 @@
 3. ## 기능
 
 
-#### EASY :triangular_flag_on_post:
+#### 얼굴인식:trophy:
 >  OpenCV라는 실시간 이미지 프로세싱이 가능한 라이브러리를 이용하여, 고객의 얼굴에 68개의 특징점 찍어 얼굴을 검출하고, KNN classifier를 통해 이 얼굴은 누구인지를 인식
 
 
 
-#### RANK AND RECOMMEND :trophy:
+#### 객체탐지 :trophy:
 > YOLO라는 객체 탐지 기술을 이용하여 다음과 같이 매장 내 사람을 포착할 수 있는 기술을 구현
 
 
 
-#### RANK AND RECOMMEND :trophy:
+#### 추천서비스 :trophy:
 >  고객이 이전에 먹었던 메뉴 혹은 고객이 방문한 시간대의 인기 메뉴 등을 제공하고 더 많은 추천 서비스
 
