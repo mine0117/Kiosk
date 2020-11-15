@@ -16,7 +16,7 @@
     <section class="fullpage">
       <div class="card text-white">
         <div class="card-img-overlay">
-          <p class="card-text maintextleft">키오스크<br />완성은<br />얼굴</p>
+          <p class="card-text maintextleft">키오스크의<br />완성은<br />얼굴</p>
         </div>
         <img class="firstmain" src="@/assets/img/main/main1.png" v-if="!isShow" alt="">
         <p v-if="isShowtext" class="card-text imgtext">회원입니다.</p>
@@ -58,10 +58,10 @@
           </b-card>
         </div>
       </div>
-      <div id="animated-number-demo">
+      <!-- <div id="animated-number-demo">
         <input v-model.number="number" type="number" step="20">
         <p class="text-white">{{ animatedNumber }}</p>
-      </div>
+      </div> -->
       <hr>
       <div class="text-white m-5">
         <b-card style="background-color: #002b49; font-size: 15px;">
@@ -244,7 +244,7 @@ export default {
 .firstmain {
   position: absolute;
   right: 20vw;
-  top: 20vh;
+  top: 25vh;
   height: 50vh;
 }
 .imgtext {
@@ -315,14 +315,14 @@ export default {
 }
 .mainvideo {
   position: absolute;
-  left: 10px;
+  left: 5vw;
   top: 20vh;
   width: 50vw;
 }
 .mainvideo2 {
   position: absolute;
-  right: 10vw;
-  top: 20vh;
+  right: 20vw;
+  top: 25vh;
   height: 50vh;
 }
 .scrollimg {
