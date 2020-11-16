@@ -7,7 +7,6 @@
 - [구조도](#구조도)
 	- [ERD](#erd)
 - [기술 스택](#기술-스택)
-- [향후 전망](#향후-전망)
 - [팀소개](#팀소개)
 	
 
@@ -78,9 +77,7 @@
 ## Embedded System
 ![기술스택](README.img/Embedded System.JPG)
 
-## 향후 전망
 
-![기술스택](README.img/기대 효과.png)
 
 <br>
 
