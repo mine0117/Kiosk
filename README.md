@@ -115,10 +115,9 @@
 
 <br>
 
-### Web Architecture
+### Web Architecture / Embedded System
 
 <img src= "https://lab.ssafy.com/s03-final/s03p31b107/raw/master/README.img/Web%20Architecture.JPG" width="40%" height="40%">
-### Embedded System
 
 <img src="https://lab.ssafy.com/s03-final/s03p31b107/raw/master/README.img/Embedded%20System.JPG" width="40%" height="40%">
 
