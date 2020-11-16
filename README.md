@@ -57,6 +57,11 @@
 
 <br>
 
+## 구조도 
+
+### [ERD Diagram](https://www.erdcloud.com/d/gaP6MY5NPWYAGpX7J)
+![ERD](README.img/ERD.JPG)
+
 
 ## 기술 스택
 
@@ -64,21 +69,11 @@
 
 ![기술스택](README.img/기술 스택.JPG)
 
-* JAVA (jdk 1.8.0)
-* Springboot (2.2.2)
-* JPA
-* Docker
-* MariaDB
-* Vue.js 
-* BootStrap
-* Python
-* AWS
-* openCV
 
 <br>
 
 ## Web Architecture
-![기술스택](README.img/Web Architecture.JPG.png)
+![기술스택](README.img/Web Architecture.JPG)
 
 ## Embedded System
 ![기술스택](README.img/Embedded System.JPG)
@@ -93,7 +88,7 @@
 
    |  Name  |     Role      |
    | :----: | :-----------: | 
-   | 박재림 | 백엔드 / 얼굴인식 |      
+   | 박재림 | 팀장 / 백엔드 / 얼굴인식 |      
    | 김성웅 | 백엔드 / 객체 탐지 |  
    | 박수철 | 백엔드 / 서버 / 디버깅 | 
    | 이동현 | 프론트엔드 / 서버 / 키오스크 | 
