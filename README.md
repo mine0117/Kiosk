@@ -77,6 +77,9 @@
 
 ### 추천서비스 :poultry_leg: :pizza:
 
+![추천](README.img/키오스크.png)
+
+
 :one: 고객이 이전에 먹었던 메뉴 
 
 :two: 고객이 방문한 시간대의 인기 푸드
