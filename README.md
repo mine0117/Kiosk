@@ -94,31 +94,33 @@
 
 
 
-![흐름도](README.img/흐름도.png)
 
 ## 구조도 
 
-### [ERD Diagram](https://www.erdcloud.com/d/gaP6MY5NPWYAGpX7J)
+### 흐름도
+<img src="https://lab.ssafy.com/s03-final/s03p31b107/raw/master/README.img/%ED%9D%90%EB%A6%84%EB%8F%84.png" width="50%" height="50%">
 
-![ERD](README.img/ERD.JPG)
+### ERD
+[ERD Diagram](https://www.erdcloud.com/d/gaP6MY5NPWYAGpX7J)
+
+<img src="https://lab.ssafy.com/s03-final/s03p31b107/raw/master/README.img/ERD.JPG" width="50%" height="50%">
 
 
-## 기술 스택
+### 기술 스택
 
 <br>
 
-![기술스택](README.img/기술 스택.JPG)
+<img src="https://lab.ssafy.com/s03-final/s03p31b107/raw/master/README.img/%EA%B8%B0%EC%88%A0%20%EC%8A%A4%ED%83%9D.JPG" width="50%" height="50%">
 
 
 <br>
 
-## Web Architecture
+### Web Architecture
 
-![기술스택](README.img/Web Architecture.JPG)
+<img src= "https://lab.ssafy.com/s03-final/s03p31b107/raw/master/README.img/Web%20Architecture.JPG" width="50%" height="50%">
+### Embedded System
 
-## Embedded System
-
-![기술스택](README.img/Embedded System.JPG)
+<img src="https://lab.ssafy.com/s03-final/s03p31b107/raw/master/README.img/Embedded%20System.JPG" width="50%" height="50%">
 
 
 
