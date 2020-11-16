@@ -37,23 +37,34 @@
 
 ### __:heart: 이제 키완얼을 사용하여 편하게 매장을 이용해 보세요 :heart:__
 
+<br>
+<br>
+<br>
 
 ## 기능
+<br>
+
+### 얼굴인식 
+:heart_eyes: 실시간 영상 처리가 가능한 OpenCV
+
+:smile: 얼굴에 68개의 특징점을 이용하여 얼굴을 검출하는 Dlib
+
+:kissing: KNN Classifier를 이용한 얼굴 인식
+ 
+
+#### 이를 통해 키완얼 고객의 얼굴을 학습하여 최고의 맞춤 컨텐츠를 제공합니다!
 
 
-#### 얼굴인식 :neutral_face:
-![얼굴인식](README.img/얼굴인식.png)
->  OpenCV라는 실시간 이미지 프로세싱이 가능한 라이브러리를 이용하여, 고객의 얼굴에 68개의 특징점 찍어 얼굴을 검출하고, KNN classifier를 통해 이 얼굴은 누구인지를 인식
+<br>
+<hr>
 
-
-
-#### 객체탐지 :eyes:
+### 객체탐지 :eyes:
 ![객체탐지](README.img/움직임.gif)
 > YOLO라는 객체 탐지 기술을 이용하여 다음과 같이 매장 내 사람을 포착할 수 있는 기술을 구현
 
 
 
-#### 추천서비스 :poultry_leg: :pizza:
+### 추천서비스 :poultry_leg: :pizza:
 
 :one: 고객이 이전에 먹었던 메뉴 
 
@@ -61,7 +72,7 @@
 
 :three: 고객이 방문한 시간대의 인기 음료
 
-:four: 더 많은 추천 서비스
+:heavy_plus_sign: 더 많은 추천 서비스
 
 <br>
 
