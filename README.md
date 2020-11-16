@@ -13,7 +13,7 @@
 
 <br>
 
-# 개요 :black_nib:
+## 개요 :black_nib:
 
 <br>
 
@@ -25,8 +25,11 @@
 
 #### :two: 키오스크 사용시 메뉴 선택이 힘드셨죠 ?
 
-최근 주문 메뉴, 현재 시간대 HOT 음료, 현재 시간대 HOT 푸드 를 추천 해줍니다.
+회원에게 개인화 된 탭을 이용하여 
 
+
+
+최근 주문 메뉴, 현재 시간대 HOT 음료, 현재 시간대 HOT 푸드 를 추천 해줍니다.
 
 <br>
 
@@ -38,7 +41,7 @@
 <br>
 <br>
 
-# 기능
+## 기능
 
 <br>
 
@@ -63,7 +66,7 @@
 
 ### 객체탐지 :eyes:
 
-![객체탐지](README.img/움직임.gif)
+<img src="https://lab.ssafy.com/s03-final/s03p31b107/raw/master/README.img/%EC%9B%80%EC%A7%81%EC%9E%84.gif" width="50%" height="50%">
 
 
 
@@ -71,14 +74,13 @@
 
 <br>
 
+
+
 :black_heart: 키완얼은 YOLO ver2를 사용하여 실시간 객체 탐지를 처리하였습니다 
 
 <br>
 
 ### 추천서비스 :poultry_leg: :pizza:
-
-![추천](README.img/키오스크.png)
-
 
 :one: 고객이 이전에 먹었던 메뉴 
 
@@ -94,7 +96,7 @@
 
 ![흐름도](README.img/흐름도.png)
 
-# 구조도 
+## 구조도 
 
 ### [ERD Diagram](https://www.erdcloud.com/d/gaP6MY5NPWYAGpX7J)
 
