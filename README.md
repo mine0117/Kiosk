@@ -45,7 +45,7 @@
 
 <br>
 
-### 얼굴인식 
+### 1. 얼굴인식 
 
 :heart_eyes: 실시간 영상 처리가 가능한 OpenCV
 
@@ -64,7 +64,7 @@
 <hr>
 
 
-### 객체탐지 :eyes:
+### 2. 객체탐지 :eyes:
 
 <img src="https://lab.ssafy.com/s03-final/s03p31b107/raw/master/README.img/%EC%9B%80%EC%A7%81%EC%9E%84.gif" width="50%" height="50%">
 
@@ -80,7 +80,7 @@
 
 <br>
 
-### 추천서비스 :poultry_leg: :pizza:
+### 3. 추천서비스 :poultry_leg: :pizza:
 
 :one: 고객이 이전에 먹었던 메뉴 
 
