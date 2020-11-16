@@ -62,7 +62,7 @@
 
 <br>
 
-![기술스택](README.img/기술스택2.png)
+![기술스택](README.img/기술 스택.JPG)
 
 * JAVA (jdk 1.8.0)
 * Springboot (2.2.2)
@@ -77,8 +77,11 @@
 
 <br>
 
-## 소프트아키텍처
-![기술스택](README.img/소프트아키텍처.png)
+## Web Architecture
+![기술스택](README.img/Web Architecture.JPG.png)
+
+## Embedded System
+![기술스택](README.img/Embedded System.JPG)
 
 ## 향후 전망
 
@@ -90,11 +93,11 @@
 
    |  Name  |     Role      |
    | :----: | :-----------: | 
-   | 박재림 | BackEnd, 팀장 |      
-   | 김성웅 |   FrontEnd    |  
-   | 박수철 |    BackEnd    | 
-   | 이동현 |    BackEnd    | 
-   | 이진용 |   FrontEnd    | 
+   | 박재림 | 백엔드 / 얼굴인식 |      
+   | 김성웅 | 백엔드 / 객체 탐지 |  
+   | 박수철 | 백엔드 / 서버 / 디버깅 | 
+   | 이동현 | 프론트엔드 / 서버 / 키오스크 | 
+   | 이진용 | 프론트엔드 / API / 회원관리 | 
 
 <br>
 
