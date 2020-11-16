@@ -95,7 +95,7 @@
 
 
 
-## 구조도 
+# 구조도 🔧 
 
 ### 흐름도
 <img src="https://lab.ssafy.com/s03-final/s03p31b107/raw/master/README.img/%ED%9D%90%EB%A6%84%EB%8F%84.png" width="50%" height="50%">
@@ -117,12 +117,13 @@
 
 ### Web Architecture
 
-<img src= "https://lab.ssafy.com/s03-final/s03p31b107/raw/master/README.img/Web%20Architecture.JPG" width="50%" height="50%">
+<img src= "https://lab.ssafy.com/s03-final/s03p31b107/raw/master/README.img/Web%20Architecture.JPG" width="40%" height="40%">
 ### Embedded System
 
-<img src="https://lab.ssafy.com/s03-final/s03p31b107/raw/master/README.img/Embedded%20System.JPG" width="50%" height="50%">
+<img src="https://lab.ssafy.com/s03-final/s03p31b107/raw/master/README.img/Embedded%20System.JPG" width="40%" height="40%">
 
-
+<br>
+<hr>
 
 <br>
 
