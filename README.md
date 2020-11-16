@@ -13,7 +13,7 @@
 
 <br>
 
-## 개요 :black_nib:
+# 개요 :black_nib:
 
 <br>
 
@@ -38,7 +38,7 @@
 <br>
 <br>
 
-## 기능
+# 기능
 
 <br>
 
@@ -91,7 +91,7 @@
 
 ![흐름도](README.img/흐름도.png)
 
-## 구조도 
+# 구조도 
 
 ### [ERD Diagram](https://www.erdcloud.com/d/gaP6MY5NPWYAGpX7J)
 
