@@ -1,5 +1,6 @@
 ## [ 키완얼로 바로가기](https://k3b107.p.ssafy.io) :computer:
-
+## [키완얼 관리자페이지](https://k3b107.p.ssafy.io/admin)
+## [키완얼 키오스크](https://k3b107.p.ssafy.io/list)
 
 ## 목차 :scroll:
 
