@@ -150,10 +150,10 @@ if __name__ == "__main__":
     #meta = load_meta("cfg/imagenet1k.data")
     #r = classify(net, meta, im)
     #print r[:10]
-    # net = load_net("../yolo-obj.cfg", "../backup/*.weights", 0)
-    # meta = load_meta("../data/obj.data")
-    net = load_net("../cfg/yolov2.cfg", "../yolo.weights", 0)
-    meta = load_meta("../cfg/coco.data")
+    net = load_net("../yolo-obj.cfg", "../backup/*.weights", 0)
+    meta = load_meta("../data/obj.data")
+    # net = load_net("../cfg/yolov2.cfg", "../yolo.weights", 0)
+    # meta = load_meta("../cfg/coco.data")
     r = detect(net, meta, "../data/laptop.jpg")
     for i in range(len(r)):
         print(r[i][0])
